@@ -374,7 +374,7 @@ $posts = array(
 		'slug'    => 'how-to-enjoy-your-hot-tub-this-winter',
 		'title'   => 'How to enjoy your hot tub this winter',
 		'excerpt' => 'Eleven winters of service calls, boiled down to the six habits that keep a spa in use between November and March.',
-		'media'   => 'blog-winter',
+		'media'   => 'lifestyle-winter',
 		'date'    => '-21 days',
 		'cat'     => 'Seasonal',
 	),

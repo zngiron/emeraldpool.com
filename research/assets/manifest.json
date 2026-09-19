@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-19",
   "source": "https://emeraldpool.com",
-  "count": 40,
+  "count": 41,
   "assets": [
     {
       "filename": "1I7A4726_001-scaled.webp",
@@ -298,6 +298,14 @@
       "depicts": "Bullfrog Spas S200 Swim Spa — top-down product render",
       "suggestedUse": "spa CPT featured image (swim spa)",
       "fromPage": "model-45084"
+    },
+    {
+      "filename": "services-technician.jpg",
+      "sizeKB": 255,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/04/132620845_1-1.jpg",
+      "depicts": "home: a technician in overalls working on the edge of a spa in a back yard",
+      "suggestedUse": "services hero — replaces a 1920x600 banner crop that upscaled in a 4:3 frame",
+      "fromPage": "home"
     },
     {
       "filename": "stil-7-top-down-301987.jpg",

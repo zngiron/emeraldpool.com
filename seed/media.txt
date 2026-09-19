@@ -29,9 +29,8 @@ lifestyle-portrait|lifestyle-showroom.jpg|A man resting in a spa beside a plante
 lifestyle-water|lifestyle-new-year.jpg|Spa water lit from below at golden hour
 lifestyle-courtyard|lifestyle-courtyard.jpg|A plunge pool on a timber deck in a walled courtyard
 about-team|meet-our-team-main-pg-emerald-pool-and-patio_1.jpg|A lit pool and spa on an Emerald Pool & Patio job at dusk
-services|3T2A4560_1.jpg|A technician servicing pool equipment
+services|services-technician.jpg|A technician working on the edge of a spa in a back yard
 feature-jetpak|jetpak-personalization-low-960.jpg|Swapping a JetPak in a spa wall
-blog-winter|how-to-enjoy-your-hot-tub-this-winter.jpg|A hot tub in use on a winter evening
 
 # --- Plan renders ----------------------------------------------------------
 spa-bullfrog-a7d|a7d-top-down-71713.jpg|Bullfrog A7D
