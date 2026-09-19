@@ -1,0 +1,21 @@
+# key|file in research/assets|attachment title
+logo|emerald-pool-logo-blue-70.png|Emerald Pool & Patio logo
+hero-backyard|3T2A5041.jpg|A lit back yard with a hot tub and patio furniture
+hero-hot-tubs|3T2A5613_2.jpg|A hot tub on a covered deck
+hero-swim-spa|Flora-Duffy-Swim-6_1.jpg|A swimmer working against the current in a swim spa
+about-team|meet-our-team-main-pg-emerald-pool-and-patio_1.jpg|The Emerald Pool & Patio team
+services|3T2A4560_1.jpg|A technician servicing pool equipment
+lifestyle-friends|3T2A5585.jpg|Friends talking in a hot tub on a covered patio
+lifestyle-couple|1I7A4726_001-scaled.webp|A couple in a spa on a lit deck
+feature-jetpak|jetpak-personalization-low-960.jpg|Swapping a JetPak in a spa wall
+blog-winter|how-to-enjoy-your-hot-tub-this-winter.jpg|A hot tub in use on a winter evening
+spa-bullfrog-a7d|a7d-top-down-71713.jpg|Bullfrog A7D
+spa-bullfrog-m6|m6-top-down-312403.jpg|Bullfrog M6
+spa-bullfrog-m9|m9-top-down-602603.jpg|Bullfrog M9
+spa-bullfrog-x7|x7-standard-snow-top-1582766.jpg|Bullfrog X7
+spa-bullfrog-x6l|x6l-standard-snow-top-1064121.jpg|Bullfrog X6L
+spa-bullfrog-stil-7|stil-7-top-down-301987.jpg|Bullfrog STIL 7
+spa-bullfrog-calm-7|calm-7-topdown-1084771.jpg|Bullfrog Calm 7
+spa-bullfrog-s150|s150-topdown-454196.jpg|Bullfrog S150 Swim Spa
+spa-bullfrog-s180xd|s180xd-topdown-723269.jpg|Bullfrog S180XD Swim Spa
+spa-bullfrog-s200|s200-topdown-658305.jpg|Bullfrog S200 Swim Spa

@@ -1,0 +1,225 @@
+{
+  "_note": "Curated from research/spa-specs.json (scraped from emeraldpool.com). Prices are illustrative demo figures; every other value is from the scrape or the manufacturer sheet.",
+  "spas": [
+    {
+      "slug": "bullfrog-a7d",
+      "title": "Bullfrog A7D",
+      "type": "a-series",
+      "spa_type": "hot-tubs",
+      "image": "a7d-top-down-71713.jpg",
+      "image_alt": "Bullfrog A7D hot tub seen from above, shell and JetPaks visible",
+      "excerpt": "Seven seats, two of them lounges, and the full JetPak wall — the A Series in its most useful size.",
+      "overview": "The A7D is the model most Eugene and Bend customers end up in. Two lounges and five bucket seats fit a family without pushing the footprint past a standard deck bay, and every seat backs onto a JetPak you can lift out and swap for a different massage in about a minute. The shell is insulated for an Oregon winter and the cover seals against the lip rather than sitting on it.",
+      "meta": {
+        "spa_seats": 7,
+        "spa_lounge_seats": 2,
+        "spa_jets": 65,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 376,
+        "spa_dimensions": "88\" W × 88\" L × 36\" H",
+        "spa_dimensions_metric": "2.24m × 2.24m × 0.92m",
+        "spa_dry_weight": 900,
+        "spa_price_from": 15995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/a-series/"
+      }
+    },
+    {
+      "slug": "bullfrog-m6",
+      "title": "Bullfrog M6",
+      "type": "m-series",
+      "spa_type": "hot-tubs",
+      "image": "m6-top-down-312403.jpg",
+      "image_alt": "Bullfrog M6 hot tub seen from above, six bucket seats around the shell",
+      "excerpt": "Six bucket seats, three of them elevated, in the smallest M Series footprint we stock.",
+      "overview": "The M6 is the M Series for a smaller yard. Six bucket seats, no lounge, three of them raised so shoulders sit above the waterline — which is the seat most people actually want on a cold night. Two 2-speed therapy pumps, a dedicated circulation pump and the flat Simplicity filter, so the water turns over without the main pumps running.",
+      "meta": {
+        "spa_seats": 7,
+        "spa_lounge_seats": 0,
+        "spa_jets": 184,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 387,
+        "spa_dimensions": "7′7″ W × 6′8″ L × 2′10″ H",
+        "spa_dimensions_metric": "2.31m × 2.03m × 0.86m",
+        "spa_dry_weight": 800,
+        "spa_price_from": 13995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/m-series/"
+      }
+    },
+    {
+      "slug": "bullfrog-m9",
+      "title": "Bullfrog M9",
+      "type": "m-series",
+      "spa_type": "hot-tubs",
+      "image": "m9-top-down-602603.jpg",
+      "image_alt": "Bullfrog M9 hot tub seen from above, nine seats including two lounges",
+      "excerpt": "Nine seats, three pumps and 474 gallons — the largest hot tub on either floor.",
+      "overview": "Nine seats, two of them full lounges, and enough water that the temperature barely moves when four people climb in. Three high-performance 2-speed pumps drive up to 288 jets, and six M Series JetPaks come as standard. It needs a properly poured pad and a 50 amp circuit, and it is worth both.",
+      "meta": {
+        "spa_seats": 9,
+        "spa_lounge_seats": 2,
+        "spa_jets": 288,
+        "spa_pumps": 3,
+        "spa_capacity_gallons": 474,
+        "spa_dimensions": "7′10″ W × 7′10″ L × 3′2″ H",
+        "spa_dimensions_metric": "2.39m × 2.39m × 0.97m",
+        "spa_dry_weight": 1024,
+        "spa_price_from": 21995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/m-series/"
+      }
+    },
+    {
+      "slug": "bullfrog-x7",
+      "title": "Bullfrog X7",
+      "type": "x-series",
+      "spa_type": "hot-tubs",
+      "image": "x7-standard-snow-top-1582766.jpg",
+      "image_alt": "Bullfrog X7 hot tub in snow, seen from above with the cover off",
+      "excerpt": "Eight seats and 395 gallons at the friendliest price we can put a full-size spa on.",
+      "overview": "The X Series drops the JetPak wall and keeps the shell, the insulation and the pumps. The X7 seats eight around a simple open layout, holds 395 gallons and weighs 661 lbs dry, which makes it the easiest full-size spa we sell to get through a side gate. Choice standard jets, premium exterior sconces and a full jet count.",
+      "meta": {
+        "spa_seats": 8,
+        "spa_lounge_seats": 0,
+        "spa_jets": 44,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 395,
+        "spa_dimensions": "7′4″ W × 7′4″ L × 3′0″ H",
+        "spa_dimensions_metric": "2.24m × 2.24m × 0.91m",
+        "spa_dry_weight": 661,
+        "spa_price_from": 12995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/x-series/"
+      }
+    },
+    {
+      "slug": "bullfrog-x6l",
+      "title": "Bullfrog X6L",
+      "type": "x-series",
+      "spa_type": "hot-tubs",
+      "image": "x6l-standard-snow-top-1064121.jpg",
+      "image_alt": "Bullfrog X6L hot tub in snow, seen from above, lounge seat at one end",
+      "excerpt": "Six seats with a proper lounge, and a footprint that fits a small deck.",
+      "overview": "Same construction as the X7 in a shorter shell, with one full-length lounge at the far end. Six seats, 350 gallons and a dry weight under 650 lbs. If the space you have is a corner of a deck rather than a patio, this is usually the model that fits without rebuilding anything.",
+      "meta": {
+        "spa_seats": 6,
+        "spa_lounge_seats": 1,
+        "spa_jets": 38,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 350,
+        "spa_dimensions": "7′4″ W × 6′8″ L × 2′11″ H",
+        "spa_dimensions_metric": "2.24m × 2.03m × 0.89m",
+        "spa_dry_weight": 620,
+        "spa_price_from": 10995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/x-series/"
+      }
+    },
+    {
+      "slug": "bullfrog-stil-7",
+      "title": "Bullfrog STIL 7",
+      "type": "stil",
+      "spa_type": "hot-tubs",
+      "image": "stil-7-top-down-301987.jpg",
+      "image_alt": "Bullfrog STIL 7 hot tub seen from above, flush square cabinet",
+      "excerpt": "A flush square cabinet and a low profile, for a yard where the spa should not shout.",
+      "overview": "STIL is the design line: a square cabinet, a low 2′9″ profile and hardware hidden behind flush panels. Seven seats, no lounge, and the same JetPak wall as the A Series. It is the model architects specify and the one that looks least like a hot tub when the cover is on.",
+      "meta": {
+        "spa_seats": 7,
+        "spa_lounge_seats": 0,
+        "spa_jets": 60,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 400,
+        "spa_dimensions": "7′7″ W × 7′7″ L × 2′9″ H",
+        "spa_dimensions_metric": "2.31m × 2.31m × 0.84m",
+        "spa_dry_weight": 870,
+        "spa_price_from": 17995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/stil/"
+      }
+    },
+    {
+      "slug": "bullfrog-calm-7",
+      "title": "Bullfrog Calm 7",
+      "type": "calm",
+      "spa_type": "hot-tubs",
+      "image": "calm-7-topdown-1084771.jpg",
+      "image_alt": "Bullfrog Calm 7 hot tub seen from above",
+      "excerpt": "One pump, seven seats, and the lowest running cost of anything we stock.",
+      "overview": "Calm is the entry line and the one we recommend to people who want a hot tub rather than a therapy suite. Seven seats, a single pump, 340 gallons and the same cover and insulation as the models above it — which is where the running cost actually comes from. Plugs into a dedicated 240V circuit like the rest.",
+      "meta": {
+        "spa_seats": 7,
+        "spa_lounge_seats": 1,
+        "spa_jets": 30,
+        "spa_pumps": 1,
+        "spa_capacity_gallons": 340,
+        "spa_dimensions": "7′0″ W × 7′0″ L × 2′9″ H",
+        "spa_dimensions_metric": "2.13m × 2.13m × 0.84m",
+        "spa_dry_weight": 640,
+        "spa_price_from": 8995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/hot-tubs/calm/"
+      }
+    },
+    {
+      "slug": "bullfrog-s150",
+      "title": "Bullfrog S150 Swim Spa",
+      "type": "swim-series",
+      "spa_type": "swim-spas",
+      "image": "s150-topdown-454196.jpg",
+      "image_alt": "Bullfrog S150 swim spa seen from above, swim area at one end",
+      "excerpt": "Thirteen seats, a splash pad and a swim current, in the shortest swim spa shell.",
+      "overview": "At 12′8″ the S150 is the swim spa that still fits a normal back yard. Thirteen seating positions including one exercise seat, a 14-jet splash pad for small children and two swim jets for a current you can work against. 1,190 gallons, so plan the pad before delivery day.",
+      "meta": {
+        "spa_seats": 13,
+        "spa_lounge_seats": 2,
+        "spa_jets": 182,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 1190,
+        "spa_dimensions": "94\" W × 152\" L × 52\" H",
+        "spa_dimensions_metric": "2.38m × 3.86m × 1.32m",
+        "spa_dry_weight": 2000,
+        "spa_price_from": 26995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/swim-spas/"
+      }
+    },
+    {
+      "slug": "bullfrog-s180xd",
+      "title": "Bullfrog S180XD Swim Spa",
+      "type": "swim-series",
+      "spa_type": "swim-spas",
+      "image": "s180xd-topdown-723269.jpg",
+      "image_alt": "Bullfrog S180XD swim spa seen from above, deep swim channel",
+      "excerpt": "A 60-inch deep channel and three pumps: the training model, not the party model.",
+      "overview": "The XD is five feet deep, which is what separates a swim spa you can actually train in from one you tread water in. Three 2-speed pumps, two propulsion jets and 1,856 gallons at fill line. Five seats, because the water in this one is for swimming.",
+      "meta": {
+        "spa_seats": 5,
+        "spa_lounge_seats": 1,
+        "spa_jets": 120,
+        "spa_pumps": 3,
+        "spa_capacity_gallons": 1856,
+        "spa_dimensions": "94\" W × 180\" L × 60\" H",
+        "spa_dimensions_metric": "2.39m × 4.57m × 1.52m",
+        "spa_dry_weight": 2532,
+        "spa_price_from": 34995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/swim-spas/"
+      }
+    },
+    {
+      "slug": "bullfrog-s200",
+      "title": "Bullfrog S200 Swim Spa",
+      "type": "swim-series",
+      "spa_type": "swim-spas",
+      "image": "s200-topdown-658305.jpg",
+      "image_alt": "Bullfrog S200 swim spa seen from above, seventeen feet long",
+      "excerpt": "Seventeen feet, 1,950 gallons, and a hot tub end you can heat separately.",
+      "overview": "The S200 is the full-length swim spa: seventeen feet of channel, nine seats including two lounges, and 1,950 gallons. Swim at one end, soak at the other. It needs a poured pad, a crane or a clear run for the delivery cart, and a conversation with your electrician before you order.",
+      "meta": {
+        "spa_seats": 9,
+        "spa_lounge_seats": 2,
+        "spa_jets": 200,
+        "spa_pumps": 2,
+        "spa_capacity_gallons": 1950,
+        "spa_dimensions": "94\" W × 204\" L × 52\" H",
+        "spa_dimensions_metric": "2.38m × 5.18m × 1.32m",
+        "spa_dry_weight": 2400,
+        "spa_price_from": 39995,
+        "spa_brochure_url": "https://www.bullfrogspas.com/swim-spas/"
+      }
+    }
+  ]
+}
