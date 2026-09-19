@@ -41,11 +41,40 @@ function ep_media_url( string $key ): string {
 	return $id ? (string) wp_get_attachment_url( $id ) : '';
 }
 
-/** Replace {{MEDIA_URL:key}} tokens with real upload URLs. */
+/**
+ * Replace the three seed tokens with real database values.
+ *
+ * {{MEDIA_URL:key}}   the uploaded file's URL
+ * {{MEDIA_ID:key}}    its attachment ID — what a Frame wants, because an ID
+ *                     carries srcset, sizes and the alt text with it
+ * {{SPA_IDS:a,b,c}}   a comma-separated list of post IDs, for Compare Table
+ *
+ * Block attributes are JSON, so an ID token has to resolve to a bare integer;
+ * a missing one resolves to 0, which every block treats as "nothing here".
+ */
 function ep_tokens( string $html ): string {
-	return (string) preg_replace_callback(
+	$html = (string) preg_replace_callback(
 		'/\{\{MEDIA_URL:([a-z0-9-]+)\}\}/',
 		static fn( $m ) => ep_media_url( $m[1] ),
+		$html
+	);
+
+	$html = (string) preg_replace_callback(
+		'/\{\{MEDIA_ID:([a-z0-9-]+)\}\}/',
+		static fn( $m ) => (string) ep_media_id( $m[1] ),
+		$html
+	);
+
+	return (string) preg_replace_callback(
+		'/\{\{SPA_IDS:([a-z0-9,-]+)\}\}/',
+		static function ( array $m ): string {
+			global $ep_spa_ids;
+			$ids = array();
+			foreach ( explode( ',', $m[1] ) as $slug ) {
+				$ids[] = (int) ( $ep_spa_ids[ trim( $slug ) ] ?? 0 );
+			}
+			return implode( ',', array_filter( $ids ) );
+		},
 		$html
 	);
 }
@@ -123,76 +152,25 @@ if ( empty( $data['spas'] ) ) {
 
 $spa_ids = array();
 
+// Read back by the {{SPA_IDS:...}} token when the pages are written, below.
+$GLOBALS['ep_spa_ids'] = &$spa_ids;
+
 foreach ( $data['spas'] as $index => $spa ) {
-	$content = ep_tokens(
-		sprintf(
-			'<!-- wp:paragraph {"fontSize":"medium"} -->
+	/*
+	 * A spa page is three blocks: the overview, the Specs Table reading the meta
+	 * fields flagged `specs` in config/brand.json for this post, and the
+	 * questions every buyer asks before delivery day. Nothing here names a
+	 * field — add one to the JSON and it appears in the table by itself.
+	 */
+	$content = sprintf(
+		'<!-- wp:paragraph {"fontSize":"medium"} -->
 <p class="has-medium-font-size">%1$s</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"className":"ep-spa-quickfacts","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"wrap"}} -->
-<div class="wp-block-group ep-spa-quickfacts"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
-<h3 class="wp-block-heading is-style-eyebrow has-small-font-size">Seats</h3>
-<!-- /wp:heading -->
+<!-- wp:zngiron/specs-table {"heading":"Specification","align":"wide"} /-->
 
-<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"spa_seats"}}}},"fontSize":"large"} -->
-<p class="has-large-font-size">—</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
-<h3 class="wp-block-heading is-style-eyebrow has-small-font-size">Jets</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"spa_jets"}}}},"fontSize":"large"} -->
-<p class="has-large-font-size">—</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
-<h3 class="wp-block-heading is-style-eyebrow has-small-font-size">Therapy pumps</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"spa_pumps"}}}},"fontSize":"large"} -->
-<p class="has-large-font-size">—</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
-<h3 class="wp-block-heading is-style-eyebrow has-small-font-size">Water, gallons</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"core/post-meta","args":{"key":"spa_capacity_gallons"}}}},"fontSize":"large"} -->
-<p class="has-large-font-size">—</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group -->
-
-<!-- wp:emerald-pool/faq-accordion {"heading":"Before delivery day","emitSchema":false} -->
-<div class="ep-faq__items"><!-- wp:details {"summary":"What will this one need electrically?"} -->
-<details class="wp-block-details"><summary>What will this one need electrically?</summary><!-- wp:paragraph -->
-<p>A dedicated 50 amp GFCI circuit within sight of the spa, run by a licensed electrician. We quote the spa; your electrician quotes the circuit. We are happy to recommend one in Eugene or Bend and to talk to them directly about the run.</p>
-<!-- /wp:paragraph --></details>
-<!-- /wp:details -->
-
-<!-- wp:details {"summary":"What does it sit on?"} -->
-<details class="wp-block-details"><summary>What does it sit on?</summary><!-- wp:paragraph -->
-<p>A level, load-rated surface: a four-inch reinforced pad, a deck built for the filled weight, or a spa pad system. Filled weight for this model is on the specification list above — read it before you decide the deck will cope.</p>
-<!-- /wp:paragraph --></details>
-<!-- /wp:details -->
-
-<!-- wp:details {"summary":"Can I sit in one before I buy?"} -->
-<details class="wp-block-details"><summary>Can I sit in one before I buy?</summary><!-- wp:paragraph -->
-<p>Yes, and you should. Both showrooms keep display spas filled and heated. Bring a swimsuit, book twenty minutes, and try this one against the model one series up.</p>
-<!-- /wp:paragraph --></details>
-<!-- /wp:details --></div>
-<!-- /wp:emerald-pool/faq-accordion -->',
-			esc_html( $spa['overview'] )
-		)
+<!-- wp:zngiron/faq {"heading":"Before delivery day","items":[{"question":"What will this one need electrically?","answer":"A dedicated 50 amp GFCI circuit within sight of the spa, run by a licensed electrician. We quote the spa; your electrician quotes the circuit. We are happy to recommend one in Eugene or Bend and to talk to them directly about the run."},{"question":"What does it sit on?","answer":"A level, load-rated surface: a four-inch reinforced pad, a deck built for the filled weight, or a spa pad system. Filled weight for this model is in the specification above — read it before you decide the deck will cope."},{"question":"Can I sit in one before I buy?","answer":"Yes, and you should. Both showrooms keep display spas filled and heated. Bring a swimsuit, book twenty minutes, and try this one against the model one series up."}],"align":"wide"} /-->',
+		esc_html( $spa['overview'] )
 	);
 
 	$id = ep_upsert(
@@ -237,7 +215,6 @@ $pages = array(
 		'slug'     => 'home',
 		'title'    => 'Home',
 		'file'     => 'home.html',
-		'template' => '',
 		'media'    => 'hero-backyard',
 		'order'    => 1,
 	),
@@ -245,7 +222,6 @@ $pages = array(
 		'slug'     => 'hot-tubs',
 		'title'    => 'Hot Tubs',
 		'file'     => 'hot-tubs.html',
-		'template' => 'page-wide',
 		'media'    => 'hero-hot-tubs',
 		'order'    => 2,
 	),
@@ -253,7 +229,6 @@ $pages = array(
 		'slug'     => 'swim-spas',
 		'title'    => 'Swim Spas',
 		'file'     => 'swim-spas.html',
-		'template' => 'page-wide',
 		'media'    => 'hero-swim-spa',
 		'order'    => 3,
 	),
@@ -261,7 +236,6 @@ $pages = array(
 		'slug'     => 'services',
 		'title'    => 'Services',
 		'file'     => 'services.html',
-		'template' => 'page-wide',
 		'media'    => 'services',
 		'order'    => 4,
 	),
@@ -269,7 +243,6 @@ $pages = array(
 		'slug'     => 'financing',
 		'title'    => 'Financing',
 		'file'     => 'financing.html',
-		'template' => 'page-wide',
 		'media'    => '',
 		'order'    => 5,
 	),
@@ -277,7 +250,6 @@ $pages = array(
 		'slug'     => 'about',
 		'title'    => 'About',
 		'file'     => 'about.html',
-		'template' => 'page-wide',
 		'media'    => 'about-team',
 		'order'    => 6,
 	),
@@ -285,7 +257,6 @@ $pages = array(
 		'slug'     => 'faq',
 		'title'    => 'FAQ',
 		'file'     => 'faq.html',
-		'template' => 'page-wide',
 		'media'    => '',
 		'order'    => 7,
 	),
@@ -293,7 +264,6 @@ $pages = array(
 		'slug'     => 'journal',
 		'title'    => 'Journal',
 		'file'     => 'blog.html',
-		'template' => '',
 		'media'    => '',
 		'order'    => 8,
 	),
@@ -301,7 +271,6 @@ $pages = array(
 		'slug'     => 'contact',
 		'title'    => 'Contact',
 		'file'     => 'contact.html',
-		'template' => '',
 		'media'    => '',
 		'order'    => 9,
 	),
@@ -315,7 +284,6 @@ $pages = array(
 		'slug'     => 'accessibility',
 		'title'    => 'Accessibility',
 		'file'     => 'accessibility.html',
-		'template' => '',
 		'media'    => '',
 		'order'    => 10,
 	),
@@ -323,7 +291,6 @@ $pages = array(
 		'slug'     => 'privacy',
 		'title'    => 'Privacy',
 		'file'     => 'privacy.html',
-		'template' => '',
 		'media'    => '',
 		'order'    => 11,
 	),
@@ -351,6 +318,17 @@ foreach ( get_posts(
 
 $page_ids = array();
 
+/*
+ * The theme has page.html and front-page.html and no custom templates at all.
+ * A `_wp_page_template` left behind by an earlier build is not merely unused:
+ * wp_update_post() re-validates the existing post's template on every save, so
+ * a stale `page-wide` stops the whole seed with "Invalid page template". Clear
+ * them before anything is written, not after.
+ */
+foreach ( get_posts( array( 'post_type' => 'page', 'post_status' => 'any', 'posts_per_page' => -1, 'fields' => 'ids' ) ) as $ep_page_id ) {
+	delete_post_meta( (int) $ep_page_id, '_wp_page_template' );
+}
+
 foreach ( $pages as $page ) {
 	$id = ep_upsert(
 		array(
@@ -363,12 +341,6 @@ foreach ( $pages as $page ) {
 	);
 
 	$page_ids[ $page['slug'] ] = $id;
-
-	if ( $page['template'] ) {
-		update_post_meta( $id, '_wp_page_template', $page['template'] );
-	} else {
-		delete_post_meta( $id, '_wp_page_template' );
-	}
 
 	if ( $page['media'] ) {
 		ep_thumbnail( $id, $page['media'] );
@@ -502,7 +474,7 @@ foreach ( get_posts(
 		'fields'         => 'ids',
 	)
 ) as $nav_id ) {
-	if ( 'emerald-pool-primary' !== get_post_field( 'post_name', $nav_id ) ) {
+	if ( 'zngiron-primary' !== get_post_field( 'post_name', $nav_id ) ) {
 		wp_delete_post( $nav_id, true );
 	}
 }
@@ -510,7 +482,7 @@ foreach ( get_posts(
 $nav_id = ep_upsert(
 	array(
 		'post_type'    => 'wp_navigation',
-		'post_name'    => 'emerald-pool-primary',
+		'post_name'    => 'zngiron-primary',
 		'post_title'   => 'Primary',
 		'post_content' => $nav_markup,
 	)
@@ -554,11 +526,20 @@ update_option( 'posts_per_page', 9 );
 update_option( 'default_ping_status', 'closed' );
 update_option( 'default_comment_status', 'closed' );
 
-$logo = ep_media_id( 'logo' );
+/*
+ * Two marks, one brand. The header sits on a dark ground at every width and in
+ * both of its states, so the site logo is the reversed mark; the site icon is
+ * the blue one, because a browser tab is white.
+ */
+$logo = ep_media_id( 'logo-white' );
 if ( $logo ) {
 	update_option( 'site_logo', $logo );
 	set_theme_mod( 'custom_logo', $logo );
-	update_option( 'site_icon', $logo );
+}
+
+$icon = ep_media_id( 'logo' );
+if ( $icon ) {
+	update_option( 'site_icon', $icon );
 }
 
 // ---------------------------------------------------------------- 6. tidy.
