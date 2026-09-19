@@ -82,7 +82,7 @@
 	transition: color var(--wp--custom--transition--base);
 
 	&:hover {
-		color: var(--wp--preset--color--ember);
+		color: var(--ep-ember-text);
 	}
 
 	&[aria-pressed="true"] {
@@ -95,7 +95,7 @@
 		inset: -1px auto auto 0;
 		width: 100%;
 		height: 2px;
-		background: var(--wp--preset--color--ember);
+		background: var(--ep-ember-mark);
 	}
 
 	&__count {

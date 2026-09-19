@@ -208,7 +208,7 @@
 
 .ep-card:hover .ep-card__title,
 .ep-card:focus-within .ep-card__title {
-	color: var(--wp--preset--color--ember);
+	color: var(--ep-ember-text);
 }
 
 .ep-card__meta {
@@ -224,7 +224,7 @@
 }
 
 .ep-card__price strong {
-	color: var(--wp--preset--color--ember);
+	color: var(--ep-ember-text);
 	font-weight: 500;
 	font-variant-numeric: tabular-nums;
 }

@@ -29,8 +29,36 @@
 	text-decoration: none;
 }
 
+/* --- Ember, ground-aware -------------------------------------------------
+ *
+ * Ember is one hue with three tones, because the same warm mark has to clear
+ * WCAG on both grounds. On the night ground the preset `ember` is already
+ * 7.02:1 against abyss, so it stays. On a light ground it is only 2.66:1 on
+ * white, so light sections resolve the two variables below to darker tones:
+ *
+ *   --ep-ember-text  small copy, prices, links        ember-deep   5.96:1 on white
+ *   --ep-ember-mark  display figures, rules, focus    ember-strong 4.31:1 on white
+ *
+ * Every ember usage that can land on either ground reads one of these, so the
+ * fix propagates instead of being repeated per block.
+ */
+:root {
+	--ep-ember-text: var(--wp--preset--color--ember-deep);
+	--ep-ember-mark: var(--wp--preset--color--ember-strong);
+}
+
+.ep-night,
+.ep-hero,
+.ep-spa-hero,
+.has-deep-background-color,
+.has-abyss-background-color,
+.has-primary-dark-background-color {
+	--ep-ember-text: var(--wp--preset--color--ember);
+	--ep-ember-mark: var(--wp--preset--color--ember);
+}
+
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-	outline: 3px solid var(--wp--preset--color--ember);
+	outline: 3px solid var(--ep-ember-mark);
 	outline-offset: 3px;
 	border-radius: var(--wp--custom--radius--sm);
 }
@@ -111,7 +139,7 @@ body {
 }
 
 .ep-numeral--solid {
-	color: var(--wp--preset--color--ember);
+	color: var(--ep-ember-mark);
 	-webkit-text-stroke: 0;
 }
 
@@ -717,7 +745,7 @@ a.ep-marquee__item:hover {
 }
 
 .ep-journal .wp-block-post:hover .wp-block-post-title a {
-	color: var(--wp--preset--color--ember);
+	color: var(--ep-ember-mark);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -866,7 +894,7 @@ a.ep-marquee__item:hover {
 }
 
 .ep-series-index h4 a:hover {
-	color: var(--wp--preset--color--ember);
+	color: var(--ep-ember-text);
 }
 
 .ep-series-index p {
@@ -925,7 +953,7 @@ a.ep-marquee__item:hover {
 	font-family: var(--wp--preset--font-family--display);
 	font-weight: 300;
 	letter-spacing: -0.03em;
-	color: var(--wp--preset--color--ember);
+	color: var(--ep-ember-mark);
 	font-variant-numeric: tabular-nums;
 	margin: 0;
 }
@@ -1045,7 +1073,7 @@ a.ep-marquee__item:hover {
 .ep-form input:focus,
 .ep-form select:focus,
 .ep-form textarea:focus {
-	border-bottom-color: var(--wp--preset--color--ember);
+	border-bottom-color: var(--ep-ember-mark);
 }
 
 .ep-form textarea {

@@ -31,10 +31,12 @@
 				{ "slug": "primary-dark", "color": "#0d3550", "name": "Primary dark" },
 				{ "slug": "accent", "color": "#4bc5e1", "name": "Accent" },
 				{ "slug": "ember", "color": "#e08a3c", "name": "Ember" },
+				{ "slug": "ember-strong", "color": "#b7651a", "name": "Ember strong" },
+				{ "slug": "ember-deep", "color": "#93541a", "name": "Ember deep" },
 				{ "slug": "deep", "color": "#0b2530", "name": "Deep" },
 				{ "slug": "abyss", "color": "#04141b", "name": "Abyss" },
 				{ "slug": "ink", "color": "#12242d", "name": "Ink" },
-				{ "slug": "text-muted", "color": "#546c78", "name": "Muted text" },
+				{ "slug": "text-muted", "color": "#4c616c", "name": "Muted text" },
 				{ "slug": "border", "color": "#d3e1e8", "name": "Border" }
 			],
 			"duotone": [
