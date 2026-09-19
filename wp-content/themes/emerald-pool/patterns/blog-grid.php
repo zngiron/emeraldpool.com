@@ -36,7 +36,7 @@
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-link-arrow"} -->
-<div class="wp-block-button is-style-link-arrow"><a class="wp-block-button__link wp-element-button" href="/blog/">Everything we have written</a></div>
+<div class="wp-block-button is-style-link-arrow"><a class="wp-block-button__link wp-element-button" href="/journal/">Everything we have written</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

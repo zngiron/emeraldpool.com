@@ -280,7 +280,7 @@ $pages = array(
 		'order'    => 7,
 	),
 	array(
-		'slug'     => 'blog',
+		'slug'     => 'journal',
 		'title'    => 'Journal',
 		'file'     => 'blog.html',
 		'template' => '',
@@ -296,6 +296,26 @@ $pages = array(
 		'order'    => 9,
 	),
 );
+
+// The posts page used to live at /blog/; the footer and the menu both point at
+// /journal/. Rename the old page in place so the slug moves without orphaning it.
+foreach ( get_posts(
+	array(
+		'name'           => 'blog',
+		'post_type'      => 'page',
+		'post_status'    => 'any',
+		'posts_per_page' => 1,
+		'fields'         => 'ids',
+	)
+) as $ep_old_blog ) {
+	wp_update_post(
+		array(
+			'ID'        => (int) $ep_old_blog,
+			'post_name' => 'journal',
+		)
+	);
+	WP_CLI::log( '    renamed page blog -> journal' );
+}
 
 $page_ids = array();
 
@@ -400,7 +420,7 @@ $nav_markup = <<<'HTML'
 
 <!-- wp:navigation-submenu {"label":"About","url":"/about/","kind":"custom"} -->
 <!-- wp:navigation-link {"label":"Our story","url":"/about/","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Journal","url":"/blog/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Journal","url":"/journal/","kind":"custom"} /-->
 <!-- wp:navigation-link {"label":"FAQ","url":"/faq/","kind":"custom"} /-->
 <!-- /wp:navigation-submenu -->
 
@@ -463,7 +483,7 @@ update_option( 'start_of_week', 1 );
 update_option( 'date_format', 'j F Y' );
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $page_ids['home'] );
-update_option( 'page_for_posts', $page_ids['blog'] );
+update_option( 'page_for_posts', $page_ids['journal'] );
 update_option( 'posts_per_page', 9 );
 update_option( 'default_ping_status', 'closed' );
 update_option( 'default_comment_status', 'closed' );
