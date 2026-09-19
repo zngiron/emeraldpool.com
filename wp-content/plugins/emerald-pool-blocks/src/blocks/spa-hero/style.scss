@@ -1,0 +1,121 @@
+/**
+ * Hero — front end and editor.
+ *
+ * Every colour and space is a theme.json token: this block carries no palette.
+ */
+.ep-hero {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	min-height: var(--ep-hero-min-height, 66vh);
+	padding: var(--wp--preset--spacing--60) var(--wp--preset--spacing--20);
+	overflow: clip;
+	isolation: isolate;
+	background-color: var(--wp--preset--color--deep);
+	color: var(--wp--preset--color--base);
+	border-radius: 0;
+
+	&__media {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: var(--ep-hero-focal, 50% 50%);
+		z-index: -2;
+	}
+
+	&__scrim {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background:
+			linear-gradient(
+				180deg,
+				rgba(11, 37, 48, 0) 0%,
+				rgba(11, 37, 48, calc(var(--ep-hero-overlay, 0.55) * 0.55)) 45%,
+				rgba(11, 37, 48, var(--ep-hero-overlay, 0.55)) 100%
+			);
+	}
+
+	&__inner {
+		position: relative;
+		width: 100%;
+		max-width: var(--wp--style--global--wide-size, 1280px);
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--20);
+	}
+
+	&.is-align-center &__inner {
+		align-items: center;
+		text-align: center;
+	}
+
+	&__eyebrow {
+		margin: 0;
+		font-size: var(--wp--custom--eyebrow--size);
+		font-weight: 700;
+		letter-spacing: var(--wp--custom--eyebrow--spacing);
+		text-transform: uppercase;
+		color: var(--wp--preset--color--accent);
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+
+		&::before {
+			content: "";
+			flex: 0 0 2.25rem;
+			height: 3px;
+			border-top: 2px solid currentcolor;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+			padding-top: 2px;
+		}
+	}
+
+	&.is-align-center &__eyebrow::before {
+		display: none;
+	}
+
+	&__heading {
+		margin: 0;
+		max-width: 18ch;
+		color: var(--wp--preset--color--base);
+		font-family: var(--wp--preset--font-family--display);
+		font-size: var(--wp--preset--font-size--display);
+		font-weight: 400;
+		line-height: 0.98;
+		letter-spacing: -0.02em;
+		font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 144;
+		text-wrap: balance;
+	}
+
+	&.is-align-center &__heading {
+		max-width: 22ch;
+	}
+
+	&__standfirst {
+		margin: 0;
+		max-width: 46ch;
+		font-size: var(--wp--preset--font-size--medium);
+		line-height: 1.5;
+		color: rgba(255, 255, 255, 0.86);
+	}
+
+	&__actions {
+		margin-top: var(--wp--preset--spacing--10);
+	}
+
+	// On a dark scrim the outline button needs light strokes.
+	.wp-block-button.is-style-outline-quiet .wp-block-button__link {
+		color: var(--wp--preset--color--base);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+
+		&:hover,
+		&:focus {
+			background: var(--wp--preset--color--base);
+			color: var(--wp--preset--color--primary-dark);
+		}
+	}
+}

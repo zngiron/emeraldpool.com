@@ -1,0 +1,32 @@
+/**
+ * Feature grid.
+ */
+.ep-features {
+	display: grid;
+	grid-template-columns: repeat(var(--ep-features-columns, 3), minmax(0, 1fr));
+	gap: var(--wp--style--block-gap, 2rem);
+
+	&.has-2-columns {
+		--ep-features-columns: 2;
+	}
+
+	&.has-3-columns {
+		--ep-features-columns: 3;
+	}
+
+	&.has-4-columns {
+		--ep-features-columns: 4;
+	}
+}
+
+@media (max-width: 860px) {
+	.ep-features {
+		--ep-features-columns: 2 !important;
+	}
+}
+
+@media (max-width: 560px) {
+	.ep-features {
+		--ep-features-columns: 1 !important;
+	}
+}

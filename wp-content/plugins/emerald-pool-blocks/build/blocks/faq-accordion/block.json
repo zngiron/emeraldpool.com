@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "emerald-pool/faq-accordion",
+  "title": "FAQ accordion",
+  "category": "emerald-pool",
+  "icon": "editor-help",
+  "description": "A list of questions built from core Details blocks, so the open and close behaviour is the browser's own. Emits FAQPage structured data for the questions it contains.",
+  "keywords": [
+    "faq",
+    "questions",
+    "accordion",
+    "details"
+  ],
+  "textdomain": "emerald-pool-blocks",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "emitSchema": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide"
+    ],
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "heading": "Common questions"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/details",
+        "attributes": {
+          "summary": "How much electrical work does a hot tub need?"
+        },
+        "innerBlocks": [
+          {
+            "name": "core/paragraph",
+            "attributes": {
+              "content": "Most models need a dedicated 50 amp GFCI circuit. We can recommend an electrician in Eugene or Bend."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

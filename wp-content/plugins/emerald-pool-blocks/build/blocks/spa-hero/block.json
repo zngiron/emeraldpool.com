@@ -1,0 +1,99 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "emerald-pool/spa-hero",
+  "title": "Hero",
+  "category": "emerald-pool",
+  "icon": "cover-image",
+  "description": "A full-bleed opening statement: background image, scrim, eyebrow, heading, standfirst and up to two buttons.",
+  "keywords": [
+    "hero",
+    "banner",
+    "header",
+    "cover"
+  ],
+  "textdomain": "emerald-pool-blocks",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "standfirst": {
+      "type": "string",
+      "default": ""
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 1
+    },
+    "mediaId": {
+      "type": "number"
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "mediaAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 55
+    },
+    "minHeight": {
+      "type": "number",
+      "default": 66
+    },
+    "contentAlign": {
+      "type": "string",
+      "enum": [
+        "left",
+        "center"
+      ],
+      "default": "left"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "eyebrow": "Eugene &amp; Bend, Oregon",
+      "heading": "Warm water, all winter long",
+      "standfirst": "Three generations of getting Oregon backyards right.",
+      "overlayOpacity": 55,
+      "minHeight": 40
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

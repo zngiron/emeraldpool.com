@@ -1,0 +1,133 @@
+/*
+ * Primitives shared by the spa blocks.
+ *
+ * Every value is a theme.json token. Swapping the theme changes these without a
+ * line of CSS being edited here, which is the whole point of keeping the blocks
+ * colour-free.
+ */
+
+/* A spec chip: "6 seats", "112 jets". Reads as data, not as a tag. */
+.ep-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ep-chip {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.35rem;
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.2;
+	padding: 0.35rem 0.7rem;
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--pill);
+	color: var(--wp--preset--color--text-muted);
+	background: var(--wp--preset--color--base);
+}
+
+.ep-chip__value {
+	font-weight: 700;
+	color: var(--wp--preset--color--primary-dark);
+	font-variant-numeric: tabular-nums;
+}
+
+/* A card frame used by the grid and the comparison table. */
+.ep-card {
+	display: flex;
+	flex-direction: column;
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	overflow: hidden;
+	height: 100%;
+	transition: box-shadow var(--wp--custom--transition--base), transform var(--wp--custom--transition--base);
+}
+
+.ep-card:has(a:hover),
+.ep-card:has(a:focus-visible) {
+	box-shadow: var(--wp--custom--shadow--lift);
+	transform: translateY(-2px);
+}
+
+.ep-card__media {
+	background: var(--wp--preset--color--surface-alt);
+	aspect-ratio: 4 / 3;
+}
+
+.ep-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: block;
+	mix-blend-mode: multiply;
+}
+
+.ep-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+	padding: var(--wp--preset--spacing--20);
+	flex: 1;
+}
+
+.ep-card__eyebrow {
+	font-size: var(--wp--custom--eyebrow--size);
+	font-weight: 700;
+	letter-spacing: var(--wp--custom--eyebrow--spacing);
+	text-transform: uppercase;
+	color: var(--wp--preset--color--primary);
+	margin: 0;
+}
+
+.ep-card__title {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: 500;
+	line-height: 1.18;
+	margin: 0;
+	color: var(--wp--preset--color--primary-dark);
+}
+
+.ep-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ep-card__title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.ep-card {
+	position: relative;
+}
+
+.ep-card__title a:hover {
+	text-decoration: underline;
+}
+
+.ep-card__price {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--text-muted);
+}
+
+.ep-card__price strong {
+	color: var(--wp--preset--color--text);
+	font-variant-numeric: tabular-nums;
+}
+
+/* An empty state that tells the editor what to do rather than rendering nothing. */
+.ep-empty {
+	border: 1px dashed var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	padding: var(--wp--preset--spacing--30);
+	color: var(--wp--preset--color--text-muted);
+	text-align: center;
+	font-size: var(--wp--preset--font-size--small);
+}

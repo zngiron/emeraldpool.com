@@ -1,0 +1,81 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "emerald-pool/store-locator-card",
+  "title": "Store cards",
+  "category": "emerald-pool",
+  "icon": "store",
+  "description": "The shops: address, opening hours, a tap-to-call number and a link to the map. Reads one configured list, so a change of hours is one edit for the whole site.",
+  "keywords": [
+    "store",
+    "location",
+    "address",
+    "hours",
+    "contact"
+  ],
+  "textdomain": "emerald-pool-blocks",
+  "attributes": {
+    "location": {
+      "type": "string",
+      "default": ""
+    },
+    "showHours": {
+      "type": "boolean",
+      "default": true
+    },
+    "showMapLink": {
+      "type": "boolean",
+      "default": true
+    },
+    "showNote": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 3
+    },
+    "layout": {
+      "type": "string",
+      "enum": [
+        "cards",
+        "inline"
+      ],
+      "default": "cards"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    },
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "layout": "cards"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "emerald-pool-shared"
+  ],
+  "render": "file:./render.php"
+}

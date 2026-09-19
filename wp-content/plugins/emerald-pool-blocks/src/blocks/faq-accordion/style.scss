@@ -1,0 +1,30 @@
+/**
+ * FAQ accordion.
+ *
+ * The details styling itself lives in the theme (assets/css/blocks/details.css)
+ * because core/details is a core block and the theme owns core block looks.
+ */
+.ep-faq {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--20);
+
+	&__heading {
+		margin: 0;
+	}
+
+	&__items {
+		border-top: 2px solid var(--wp--preset--color--primary);
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 1px;
+			width: 100%;
+			height: 1px;
+			background: var(--wp--preset--color--accent);
+		}
+	}
+}

@@ -1,0 +1,15 @@
+/**
+ * Testimonial slider — editor: show every quote, stacked.
+ */
+.ep-slider.is-editing {
+	.ep-slider__track {
+		display: grid;
+		gap: var(--wp--preset--spacing--30);
+		transform: none !important;
+	}
+
+	.ep-slider__track > * {
+		flex: none;
+		max-width: none;
+	}
+}

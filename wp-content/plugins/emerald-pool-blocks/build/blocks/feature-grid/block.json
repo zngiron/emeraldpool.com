@@ -1,0 +1,88 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "emerald-pool/feature-grid",
+  "title": "Feature grid",
+  "category": "emerald-pool",
+  "icon": "screenoptions",
+  "description": "A row of short value propositions, each with one line icon. Holds Feature blocks and nothing else.",
+  "keywords": [
+    "features",
+    "benefits",
+    "icons",
+    "value"
+  ],
+  "textdomain": "emerald-pool-blocks",
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "iconStyle": {
+      "type": "string",
+      "enum": [
+        "plain",
+        "badge"
+      ],
+      "default": "badge"
+    }
+  },
+  "providesContext": {
+    "emerald-pool/iconStyle": "iconStyle"
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "blockGap": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "columns": 3
+    },
+    "innerBlocks": [
+      {
+        "name": "emerald-pool/icon-feature",
+        "attributes": {
+          "icon": "droplet",
+          "title": "Water care that takes ten minutes a week"
+        }
+      },
+      {
+        "name": "emerald-pool/icon-feature",
+        "attributes": {
+          "icon": "leaf",
+          "title": "Insulated for Oregon winters"
+        }
+      },
+      {
+        "name": "emerald-pool/icon-feature",
+        "attributes": {
+          "icon": "wrench",
+          "title": "Our own service team, not a subcontractor"
+        }
+      }
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
