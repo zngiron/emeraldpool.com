@@ -1,0 +1,251 @@
+# Spas & Hot Tubs in Eugene & Bend, OR - Emerald Pool & Patio
+
+- URL: https://emeraldpool.com/hot-tubs/
+- Meta description: Emerald Pool & Patio carries complete lines of spas and hot tubs from top brands in our Eugene and Bend stores. Come by and have a look.
+- Phones: (541) 688-1090, (541) 383-3011
+- Emails: johnSmith@coolMail.com
+
+
+## Heading outline
+
+- H1: Hot Tubs
+- H1: Hot Tubs
+- H3: Bullfrog Spas Model X7
+- H3: Bullfrog Spas Model M6
+- H3: Bullfrog Spas Model M8
+- H3: Bullfrog Spas STIL7
+- H3: Bullfrog Spas Model M7
+- H3: Bullfrog Spas Model M9
+- H3: Bullfrog Spas Model A7D
+- H3: Bullfrog Spas Model A6
+- H3: Bullfrog Spas Model A6L
+- H3: Bullfrog Spas Model X8
+- H3: Bullfrog Spas Model X8L
+- H3: Bullfrog Spas Model X7L
+- H3: Bullfrog Spas Model X6L
+- H3: Bullfrog Spas Model X6R
+- H3: Bullfrog Spas Model X5L
+- H3: Bullfrog Spas Model A9L
+- H3: Bullfrog Spas Model A8
+- H3: Bullfrog Spas Model A8L
+- H3: Bullfrog Spas Model A7
+- H3: Bullfrog Spas Model A7L
+- H3: 2026 Bullfrog Spas Model X6L
+- H3: 2026 Sundance® Spas Hamilton
+- H3: 2026 Sundance® Spas Chelsee
+- H3: 2026 Sundance® Spas Bristol™ – 780™ Series
+- H3: 2026 Sundance® Spas Cameo® – 880™ Series
+- H3: 2026 Bullfrog Spas A8 Select
+- H3: 2026 Bullfrog Spas Model M8
+- H3: 2026 Bullfrog Spas Model A6L
+- H3: 2026 Bullfrog Spas Model A7L
+- H2: Emerald Pool & Patio in Eugene
+- H2: Emerald Hearth, Spa & Patio in Bend
+- H2: Contact Us
+- H2: Contact Us
+- H3: Address Information
+- H3: Contact Information
+- H3: Extra Information
+- H3: Contact Information
+
+## CTAs
+
+- Leave Us A Review -> /leave-us-a-review/
+- Financing -> /financing/
+- Get Trade-In Value -> /get-trade-in-value/
+- Service Repair Request -> /request-service-appointment/
+- Parts Request -> /parts-request/
+- Learn More -> /models/detail/?unit_id=45078
+- Learn More -> /models/detail/?unit_id=45073
+- Learn More -> /models/detail/?unit_id=45071
+- Learn More -> /models/detail/?unit_id=45074
+- Learn More -> /models/detail/?unit_id=45072
+- Learn More -> /models/detail/?unit_id=45070
+- Learn More -> /models/detail/?unit_id=45091
+- Learn More -> /models/detail/?unit_id=45092
+- Learn More -> /models/detail/?unit_id=45093
+- Learn More -> /models/detail/?unit_id=45076
+- Learn More -> /models/detail/?unit_id=45077
+- Learn More -> /models/detail/?unit_id=45079
+- Learn More -> /models/detail/?unit_id=45080
+- Learn More -> /models/detail/?unit_id=45081
+- Learn More -> /models/detail/?unit_id=45082
+- Learn More -> /models/detail/?unit_id=45086
+- Learn More -> /models/detail/?unit_id=45087
+- Learn More -> /models/detail/?unit_id=45088
+- Learn More -> /models/detail/?unit_id=45089
+- Learn More -> /models/detail/?unit_id=45090
+- Learn More -> /inventory/detail/?unit_id=6556
+- Learn More -> /inventory/detail/?unit_id=6301
+- Learn More -> /inventory/detail/?unit_id=6302
+- Learn More -> /inventory/detail/?unit_id=6438
+- Learn More -> /inventory/detail/?unit_id=6303
+
+## Body copy
+
+
+### Hot Tubs
+Transform Your Space With Our Premier Hot Tubs
+- Search Collections (We Can Order) Models (We Can Order) Inventory (We Have)
+- Categories All Categories Patio Furniture 3024 Hearth Appliances 370 Fire Pits & Patio Heaters 277 Grills & Outdoor Kitchens 235 Hot Tubs & Swim Spas 67 Game Tables & Lawn Games 39 Patio Umbrellas 39 Swimming Pools 24 See More
+- Spa Types Hot Tubs 64 Swim Spas 3
+- Hot Tub Shapes Square 38 Rectangle 27 Triangle 1 Circle 1
+- Pumps 3 29 2 28 1 17
+- Spa Class Not Specified 37 Luxury 11 Comfort 7 Elite 4 Value 3 Performance 3 Modern 2
+- Features Massage Jets 65 Adjustable Jets 63 Waterfall 62 Locking Cover 57 Wireless Connectivity 55 Ozonator 51 Touchscreen Control 41 Lounger Seat 36 See More
+- Brands Bullfrog Spas 30 Sundance® Spas 19 Jacuzzi® 13 DreamMaker Spas 5
+- Collections A Series™ (Bullfrog Spas) 11 X Series™ (Bullfrog Spas) 7 M Series™ (Bullfrog Spas) 4 Calm™ Series (Bullfrog Spas) 3 Swim Series™ (Bullfrog Spas) 3 STIL™ (Bullfrog Spas) 2 J-300™ Comfort Collection (Jacuzzi®) 8 880™ Series (Sundance® Spas) 7 See More
+- Available Seats
+- Max Jets
+- Height (in)
+- Length (inches)
+- Width (inches)
+- Capacity (Gallons)
+- JetPaks
+- Filled Weight (Pounds)
+Elevate your outdoor living space with our premier hot tubs. We carry products that are designed to transform your environment into a haven of relaxation and luxury. Immerse yourself in the ultimate comfort and style as our hot tubs redefine the way you unwind. Transform your space into a retreat where soothing hydrotherapy and modern design seamlessly come together. Discover the unparalleled joy of a home oasis with our exquisite range of premier hot tubs.
+- Reset All Filters
+- Bullfrog Spas Model X7
+- Adjustable Jets
+- Massage Jets
+- Wireless Connectivity*
+- Ozonator*
+- Locking Cover*
+- Touchscreen Control*
+- Waterfall
+- Type: Hot Tubs
+- Spa Class: Comfort
+- Max Jets: 43
+- Available Seats: 8
+- Filled Weight: 4924 Pounds
+- Size: 88.00" x 88.00" x 36.00"
+- Bullfrog Spas Model M6
+- Ozonator
+- Locking Cover
+- Touchscreen Control
+- Spa Class: Elite
+- JetPaks: 4
+- Available Seats: 7
+- Filled Weight: 5053 Pounds
+- Size: 91.00" x 80.00" x 34.00"
+- We Have 1 in Inventory Bullfrog Spas Model M8
+- Lounger Seat
+- JetPaks: 6
+- Available Seats: 9
+- Filled Weight: 6249 Pounds
+- Size: 94.00" x 94.00" x 38.00"
+- Bullfrog Spas STIL7
+- Bench Seating
+- Spa Class: Modern
+- JetPaks: 3
+- Available Seats: 6
+- Filled Weight: 5103 Pounds
+- Size: 88.00" x 84.00" x 34.00"
+- Bullfrog Spas Model M7
+- Filled Weight: 5929 Pounds
+- Size: 91.00" x 91.00" x 37.00"
+- Bullfrog Spas Model M9
+- JetPaks: 7
+- Available Seats: 10
+- Filled Weight: 7664 Pounds
+- Size: 110.00" x 94.00" x 38.00"
+- Bullfrog Spas Model A7D
+- Spa Class: Luxury
+- JetPaks: 4-5
+- Filled Weight: 4967 Pounds
+- Bullfrog Spas Model A6
+- JetPaks: 3-4
+- Filled Weight: 4668 Pounds
+- Size: 88.00" x 80.00" x 34.00"
+- We Have 1 in Inventory Bullfrog Spas Model A6L
+- Filled Weight: 4310 Pounds
+- Bullfrog Spas Model X8
+- Volcano Jet
+- Max Jets: 50
+- Filled Weight: 5860 Pounds
+- Bullfrog Spas Model X8L
+- Filled Weight: 5602 Pounds
+- Bullfrog Spas Model X7L
+- Max Jets: 44
+- Filled Weight: 4877 Pounds
+- We Have 1 in Inventory Bullfrog Spas Model X6L
+- Max Jets: 34
+- Filled Weight: 4285 Pounds
+- Bullfrog Spas Model X6R
+- Plug & Play
+- Max Jets: 21
+- Available Seats: 5
+- Filled Weight: 3639 Pounds
+- Size: 79.00" x 79.00" x 34.00"
+- Bullfrog Spas Model X5L
+- Plug & Play*
+- Max Jets: 28
+- Available Seats: 3
+- Filled Weight: 2976 Pounds
+- Size: 84.00" x 68.00" x 32.00"
+- Bullfrog Spas Model A9L
+- Filled Weight: 7237 Pounds
+- We Have 1 in Inventory Bullfrog Spas Model A8
+- JetPaks: 4-6
+- Filled Weight: 6327 Pounds
+- Bullfrog Spas Model A8L
+- Filled Weight: 6163 Pounds
+- Bullfrog Spas Model A7
+- Filled Weight: 5349 Pounds
+- We Have 1 in Inventory Bullfrog Spas Model A7L
+- Filled Weight: 5117 Pounds
+- 2026 Bullfrog Spas Model X6L
+- Available For Order Floor Model
+- Location Eugene Showroom
+- 2026 Sundance® Spas Hamilton
+- In Stock New
+- 2026 Sundance® Spas Chelsee
+- 2026 Sundance® Spas Bristol™ – 780™ Series
+- 2026 Sundance® Spas Cameo® – 880™ Series
+- 2026 Bullfrog Spas A8 Select
+- 2026 Bullfrog Spas Model M8
+- 2026 Bullfrog Spas Model A6L
+- 2026 Bullfrog Spas Model A7L
+
+## Images
+
+- /wp-content/plugins/sss-emeraldpool-dot-com-local-variables-and-settings-wp-plugin/images/emerald-pool-logo-blue-70.png  — alt: Emerald Pools & Patio
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/bullfrog-spas-grey.png  — alt: Bullfrog Spas Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/HearthStone-logo.png  — alt: HearthStone Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/kuma-logo.png  — alt: Kuma Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/alfresco-logo-vector-black-cs6-784653.png  — alt: Alfresco Grills Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/aog-logo-flat-black-color-flame-55921.jpg  — alt: American Outdoor Grill Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/astria-logo-2034.webp  — alt: Astria Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/big-green-egg-logo.png  — alt: Big Green Egg Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/bromic-heating.webp  — alt: Bromic Heating® Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/crplastics-logo-svg-3293.png  — alt: C.R. Plastic Products Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/doughboy.png  — alt: Doughboy Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/dreammaker-spas.png  — alt: DreamMaker Spas Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/enviro.png  — alt: Enviro Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/fire-magic.png  — alt: Fire Magic Grills Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/hanamint-logo1-4106.png  — alt: Hanamint® Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/homecrest.png  — alt: Homecrest Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/infratech.png  — alt: Infratech Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/ironstrike.png  — alt: IronStrike Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/jacuzzi-logo-black-26186.png  — alt: Jacuzzi® Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/jensen-outdoor-logo.png  — alt: Jensen Outdoor Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/300298-10327.png  — alt: KETTLER® Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/kingsley-bate-11698.png  — alt: Kingsley Bate™ Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/leisureconceptslogo-9927.png  — alt: Leisure Concepts Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/logo-2023-34093.png  — alt: Lloyd Flanders Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/600x180mendota-2c-blk-wtag-68533.png  — alt: Mendota® Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/modern-flames.png  — alt: Modern Flames Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/ow-lee.jpg  — alt: O.W. Lee Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/pacificenergy-logo.png  — alt: Pacific Energy Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/patiorenaissancelogo2018-663194.png  — alt: Patio Renaissance Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/logo-regency-red-20497.png  — alt: Regency® Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/nav-logo-5711.png  — alt: Seaside Casual Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/sundance-01-13773.png  — alt: Sundance® Spas Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/telescope.png  — alt: Telescope Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/treasure-garden.png  — alt: Treasure Garden Logo
+- https://cdn.spasoftwaresolutions.net/brand_logos/large/warming-trends.webp  — alt: Warming Trends® Logo
+- https://emeraldpool.com/wp-content/uploads/2024/02/3T2A5613_2.jpg
+- https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x7-standard-snow-top-1582766.jpg  — alt: Bullfrog Spas Model X7
+- https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m6-top-down-312403.jpg  — alt: Bullfrog Spas Model M6
+- https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/m8-top-down-2026-527020.jpg  — alt: Bullfrog Spas Model M8
+- /wp-content/uploads/sss_stock_model_photos/m8-top-down-2026-527020-150x150.jpg  — alt: Photo of Inventory for this model

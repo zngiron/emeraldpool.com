@@ -1,0 +1,849 @@
+{
+  "source": "https://emeraldpool.com",
+  "scrapedOn": "2026-09-19",
+  "platform": {
+    "cms": "WordPress 7.1.1",
+    "commerce": "WooCommerce 11.1.1",
+    "theme": "wordpress-spa-logic-hot-tubs-theme",
+    "keyPlugins": [
+      "spa-software-solutions (SSS catalog/inventory engine)",
+      "sss-emeraldpool-dot-com-local-variables-and-settings-wp-plugin",
+      "woocommerce",
+      "sg-cachepress (SiteGround Optimizer)"
+    ]
+  },
+  "business": {
+    "name": "Emerald Pool & Patio",
+    "founded": 1955,
+    "tagline": "Pools, hot tubs, swim spas, hearth and patio — Eugene & Bend, Oregon"
+  },
+  "contact": {
+    "locations": [
+      {
+        "name": "Emerald Pool & Patio — Eugene",
+        "address": "1885 Hwy 99 N, Eugene, Oregon 97402",
+        "phone": "(541) 688-1090",
+        "hours": "Mon–Sat 9:00am–6:00pm; Sun closed",
+        "url": "/locations/detail/?location_id=123"
+      },
+      {
+        "name": "Emerald Hearth, Spa & Patio — Bend",
+        "address": "62929 N. Hwy 97, Bend, Oregon 97701",
+        "phone": "(541) 383-3011",
+        "hours": "Mon–Fri 9:00am–6:00pm; Sat 9:00am–5:00pm; Sun closed",
+        "url": "/locations/detail/?location_id=124"
+      }
+    ],
+    "emailInMarkup": "johnSmith@coolMail.com (placeholder left in the live form markup — BUG)",
+    "formsOnEveryPage": [
+      "Contact Us (footer, rendered twice per page)",
+      "Newsletter signup"
+    ]
+  },
+  "nav": {
+    "style": "single mega menu, 9 top-level sections, ~94 links rendered on every page",
+    "topLevel": [
+      {
+        "label": "About Us",
+        "href": "/about-us/",
+        "children": [
+          {
+            "label": "About Us",
+            "href": "/about-us/"
+          },
+          {
+            "label": "Our Blog",
+            "href": "/blog/"
+          },
+          {
+            "label": "Testimonials",
+            "href": "/testimonials/"
+          },
+          {
+            "label": "Our Projects",
+            "href": "/projects/"
+          },
+          {
+            "label": "Leave Us A Review",
+            "href": "/leave-us-a-review/"
+          }
+        ]
+      },
+      {
+        "label": "Our Locations",
+        "href": "/locations/",
+        "children": [
+          {
+            "label": "All Locations",
+            "href": "/locations/"
+          },
+          {
+            "label": "Eugene",
+            "href": "/locations/detail/?location_id=123"
+          },
+          {
+            "label": "Bend",
+            "href": "/locations/detail/?location_id=124"
+          },
+          {
+            "label": "Join Our Team",
+            "href": "/careers/"
+          }
+        ]
+      },
+      {
+        "label": "Bullfrog Spas",
+        "href": "/bullfrog-spas/",
+        "children": [
+          {
+            "label": "All Types",
+            "href": "/bullfrog-spas/"
+          },
+          {
+            "label": "Spas & Hot Tubs",
+            "href": "/bullfrog-spas/"
+          },
+          {
+            "label": "Hot Tubs",
+            "href": "/hot-tubs/"
+          },
+          {
+            "label": "Swim Spas",
+            "href": "/swim-spas/"
+          },
+          {
+            "label": "All Collections",
+            "href": "/collections/?brand=69"
+          },
+          {
+            "label": "Swim Series™ - Performance Class",
+            "href": "/models/?cat=1&brand=69&brandCollections=712"
+          },
+          {
+            "label": "M Series™ - Elite Class",
+            "href": "/models/?brand=69&brandCollections=662&cat=1"
+          },
+          {
+            "label": "STIL™ - Modern Class",
+            "href": "/models/?brand=69&brandCollections=663&cat=1"
+          },
+          {
+            "label": "A Series™ - Luxury Class",
+            "href": "/models/?brand=69&brandCollections=1084&cat=1"
+          },
+          {
+            "label": "X Series™ - Comfort Class",
+            "href": "/models/?brand=69&brandCollections=667&cat=1"
+          },
+          {
+            "label": "Calm™ Series - Value Class",
+            "href": "/models/?brand=69&brandCollections=4026"
+          },
+          {
+            "label": "The Bullfrog Spas Difference",
+            "href": "/bullfrog-spas-features/"
+          },
+          {
+            "label": "Why Bullfrog Spas Stand Out",
+            "href": "/bullfrog-spas-features/"
+          },
+          {
+            "label": "JetPak Therapy System™ - Personalized Therapy",
+            "href": "/jetpak-therapy-system/"
+          },
+          {
+            "label": "Powerful Massages - Less Plumbing",
+            "href": "/powerful-hydrotherapy/"
+          },
+          {
+            "label": "Reliable Performance - EnduraFrame® Structure",
+            "href": "/bullfrog-spas-construction/"
+          },
+          {
+            "label": "Energy Efficient - Smarter Plumbing",
+            "href": "/bullfrog-spas-energy-savings/"
+          },
+          {
+            "label": "Easy Water Care - Simplicity® Total Water Care",
+            "href": "/bullfrog-water-care/"
+          },
+          {
+            "label": "Hot Tub Benefits",
+            "href": "/bullfrog-spas-benefits/"
+          }
+        ]
+      },
+      {
+        "label": "Spas",
+        "href": "/spas-hot-tubs/",
+        "children": [
+          {
+            "label": "All Spas & Hot Tubs",
+            "href": "/spas-hot-tubs/"
+          },
+          {
+            "label": "Hot Tubs",
+            "href": "/hot-tubs/"
+          },
+          {
+            "label": "In Stock Hot Tubs",
+            "href": "/inventory/?cat=1"
+          },
+          {
+            "label": "Swim Spas",
+            "href": "/swim-spas/"
+          },
+          {
+            "label": "Custom Spas",
+            "href": "/custom-spas/"
+          },
+          {
+            "label": "Hot Tub Chemicals",
+            "href": "/hot-tub-chemicals/"
+          }
+        ]
+      },
+      {
+        "label": "Pools",
+        "href": "/pools/",
+        "children": [
+          {
+            "label": "All Pools",
+            "href": "/pools/"
+          },
+          {
+            "label": "Above Ground Pools",
+            "href": "/above-ground-pools/"
+          },
+          {
+            "label": "Custom Pools",
+            "href": "/custom-pools/"
+          },
+          {
+            "label": "Pool Renovation",
+            "href": "/pool-renovation/"
+          },
+          {
+            "label": "Swim Spas",
+            "href": "/swim-spas/"
+          },
+          {
+            "label": "Pool Chemicals",
+            "href": "/pool-chemicals/"
+          }
+        ]
+      },
+      {
+        "label": "Patio Furniture",
+        "href": "/patio-furniture/",
+        "children": [
+          {
+            "label": "All Patio Furniture",
+            "href": "/patio-furniture/"
+          },
+          {
+            "label": "Tables",
+            "href": "/tables/"
+          },
+          {
+            "label": "Chairs",
+            "href": "/chairs/"
+          },
+          {
+            "label": "Patio Umbrellas",
+            "href": "/patio-umbrellas/"
+          },
+          {
+            "label": "Fire Tables",
+            "href": "/fire-tables/"
+          },
+          {
+            "label": "Patio Heaters",
+            "href": "/models/?cat=8&firePitType=138"
+          },
+          {
+            "label": "Elaine Smith Pillows",
+            "href": "/elaine-smith-pillows/"
+          }
+        ]
+      },
+      {
+        "label": "Grills",
+        "href": "/grills/",
+        "children": []
+      },
+      {
+        "label": "Hearth",
+        "href": "/hearth-appliances/",
+        "children": [
+          {
+            "label": "All Hearth Appliances",
+            "href": "/hearth-appliances/"
+          },
+          {
+            "label": "Fireplaces",
+            "href": "/fireplaces/"
+          },
+          {
+            "label": "Stoves",
+            "href": "/stoves/"
+          },
+          {
+            "label": "Fireplace Inserts",
+            "href": "/fireplace-inserts/"
+          },
+          {
+            "label": "Log Sets",
+            "href": "/models/?cat=9&sort=featured&hearthApplianceType=152"
+          }
+        ]
+      },
+      {
+        "label": "Services",
+        "href": "/services/",
+        "children": [
+          {
+            "label": "All Services",
+            "href": "/services/"
+          },
+          {
+            "label": "Site Consultation",
+            "href": "/site-consultation/"
+          },
+          {
+            "label": "Financing",
+            "href": "/financing/"
+          },
+          {
+            "label": "Get Trade-In Value",
+            "href": "/get-trade-in-value/"
+          },
+          {
+            "label": "General Services",
+            "href": "/contact-us/"
+          },
+          {
+            "label": "Service Repair Request",
+            "href": "/request-service-appointment/"
+          },
+          {
+            "label": "Parts Request",
+            "href": "/parts-request/"
+          },
+          {
+            "label": "Pool and Hot Tub Services",
+            "href": "/custom-pools/"
+          },
+          {
+            "label": "Water Testing",
+            "href": "/water-testing/"
+          },
+          {
+            "label": "Drain, Clean & Refill",
+            "href": "/drain-clean-refill/"
+          },
+          {
+            "label": "Winterization",
+            "href": "/winterization/"
+          },
+          {
+            "label": "Spring Restart",
+            "href": "/spring-restart/"
+          },
+          {
+            "label": "Hearth Services",
+            "href": "/stove-fireplace-repair/"
+          },
+          {
+            "label": "Stove & Fireplace Service",
+            "href": "/stove-fireplace-repair/"
+          },
+          {
+            "label": "Chimney Cleaning",
+            "href": "/chimney-cleaning/"
+          },
+          {
+            "label": "Hot Tub Services",
+            "href": "/spas-hot-tubs/"
+          },
+          {
+            "label": "Hot Tub Orientation",
+            "href": "/hot-tub-orientation/"
+          },
+          {
+            "label": "Hot Tub Removal",
+            "href": "/hot-tub-removal/"
+          },
+          {
+            "label": "Hot Tub Relocation",
+            "href": "/hot-tub-relocation/"
+          },
+          {
+            "label": "Clear Ray Bulb Replacement",
+            "href": "/clear-ray-bulb-replacement/"
+          }
+        ]
+      },
+      {
+        "label": "Chemicals",
+        "href": "/chemicals/",
+        "children": [
+          {
+            "label": "All Chemicals",
+            "href": "/chemicals/"
+          },
+          {
+            "label": "Pool Chemicals",
+            "href": "/pool-chemicals/"
+          },
+          {
+            "label": "BAQUACIL",
+            "href": "/baquacil/"
+          },
+          {
+            "label": "Bioguard",
+            "href": "/bioguard/"
+          },
+          {
+            "label": "Poolife",
+            "href": "/poolife/"
+          },
+          {
+            "label": "Hot Tub Chemicals",
+            "href": "/hot-tub-chemicals/"
+          },
+          {
+            "label": "Frog Products",
+            "href": "/frog-products/"
+          },
+          {
+            "label": "Leisure Time",
+            "href": "/leisure-time/"
+          },
+          {
+            "label": "Sirona Spa Care",
+            "href": "/sirona-spa-care/"
+          },
+          {
+            "label": "Spa Guard",
+            "href": "/spa-guard/"
+          },
+          {
+            "label": "Hot Tub Serum",
+            "href": "/hot-tub-serum/"
+          }
+        ]
+      },
+      {
+        "label": "Brands",
+        "href": "/models/",
+        "children": []
+      }
+    ]
+  },
+  "footer": {
+    "columns": [
+      "Eugene store card",
+      "Bend store card",
+      "Contact form",
+      "Newsletter signup"
+    ],
+    "legal": [
+      "© 2026 Emerald Pool & Patio",
+      "Accessibility",
+      "Privacy",
+      "Powered by (vendor credit)"
+    ],
+    "links": [
+      {
+        "label": "Mon - Sat: 9:00am - 6:00pm Sun: Closed",
+        "href": "/locations/detail/?location_id=123"
+      },
+      {
+        "label": "1885 Hwy 99 N Eugene, Oregon 97402",
+        "href": "https://maps.app.goo.gl/kj2KmG3PrCtY6ni47"
+      },
+      {
+        "label": "(541) 688-1090",
+        "href": "tel:(541) 688-1090"
+      },
+      {
+        "label": "Mon - Fri: 9:00am - 6:00pm Sat: 9:00am - 5:00pm Sun: Closed",
+        "href": "/locations/detail/?location_id=124"
+      },
+      {
+        "label": "62929 N. Hwy 97 Bend, Oregon 97701",
+        "href": "https://maps.app.goo.gl/kk8S9oBD5GkKZmy6A"
+      },
+      {
+        "label": "(541) 383-3011",
+        "href": "tel:(541) 383-3011"
+      },
+      {
+        "label": "© 2026 Emerald Pool & Patio",
+        "href": "/"
+      },
+      {
+        "label": "Accessibility",
+        "href": "/accessibility/"
+      },
+      {
+        "label": "Privacy",
+        "href": "/privacy/"
+      }
+    ]
+  },
+  "counts": {
+    "pages": 92,
+    "posts": 73,
+    "wooProducts": 122,
+    "modelDetailUrls": 4090,
+    "modelSearchUrls": 721,
+    "collectionUrls": 43
+  },
+  "pagesScraped": [
+    {
+      "slug": "about-us",
+      "title": "About Emerald Pool & Patio: Premier Hot Tub & Pool Company",
+      "url": "https://emeraldpool.com/about-us/",
+      "metaDescription": "About Emerald Pool & Patio - Established in 1955 by Grandpa Neely as a pool construction company building in-ground gunite pools.",
+      "h1": "About Us",
+      "h1Count": 2,
+      "file": "research/pages/about-us.md"
+    },
+    {
+      "slug": "blog",
+      "title": "Our Blog - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/blog/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Our Blog",
+      "h1Count": 1,
+      "file": "research/pages/blog.md"
+    },
+    {
+      "slug": "bullfrog-spas-benefits",
+      "title": "Bullfrog Spas Benefits - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/bullfrog-spas-benefits/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Bullfrog Spas Benefits",
+      "h1Count": 2,
+      "file": "research/pages/bullfrog-spas-benefits.md"
+    },
+    {
+      "slug": "bullfrog-spas",
+      "title": "Bullfrog Spas & Hot Tubs - Portable Spas - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/bullfrog-spas/",
+      "metaDescription": "Bullfrog Spas & Hot Tubs offer a complete selection of portable spas & hot tubs in all sizes, layouts, color combinations, & styles for all.",
+      "h1": "Bullfrog Spas",
+      "h1Count": 2,
+      "file": "research/pages/bullfrog-spas.md"
+    },
+    {
+      "slug": "careers",
+      "title": "View all Careers available at",
+      "url": "https://emeraldpool.com/careers/",
+      "metaDescription": "View all careers available at",
+      "h1": "Careers",
+      "h1Count": 2,
+      "file": "research/pages/careers.md"
+    },
+    {
+      "slug": "contact-us",
+      "title": "Contact Us - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/contact-us/",
+      "metaDescription": "Emerald Pool & Patio is excited to help you with all of your pool needs – whether they include fireplace, hot tubs, patio furniture, grills or pool and spa supplies",
+      "h1": "Contact Us",
+      "h1Count": 2,
+      "file": "research/pages/contact-us.md"
+    },
+    {
+      "slug": "custom-pools",
+      "title": "Custom Built Swimming Pools & Spas - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/custom-pools/",
+      "metaDescription": "Emerald Pool & Patio is your number one resource for high quality, custom built swimming pools & spas in the North West since 1955.",
+      "h1": "Custom Pools",
+      "h1Count": 2,
+      "file": "research/pages/custom-pools.md"
+    },
+    {
+      "slug": "financing",
+      "title": "Financing - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/financing/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Financing",
+      "h1Count": 2,
+      "file": "research/pages/financing.md"
+    },
+    {
+      "slug": "get-quote",
+      "title": "Get Quote - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/get-quote/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Get Quote",
+      "h1Count": 2,
+      "file": "research/pages/get-quote.md"
+    },
+    {
+      "slug": "home",
+      "title": "Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/",
+      "metaDescription": "Emerald Pool and Patio, providing quality pools, spas, hot tubs, stoves, patio furniture, barbecues, and more to Eugene & Bend, OR since 1955.",
+      "h1": "Homepage",
+      "h1Count": 1,
+      "file": "research/pages/home.md"
+    },
+    {
+      "slug": "hot-tubs",
+      "title": "Spas & Hot Tubs in Eugene & Bend, OR - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/hot-tubs/",
+      "metaDescription": "Emerald Pool & Patio carries complete lines of spas and hot tubs from top brands in our Eugene and Bend stores. Come by and have a look.",
+      "h1": "Hot Tubs",
+      "h1Count": 2,
+      "file": "research/pages/hot-tubs.md"
+    },
+    {
+      "slug": "how-to-enjoy-your-hot-tub-this-winter",
+      "title": "How To Enjoy Your Hot Tub This Winter - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/how-to-enjoy-your-hot-tub-this-winter/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "How To Enjoy Your Hot Tub This Winter",
+      "h1Count": 1,
+      "file": "research/pages/how-to-enjoy-your-hot-tub-this-winter.md"
+    },
+    {
+      "slug": "jetpak-therapy-system",
+      "title": "JetPak Therapy System&#x2122; - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/jetpak-therapy-system/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "JetPak Therapy System&#x2122;",
+      "h1Count": 2,
+      "file": "research/pages/jetpak-therapy-system.md"
+    },
+    {
+      "slug": "locations",
+      "title": "View all locations at Emerald Pools",
+      "url": "https://emeraldpool.com/locations/",
+      "metaDescription": "View map & hours for all locations at Emerald Pools",
+      "h1": "Locations",
+      "h1Count": 1,
+      "file": "research/pages/locations.md"
+    },
+    {
+      "slug": "model-45071",
+      "title": "Bullfrog Spas Model M8 - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45071",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model M8. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model M8 M Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45071.md"
+    },
+    {
+      "slug": "model-45073",
+      "title": "Bullfrog Spas Model M6 - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45073",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model M6. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model M6 M Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45073.md"
+    },
+    {
+      "slug": "model-45078",
+      "title": "Bullfrog Spas Model X7 - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45078",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model X7. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model X7 X Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45078.md"
+    },
+    {
+      "slug": "model-45083",
+      "title": "Bullfrog Spas Model S150 Swim Spa Swim Series™ - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45083",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model S150 Swim Spa Swim Series™. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model S150 Swim Spa Swim Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45083.md"
+    },
+    {
+      "slug": "model-45084",
+      "title": "Bullfrog Spas Model S200 Swim Spa Swim Series™ - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45084",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model S200 Swim Spa Swim Series™. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model S200 Swim Spa Swim Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45084.md"
+    },
+    {
+      "slug": "model-45085",
+      "title": "Bullfrog Spas Model S180XD Swim Spa Swim Series™ - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45085",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model S180XD Swim Spa Swim Series™. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model S180XD Swim Spa Swim Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45085.md"
+    },
+    {
+      "slug": "model-45091",
+      "title": "Bullfrog Spas Model A7D - Hot Tubs & Swim Spas",
+      "url": "/models/detail/?unit_id=45091",
+      "metaDescription": "View all the specs and info for our Bullfrog Spas Model A7D. Find the best Hot Tubs & Swim Spas at Emerald Pools.",
+      "h1": "Model A7D A Series™ by Bullfrog Spas ®",
+      "h1Count": 1,
+      "file": "research/pages/model-45091.md"
+    },
+    {
+      "slug": "promotions",
+      "title": "Promotions - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/promotions/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Promotions",
+      "h1Count": 2,
+      "file": "research/pages/promotions.md"
+    },
+    {
+      "slug": "services",
+      "title": "Services - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/services/",
+      "metaDescription": "Our friendly service crew does a variety of repair, installation and other maintenance needs for your swimming pools, spas, hot tubs and other related items.",
+      "h1": "Services",
+      "h1Count": 2,
+      "file": "research/pages/services.md"
+    },
+    {
+      "slug": "sundance-spas-buyers-guide",
+      "title": "Sundance Spas Buyer’s Guide - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/sundance-spas-buyers-guide/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Sundance Spas Buyer’s Guide",
+      "h1Count": 1,
+      "file": "research/pages/sundance-spas-buyers-guide.md"
+    },
+    {
+      "slug": "swim-spas",
+      "title": "Spas & Hot Tubs in Eugene & Bend, OR - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/swim-spas/",
+      "metaDescription": "Emerald Pool & Patio carries complete lines of spas and hot tubs from top brands in our Eugene and Bend stores. Come by and have a look.",
+      "h1": "Swim Spas",
+      "h1Count": 2,
+      "file": "research/pages/swim-spas.md"
+    },
+    {
+      "slug": "testimonials",
+      "title": "Testimonials - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/testimonials/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "Testimonials",
+      "h1Count": 2,
+      "file": "research/pages/testimonials.md"
+    },
+    {
+      "slug": "when-to-buy-a-hot-tub",
+      "title": "When To Buy A Hot Tub? - Emerald Pool & Patio",
+      "url": "https://emeraldpool.com/when-to-buy-a-hot-tub/",
+      "metaDescription": "Custom Pools & Spas In Eugene and Bend, Oregon",
+      "h1": "When To Buy A Hot Tub?",
+      "h1Count": 1,
+      "file": "research/pages/when-to-buy-a-hot-tub.md"
+    }
+  ],
+  "representativeProducts": [
+    {
+      "model": "Bullfrog Spas Model X7",
+      "type": "hot tub",
+      "collection": "X Series™ (Comfort Class)",
+      "url": "/models/detail/?unit_id=45078"
+    },
+    {
+      "model": "Bullfrog Spas Model M6",
+      "type": "hot tub",
+      "collection": "M Series™ (Elite Class)",
+      "url": "/models/detail/?unit_id=45073"
+    },
+    {
+      "model": "Bullfrog Spas Model M8",
+      "type": "hot tub",
+      "collection": "M Series™ (Elite Class)",
+      "url": "/models/detail/?unit_id=45071"
+    },
+    {
+      "model": "Bullfrog Spas Model A7D",
+      "type": "hot tub",
+      "collection": "A Series™ (Luxury Class)",
+      "url": "/models/detail/?unit_id=45091"
+    },
+    {
+      "model": "Bullfrog Spas Model S150 Swim Spa",
+      "type": "swim spa",
+      "collection": "Swim Series™ (Performance Class)",
+      "url": "/models/detail/?unit_id=45083"
+    },
+    {
+      "model": "Bullfrog Spas Model S200 Swim Spa",
+      "type": "swim spa",
+      "collection": "Swim Series™ (Performance Class)",
+      "url": "/models/detail/?unit_id=45084"
+    },
+    {
+      "model": "Bullfrog Spas Model S180XD Swim Spa",
+      "type": "swim spa",
+      "collection": "Swim Series™ (Performance Class)",
+      "url": "/models/detail/?unit_id=45085"
+    }
+  ],
+  "spaCollections": [
+    "A Series™ — Luxury Class",
+    "M Series™ — Elite Class",
+    "X Series™ — Comfort Class",
+    "STIL™ — Modern Class",
+    "Calm™ Series — Value Class",
+    "Swim Series™ — Performance Class"
+  ],
+  "taxonomyFacetsObserved": {
+    "spaType": [
+      "Hot Tubs",
+      "Swim Spas"
+    ],
+    "shape": [
+      "Square",
+      "Rectangle",
+      "Triangle",
+      "Circle"
+    ],
+    "pumps": [
+      1,
+      2,
+      3
+    ],
+    "spaClass": [
+      "Luxury",
+      "Comfort",
+      "Elite",
+      "Value",
+      "Performance",
+      "Modern"
+    ],
+    "features": [
+      "Massage Jets",
+      "Adjustable Jets",
+      "Waterfall",
+      "Locking Cover",
+      "Wireless Connectivity",
+      "Ozonator",
+      "Touchscreen Control",
+      "Lounger Seat"
+    ]
+  },
+  "specFieldsObserved": [
+    "Available Seats",
+    "Lounge Seats",
+    "Therapy Pumps",
+    "Jets",
+    "Water Capacity",
+    "Dry Weight",
+    "Max Filled Weight",
+    "Standard Dimensions (inches)",
+    "Metric Dimensions (meters)",
+    "Lighting",
+    "Access (Steps & Cover Lifts)"
+  ]
+}
