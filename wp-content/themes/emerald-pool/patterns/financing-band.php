@@ -15,8 +15,8 @@
  * rule, the terms in the data face, and the link to the detail.
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--custom--gutter)"><!-- wp:group {"className":"ep-finance ep-reveal","align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+<!-- wp:group {"className":"ep-section ep-section--tight","align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-section ep-section--tight"><!-- wp:group {"className":"ep-finance ep-reveal","align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
 <div class="wp-block-group alignwide ep-finance ep-reveal"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained","contentSize":"100%"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":2,"className":"is-style-eyebrow","fontSize":"small"} -->
 <h2 class="wp-block-heading is-style-eyebrow has-small-font-size">Financing</h2>

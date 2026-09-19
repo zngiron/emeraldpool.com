@@ -13,7 +13,11 @@
 $ep_hero = wp_json_encode(
 	array(
 		'mediaUrl'       => get_theme_file_uri( 'assets/images/hero-hot-tubs.jpg' ),
-		'mediaAlt'       => 'A hot tub on a covered deck, lid open, water still',
+		'mediaAlt'       => 'A woman leaning on the edge of a hot tub in a back yard, water moving',
+		'focalPoint'     => array(
+			'x' => 0.5,
+			'y' => 0.36,
+		),
 		'eyebrow'        => 'Hot tubs',
 		'heading'        => 'Six to nine seats, built for <em>Oregon</em>',
 		'standfirst'     => 'Every model here is insulated for a wet, cold winter and serviced by our own people.',

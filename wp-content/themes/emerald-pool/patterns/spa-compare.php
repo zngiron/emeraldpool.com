@@ -11,8 +11,8 @@
  */
 
 ?>
-<!-- wp:group {"align":"full","backgroundColor":"surface","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained","wideSize":"1280px"}} -->
-<div class="wp-block-group alignfull has-surface-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--20)"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
+<!-- wp:group {"className":"ep-section","align":"full","backgroundColor":"surface","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-section has-surface-background-color has-background"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
 <h3 class="wp-block-heading is-style-eyebrow has-small-font-size">Side by side</h3>
 <!-- /wp:heading -->
 

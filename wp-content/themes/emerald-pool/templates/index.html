@@ -1,13 +1,15 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","wideSize":"1280px"}} -->
-<main class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
+<!-- wp:group {"tagName":"main","className":"ep-main","align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull ep-main"><!-- wp:group {"className":"ep-page-head","align":"wide","layout":{"type":"constrained","contentSize":"100%"}} -->
+<div class="wp-block-group alignwide ep-page-head"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
 <h3 class="wp-block-heading is-style-eyebrow has-small-font-size">The journal</h3>
 <!-- /wp:heading -->
 
 <!-- wp:heading {"level":1} -->
 <h1 class="wp-block-heading">Notes from the water</h1>
-<!-- /wp:heading -->
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
 
 <!-- wp:query {"queryId":0,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"align":"wide","layout":{"type":"default"}} -->
 <div class="wp-block-query alignwide"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->

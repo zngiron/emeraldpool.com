@@ -21,8 +21,8 @@
  * into an object.
  */
 ?>
-<!-- wp:group {"className":"ep-night","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:custom|gutter","right":"var:custom|gutter"},"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull ep-night" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--custom--gutter)"><!-- wp:group {"className":"ep-bay ep-reveal","align":"wide","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"ep-night ep-section","align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-night ep-section"><!-- wp:group {"className":"ep-bay ep-reveal","align":"wide","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide ep-bay ep-reveal"><!-- wp:group {"className":"ep-bay__lede","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","contentSize":"100%"}} -->
 <div class="wp-block-group ep-bay__lede"><!-- wp:paragraph {"className":"ep-numeral"} -->
 <p class="ep-numeral">01</p>

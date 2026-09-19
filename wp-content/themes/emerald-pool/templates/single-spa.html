@@ -1,8 +1,8 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","align":"full","layout":{"type":"constrained","wideSize":"1440px"}} -->
-<main class="wp-block-group alignfull"><!-- wp:group {"className":"ep-night ep-spa-hero","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull ep-night ep-spa-hero" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--custom--gutter)"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+<!-- wp:group {"tagName":"main","className":"ep-main","align":"full","layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull ep-main"><!-- wp:group {"className":"ep-night ep-spa-hero ep-section","align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-night ep-spa-hero ep-section"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"52%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:52%"><!-- wp:emerald-pool/spa-plan /--></div>
 <!-- /wp:column -->
@@ -27,8 +27,8 @@
 <!-- /wp:columns --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--custom--gutter)"><!-- wp:columns {"align":"wide","className":"ep-spa-body","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
+<!-- wp:group {"className":"ep-section","align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-section"><!-- wp:columns {"align":"wide","className":"ep-spa-body","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide ep-spa-body"><!-- wp:column {"width":"58%"} -->
 <div class="wp-block-column" style="flex-basis:58%"><!-- wp:post-content {"layout":{"type":"constrained","contentSize":"100%"}} /--></div>
 <!-- /wp:column -->
@@ -51,8 +51,31 @@
 <!-- /wp:columns --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"className":"ep-night ep-night--deep","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull ep-night ep-night--deep" style="padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--custom--gutter)"><!-- wp:group {"className":"ep-bay ep-reveal","align":"wide","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"ep-night ep-band ep-band--short","align":"full","layout":{"type":"default"}} -->
+<div class="wp-block-group alignfull ep-night ep-band ep-band--short"><!-- wp:html -->
+<figure class="ep-band__frame">
+	<img class="ep-band__media" src="/wp-content/themes/emerald-pool/assets/images/band-wettest.jpg" alt="A couple lifting JetPaks out of a spa in their back yard, mountains behind them" width="1800" height="1200" sizes="100vw" loading="lazy" decoding="async">
+	<span class="ep-band__scrim" aria-hidden="true"></span>
+</figure>
+<!-- /wp:html -->
+
+<!-- wp:group {"className":"ep-band__inner ep-reveal","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","contentSize":"100%"}} -->
+<div class="wp-block-group alignwide ep-band__inner ep-reveal"><!-- wp:heading {"level":2,"className":"is-style-eyebrow","fontSize":"small"} -->
+<h2 class="wp-block-heading is-style-eyebrow has-small-font-size">Two hands, no tools</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3,"className":"is-style-statement"} -->
+<h3 class="wp-block-heading is-style-statement">The seat changes when you do</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"ep-band__text","fontSize":"medium"} -->
+<p class="ep-band__text has-medium-font-size">A JetPak lifts out of the wall and a different one drops in. A shoulder that needs work in March does not need the same jets in September, and nobody has to drain the spa to change its mind.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"ep-night ep-night--deep ep-section","align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-night ep-night--deep ep-section"><!-- wp:group {"className":"ep-bay ep-reveal","align":"wide","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide ep-bay ep-reveal"><!-- wp:group {"className":"ep-bay__lede","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","contentSize":"100%"}} -->
 <div class="wp-block-group ep-bay__lede"><!-- wp:heading {"level":2,"className":"is-style-eyebrow","fontSize":"small"} -->
 <h2 class="wp-block-heading is-style-eyebrow has-small-font-size">Twenty minutes, no appointment fee</h2>
@@ -77,8 +100,8 @@
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:custom|gutter","right":"var:custom|gutter"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--custom--gutter)"><!-- wp:heading {"level":2,"className":"is-style-eyebrow","fontSize":"small","align":"wide"} -->
+<!-- wp:group {"className":"ep-section","align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-section"><!-- wp:heading {"level":2,"className":"is-style-eyebrow","fontSize":"small","align":"wide"} -->
 <h2 class="wp-block-heading alignwide is-style-eyebrow has-small-font-size">Others worth sitting in</h2>
 <!-- /wp:heading -->
 

@@ -3,7 +3,7 @@
  * Title: Home hero
  * Slug: emerald-pool/hero-home
  * Categories: emerald-pool/hero
- * Description: A full-viewport opening: the backyard at dusk, the promise bottom-left, the showroom hours bottom-right.
+ * Description: A full-viewport opening: six people in warm water after dark, the promise bottom-left, the showroom hours bottom-right.
  * Keywords: hero, banner, opening
  * Viewport Width: 1400
  *
@@ -11,12 +11,19 @@
  */
 
 /*
- * The hero is the thesis. What is characteristic about this business is not a
- * product shot — it is the moment the product exists for: a lit, steaming spa in
- * a wet Oregon winter, at dusk, when nobody else is outside. So the frame is a
- * full viewport of that, the argument is one line at display scale, and the two
- * things a visitor actually came for — which shop, what hours — are pinned to
- * the opposite corner rather than buried three screens down.
+ * The hero is the thesis, and the thesis is not the shell.
+ *
+ * The first build opened on an empty spa on a snowy deck, which is a product
+ * photograph: it told a visitor what is for sale and nothing about why. What is
+ * actually characteristic about this business is the evening the spa buys you —
+ * six people in the water after dark, a fire going, nobody looking at a phone.
+ * So the frame is a full viewport of that, the argument is one line at display
+ * scale, and the two things a visitor came for — which shop, what hours — are
+ * pinned to the opposite corner rather than buried three screens down.
+ *
+ * The focal point is held above centre so the faces sit in the upper third and
+ * the scrim, which is heaviest at the bottom, falls on water rather than on
+ * anybody's face.
  *
  * `videoUrl` is deliberately empty: emeraldpool.com has no self-hosted clip for
  * this frame, and inventing one would be a lie about the brand's own footage.
@@ -24,15 +31,19 @@
  */
 $ep_hero = wp_json_encode(
 	array(
-		'mediaUrl'       => get_theme_file_uri( 'assets/images/hero-winter.jpg' ),
-		'mediaAlt'       => 'A lit hot tub in use on a winter evening, steam rising into the cold',
+		'mediaUrl'       => get_theme_file_uri( 'assets/images/hero-evening.jpg' ),
+		'mediaAlt'       => 'Six friends talking in a lit hot tub under a timber pavilion after dark, a fire burning behind them',
 		'videoUrl'       => '',
+		'focalPoint'     => array(
+			'x' => 0.5,
+			'y' => 0.38,
+		),
 		'eyebrow'        => 'Eugene &amp; Bend, Oregon · since 1955',
 		'heading'        => 'Warm water is a <em>winter</em> plan',
 		'standfirst'     => 'Nobody buys a hot tub in July and regrets it in January. Three generations of getting Oregon backyards right.',
 		'metaHeading'    => 'Two showrooms, water in both',
 		'metaBody'       => "Eugene · Mon–Sat 9–6\nBend · Mon–Fri 9–6, Sat 9–5\nWet tests by appointment",
-		'overlayOpacity' => 64,
+		'overlayOpacity' => 58,
 		'minHeight'      => 92,
 		'showScrollCue'  => true,
 		'align'          => 'full',

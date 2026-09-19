@@ -1,37 +1,32 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"},"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained","wideSize":"1280px"}} -->
-<main class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:group {"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:query-title {"type":"archive","showPrefix":false,"level":1} /-->
+<!-- wp:group {"tagName":"main","className":"ep-main","align":"full","layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull ep-main"><!-- wp:group {"className":"ep-night ep-band ep-band--short","align":"full","layout":{"type":"default"}} -->
+<div class="wp-block-group alignfull ep-night ep-band ep-band--short"><!-- wp:html -->
+<figure class="ep-band__frame">
+	<img class="ep-band__media" src="/wp-content/themes/emerald-pool/assets/images/band-archive.jpg" alt="A couple in a hot tub in a green back yard on a summer evening" width="2100" height="656" sizes="100vw" fetchpriority="high" decoding="async">
+	<span class="ep-band__scrim" aria-hidden="true"></span>
+</figure>
+<!-- /wp:html -->
 
-<!-- wp:term-description /--></div>
+<!-- wp:group {"className":"ep-band__inner","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"constrained","contentSize":"100%"}} -->
+<div class="wp-block-group alignwide ep-band__inner"><!-- wp:paragraph {"className":"is-style-eyebrow","fontSize":"small"} -->
+<p class="is-style-eyebrow has-small-font-size">In both showrooms, filled and heated</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:query-title {"type":"archive","showPrefix":false,"level":1} /-->
+
+<!-- wp:term-description {"className":"ep-band__text"} /--></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:query {"queryId":0,"query":{"perPage":24,"pages":0,"offset":0,"postType":"spa","order":"asc","orderBy":"title","inherit":true},"align":"wide"} -->
-<div class="wp-block-query alignwide"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
-<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
+<!-- wp:group {"className":"ep-night ep-section","align":"full","style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-night ep-section"><!-- wp:heading {"level":2,"className":"is-style-eyebrow","fontSize":"small","align":"wide"} -->
+<h2 class="wp-block-heading alignwide is-style-eyebrow has-small-font-size">Every model in this range</h2>
+<!-- /wp:heading -->
 
-<!-- wp:post-terms {"term":"spa_series"} /-->
-
-<!-- wp:post-title {"isLink":true,"level":2,"fontSize":"medium"} /-->
-
-<!-- wp:post-excerpt {"excerptLength":18,"fontSize":"small"} /-->
-<!-- /wp:post-template -->
-
-<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
-<!-- wp:query-pagination-previous /-->
-
-<!-- wp:query-pagination-numbers /-->
-
-<!-- wp:query-pagination-next /-->
-<!-- /wp:query-pagination -->
-
-<!-- wp:query-no-results -->
-<!-- wp:paragraph -->
-<p>No models in this category yet.</p>
-<!-- /wp:paragraph -->
-<!-- /wp:query-no-results --></div>
-<!-- /wp:query -->
+<!-- wp:emerald-pool/spa-grid {"numberOfItems":24,"columns":3,"showFilters":true,"align":"wide"} /--></div>
+<!-- /wp:group -->
 
 <!-- wp:pattern {"slug":"emerald-pool/faq"} /--></main>
 <!-- /wp:group -->

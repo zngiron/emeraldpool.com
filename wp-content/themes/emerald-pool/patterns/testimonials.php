@@ -19,9 +19,9 @@
  * quotes are inert, and position is announced politely.
  */
 ?>
-<!-- wp:group {"className":"ep-quote-band ep-night","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull ep-quote-band ep-night" style="padding-top:var(--wp--preset--spacing--80);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--80);padding-left:var(--wp--custom--gutter)"><!-- wp:html -->
-<img class="ep-quote-band__media" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lifestyle-friends.jpg' ) ); ?>" alt="Three friends talking in a lit hot tub on a covered patio after dark" loading="lazy" decoding="async" width="1600" height="1067">
+<!-- wp:group {"className":"ep-quote-band ep-night ep-section","align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-quote-band ep-night ep-section"><!-- wp:html -->
+<img class="ep-quote-band__media" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lifestyle-friends.jpg' ) ); ?>" alt="A couple resting their eyes in a hot tub, water moving around them" loading="lazy" decoding="async" width="2000" height="1333" sizes="100vw">
 <span class="ep-quote-band__scrim" aria-hidden="true"></span>
 <!-- /wp:html -->
 

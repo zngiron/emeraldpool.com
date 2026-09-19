@@ -29,8 +29,8 @@ $ep_stats = wp_json_encode(
 	)
 );
 ?>
-<!-- wp:group {"className":"ep-night","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
-<div class="wp-block-group alignfull ep-night" style="padding-top:var(--wp--preset--spacing--80);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--80);padding-left:var(--wp--custom--gutter)"><!-- wp:group {"className":"ep-reveal","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
+<!-- wp:group {"className":"ep-night ep-section","align":"full","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull ep-night ep-section"><!-- wp:group {"className":"ep-reveal","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide ep-reveal"><!-- wp:paragraph {"className":"ep-numeral"} -->
 <p class="ep-numeral">04</p>
 <!-- /wp:paragraph -->
