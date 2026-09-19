@@ -118,7 +118,7 @@
 }
 
 .ep-card__price strong {
-	color: var(--wp--preset--color--text);
+	color: var(--wp--preset--color--ink);
 	font-variant-numeric: tabular-nums;
 }
 

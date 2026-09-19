@@ -336,6 +336,7 @@ $posts = array(
 		'excerpt' => 'Eleven winters of service calls, boiled down to the six habits that keep a spa in use between November and March.',
 		'media'   => 'blog-winter',
 		'date'    => '-21 days',
+		'cat'     => 'Seasonal',
 	),
 	array(
 		'slug'    => 'when-to-buy-a-hot-tub',
@@ -343,6 +344,7 @@ $posts = array(
 		'excerpt' => 'Every season has an argument for it. Here is what actually changes the price, and what only changes the wait.',
 		'media'   => 'hero-backyard',
 		'date'    => '-45 days',
+		'cat'     => 'Buying guides',
 	),
 	array(
 		'slug'    => 'what-a-service-visit-actually-covers',
@@ -350,6 +352,7 @@ $posts = array(
 		'excerpt' => 'Drain, clean, refill — and the six things our technicians check while the water is out.',
 		'media'   => 'feature-jetpak',
 		'date'    => '-70 days',
+		'cat'     => 'Maintenance',
 	),
 );
 
@@ -366,7 +369,14 @@ foreach ( $posts as $post ) {
 	);
 
 	ep_thumbnail( $id, $post['media'] );
-	wp_set_post_categories( $id, array( (int) get_option( 'default_category' ) ) );
+
+	$term = term_exists( $post['cat'], 'category' );
+	if ( ! $term ) {
+		$term = wp_insert_term( $post['cat'], 'category' );
+	}
+	if ( ! is_wp_error( $term ) ) {
+		wp_set_post_categories( $id, array( (int) $term['term_id'] ) );
+	}
 }
 
 // ---------------------------------------------------------------- 4. navigation.

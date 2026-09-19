@@ -28,7 +28,7 @@
 				{ "slug": "primary-dark", "color": "#0d3550", "name": "Primary dark" },
 				{ "slug": "accent", "color": "#4bc5e1", "name": "Accent" },
 				{ "slug": "deep", "color": "#0b2530", "name": "Deep" },
-				{ "slug": "text", "color": "#12242d", "name": "Text" },
+				{ "slug": "ink", "color": "#12242d", "name": "Ink" },
 				{ "slug": "text-muted", "color": "#546c78", "name": "Muted text" },
 				{ "slug": "border", "color": "#d3e1e8", "name": "Border" }
 			],
@@ -160,7 +160,7 @@
 	"styles": {
 		"color": {
 			"background": "var(--wp--preset--color--base)",
-			"text": "var(--wp--preset--color--text)"
+			"text": "var(--wp--preset--color--ink)"
 		},
 		"typography": {
 			"fontFamily": "var(--wp--preset--font-family--body)",

@@ -30,7 +30,8 @@ function definitions(): array {
 			'block' => 'core/heading',
 			'name'  => 'eyebrow',
 			'label' => __( 'Eyebrow', 'emerald-pool' ),
-			'style' => '.is-style-eyebrow{font-family:var(--wp--preset--font-family--body);font-size:var(--wp--custom--eyebrow--size);font-weight:700;letter-spacing:var(--wp--custom--eyebrow--spacing);text-transform:uppercase;color:var(--wp--preset--color--primary);display:flex;align-items:center;gap:.75rem;line-height:1.3}
+			'style' => '.is-style-eyebrow:not(.has-text-color){color:var(--wp--preset--color--primary)}
+.is-style-eyebrow{font-family:var(--wp--preset--font-family--body);font-size:var(--wp--custom--eyebrow--size);font-weight:700;letter-spacing:var(--wp--custom--eyebrow--spacing);text-transform:uppercase;display:flex;align-items:center;gap:.75rem;line-height:1.3}
 .is-style-eyebrow::before{content:"";flex:0 0 2.25rem;height:3px;border-top:2px solid currentColor;border-bottom:1px solid var(--wp--preset--color--accent);padding-top:2px}',
 		),
 		array(

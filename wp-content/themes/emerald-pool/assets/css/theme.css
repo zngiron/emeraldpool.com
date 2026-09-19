@@ -136,9 +136,11 @@ body {
 .ep-form input,
 .ep-form select,
 .ep-form textarea {
+	box-sizing: border-box;
+	max-width: 100%;
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--base);
-	color: var(--wp--preset--color--text);
+	color: var(--wp--preset--color--ink);
 	background: var(--wp--preset--color--base);
 	border: 1px solid var(--wp--preset--color--border);
 	border-radius: var(--wp--custom--radius--sm);
@@ -172,4 +174,36 @@ body {
 .ep-form button[type="submit"] {
 	border: 0;
 	cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+   Dark bands
+   A section painted deep or primary-dark inherits the light text colour, but
+   link and eyebrow defaults are tuned for the light page. Restate them here so
+   nothing lands dark-on-dark.
+   ---------------------------------------------------------------------- */
+
+.has-deep-background-color .is-style-eyebrow:not(.has-text-color),
+.has-primary-dark-background-color .is-style-eyebrow:not(.has-text-color) {
+	color: var(--wp--preset--color--accent);
+}
+
+.has-deep-background-color a:not(.wp-element-button),
+.has-primary-dark-background-color a:not(.wp-element-button) {
+	color: var(--wp--preset--color--accent);
+}
+
+/* The quiet outline button takes its colour from the band it sits in. */
+.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link,
+.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link {
+	color: var(--wp--preset--color--base);
+	box-shadow: inset 0 0 0 1px var(--wp--preset--color--accent);
+}
+
+.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
+.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus,
+.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
+.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus {
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--deep);
 }

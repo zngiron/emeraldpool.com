@@ -5,7 +5,7 @@
 	border-radius: var(--wp--custom--radius--pill);
 	padding: 0.85rem 1.25rem;
 	background: var(--wp--preset--color--base);
-	color: var(--wp--preset--color--text);
+	color: var(--wp--preset--color--ink);
 	font-family: var(--wp--preset--font-family--body);
 }
 

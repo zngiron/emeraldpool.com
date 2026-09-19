@@ -46,7 +46,8 @@ $ep_query = new \WP_Query(
 		'post_status'            => 'publish',
 		'posts_per_page'         => max( 1, (int) ( $attributes['numberOfItems'] ?? 6 ) ),
 		'orderby'                => in_array( $attributes['orderBy'] ?? '', array( 'title', 'date' ), true ) ? $attributes['orderBy'] : 'menu_order',
-		'order'                  => 'title' === ( $attributes['orderBy'] ?? '' ) ? 'ASC' : 'DESC',
+		// Newest first only when ordering by date; menu_order and title read top-down.
+		'order'                  => 'date' === ( $attributes['orderBy'] ?? '' ) ? 'DESC' : 'ASC',
 		'ignore_sticky_posts'    => true,
 		'no_found_rows'          => true,
 		'post__not_in'           => ! empty( $attributes['excludeCurrent'] ) && $ep_current ? array( $ep_current ) : array(),
