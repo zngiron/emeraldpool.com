@@ -23,7 +23,7 @@ wp-content/themes/emerald-pool/
 │   └── block-variations.php      Enqueues the editor variation script.
 ├── templates/                    13 HTML templates, all thin.
 ├── parts/                        header, footer.
-├── patterns/                     15 PHP patterns — where the page content lives.
+├── patterns/                     16 PHP patterns — where the page content lives.
 └── assets/
     ├── fonts/                    2 self-hosted variable woff2 (92 KB total).
     ├── images/                   11 images, only those a pattern or brand_config() references.
@@ -116,7 +116,8 @@ hot, current, or next.
 | Decision | Where it lives | Why |
 |---|---|---|
 | `abyss` / `deep` night grounds | `theme.json` palette, `.ep-night` | Dark is the default for product and closing sections. |
-| `sand` paper field | `theme.json` palette, `.ep-card__media` | Bullfrog renders are top-down drawings on white. A drawing on paper cannot float on black, so the field *is* the paper and the sheet is the bright object in the dark room. |
+| `sand` paper field | `theme.json` palette, `.ep-card__media` | Bullfrog renders are top-down drawings on white. A drawing on paper cannot float on black, so the field *is* the paper and the sheet is the bright object in the dark room. In a card the render is multiplied into the sand; in a chapter, where the image is composited for the parallax and therefore has no backdrop to blend with, it sits on a real white sheet on that field instead. |
+| Lifestyle photography | `assets/images/hero-*.jpg`, `band-*.jpg`, `series-*-life.jpg` | A plan render says what the product is; a photograph says what it is for. The hero, the editorial bands, half the series chapters, the quote band and the archives are people in warm water. The renders are the catalogue and stay in the catalogue. |
 | `ember` accent | `theme.json` palette | Heat. Used for eyebrow dots, prices, active states, figures and focus rings. |
 | `data` font family | `theme.json` `fontFamilies` | A system monospace stack — zero bytes — gives figures, labels and eyebrows a third voice distinct from the display serif and the body sans. |
 | Display scale to 7rem, `colossal` to 10.5rem | `theme.json` `fontSizes` | Fraunces is the personality; at hero and footer scale it is set with `opsz 144` and `WONK 1`, the display cut rather than the text cut enlarged. |
@@ -129,7 +130,83 @@ grid.
 
 ---
 
-## 2b. Motion
+## 2b. Layout — widths, gutters and rhythm
+
+One scale, declared once, consumed everywhere. Every value below comes from
+`theme.json`; `assets/css/theme.css` names the rhythm and nothing else sets it.
+If a pattern, template or seeded page contains a `padding` or `margin` in px or
+rem, that is a bug — grep for it.
+
+### Widths
+
+| Measure | Value | Where it comes from | Used for |
+|---|---|---|---|
+| `content` | 680px | `settings.layout.contentSize` | the reading column: article bodies, standfirsts |
+| `wide` | 1440px | `settings.layout.wideSize` | everything a band holds — heads, grids, cards, rails |
+| `full` | viewport | `align: full` | coloured bands, photographs, the marquee, the hero |
+| gutter | `clamp(1.25rem, 4vw, 3.5rem)` | `custom.gutter`, applied as `styles.spacing.padding` | the page's side margin, 20px → 56px |
+
+`useRootPaddingAwareAlignments` is on, so **a full-bleed band gets the gutter
+back automatically**. A pattern must not declare `padding-left` / `padding-right`;
+doing so is how the first build ended up with two different gutters on one page.
+
+**When to use which.** `full` is a band: a change of ground colour, or a
+photograph. `wide` is the band's contents, and is the default — headings, grids,
+cards, the store cards, the spec rail. `content` is prose, and only prose. There
+is no case for a centred `content` block on this site: core's constrained layout
+centres children at `contentSize` with `margin-left: auto !important`, which is
+why `.ep-section`, `.ep-page-head` and article bodies override it. Everything
+starts at the same left edge; prose narrows to 46ch *from* that edge.
+
+### Section rhythm
+
+Three classes, over `settings.spacing.spacingSizes`. The tokens are `clamp()`,
+so mobile and desktop are one declaration and there is no media query to keep in
+step.
+
+| Class | Token | Mobile → desktop | Used for |
+|---|---|---|---|
+| `.ep-section` | `--wp--preset--spacing--70` | 80px → 160px | the default band |
+| `.ep-section--tight` | `--60` | 64px → 112px | practical information: the store bar, the financing line |
+| `.ep-section--tall` | `--80` | 96px → 208px | the closing statement |
+| `.ep-main` | `--60` / `--70` | — | an interior page that does not open on a band |
+| `.ep-site-footer` | `--80` / `--40` | — | asymmetric on purpose: a long lede in, a short legal line out |
+
+A page whose first child is a hero or a band zeroes `.ep-main`'s padding, and
+`main` clears the fixed header with `margin-top`, not padding, so the two
+compose instead of fighting.
+
+### Block gap
+
+Root gap is `--30`. A band's head-to-content gap is `--50`. Inside a card or a
+chapter body it is `--20`. Nothing else sets one.
+
+### Grids
+
+`.ep-bay` is the twelve-column editorial grid every band head uses: the lede at
+columns 1–6, the aside at 7–12, `.ep-indent` at the same column 7 edge. Below
+860px both span the full width. Card grids take their gutter from
+`--wp--custom--gutter` so a card grid and a band agree about what a column gap is.
+
+### Images
+
+| Context | Ratio | Fit |
+|---|---|---|
+| Card media (`.ep-card__media`) | 4:3 | `contain` — a plan drawing is never cropped |
+| Chapter, plan (`--plan`) | 4:3 frame, 1:1 sheet | `contain` on a white sheet on the sand field |
+| Chapter, photograph (`--photo`) | 4:3 (3:2 mobile) | `cover`, focal point 50% 36% |
+| Editorial band (`.ep-band`) | 21:9 (4:5 mobile) | `cover`, focal point 50% 42% |
+| Quote band | fills the band | `cover`, focal point 58% 34% |
+| Journal card | 3:2 | `cover` |
+| Featured image, article | 16:9 | `cover` |
+
+Photographs of people are cropped from a focal point above centre, so a face is
+never cut and never lands under the heavy end of a scrim. Duotone presets exist
+in `theme.json` and are **not** applied to any photograph of a person.
+
+---
+
+## 2c. Motion
 
 Every moving thing on the site is opt-in three times over, and the static page is always the
 correct page.
@@ -160,7 +237,7 @@ dropped, and no video ever autoplays.
 
 ---
 
-## 2c. Video
+## 2d. Video
 
 The live emeraldpool.com does **not** have per-model hover video. What it has is four always-looping
 Vimeo backgrounds in a home page mosaic of *category* tiles, plus series-level YouTube clips behind
@@ -273,8 +350,8 @@ Measured on the home page, which is the heaviest:
 
 | | Budget | Actual |
 |---|---|---|
-| CSS (linked + inlined block styles) | < 200 KB | ~93 KB |
-| JavaScript | < 40 KB | ~32 KB |
+| CSS (linked + inlined block styles) | < 200 KB | ~33 KB gzipped (154 KB raw) |
+| JavaScript | < 40 KB | ~31 KB gzipped (114 KB raw) |
 | Fonts | — | ~90 KB (2 variable woff2, latin, preloaded) |
 
 Two things keep JavaScript down. WordPress's emoji polyfill — twemoji, its loader and the blob it
@@ -282,6 +359,27 @@ builds, about 17 KB on every page — is removed in `inc/setup.php`, because not
 uses emoji and every supported browser draws them itself. And the Interactivity API runtime
 (~27 KB) is the single largest script: it is shared by all three interactive blocks, which is why
 the hover video deliberately does not use it.
+
+---
+
+## 6a. Checking it
+
+Three scripts, all read-only, all run against the seeded site at
+`http://localhost:8080`. They need `pip install playwright pillow` and
+`playwright install chromium`; nothing else on the host.
+
+| Script | What it asserts | Exit |
+|---|---|---|
+| `seed/crawl.py` | Every internal link and every image `src`/`srcset` on every seeded page resolves. No `#` placeholder anchors. | 1 on any failure |
+| `seed/axe.py` | axe-core `color-contrast` across 14 pages at 1440 and 390. AA only — the AAA `color-contrast-enhanced` rule is not the bar. | 1 on any violation |
+| `seed/shots.py` | Regenerates `docs/screenshots/` | 0 |
+
+`shots.py` stitches a scrolled viewport rather than using Playwright's
+`full_page`: on a page a few thousand pixels tall Chromium's one-shot capture
+drops absolutely-positioned images inside clipped containers, so the series
+chapters and the editorial bands came out as empty colour fields. It is a
+capture artefact rather than a rendering one, but it makes the screenshots lie,
+which is worse.
 
 ---
 
@@ -299,6 +397,6 @@ the hover video deliberately does not use it.
   which is more editable.
 - **The contact form is markup only.** It is a real, labelled, accessible, inline form with no
   mail handler wired up. Connecting it to a mailer is a production task.
-- **Hover video ships unpopulated.** See §2c: the live site has no per-model clip to mirror, so
+- **Hover video ships unpopulated.** See §2d: the live site has no per-model clip to mirror, so
   `spa_video_url` is empty on all ten seeded spas. The mechanism is complete and verified; it needs
   source footage, which is a content decision rather than a build task.
