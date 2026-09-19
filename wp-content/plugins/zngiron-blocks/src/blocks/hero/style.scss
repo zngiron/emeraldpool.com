@@ -13,6 +13,13 @@
   align-items: flex-end;
   min-height: calc(var(--z-hero-height) - var(--wp-admin--admin-bar--height, 0px));
   padding: var(--z-space-l, var(--wp--preset--spacing--50, 3rem));
+
+  /* The header floats over the hero, so the hero's own top padding has to
+     clear it. A full-height hero bottom-aligns its copy and never notices; a
+     short one whose copy fills it would otherwise start under the logo. */
+  padding-block-start: calc(
+    var(--z-header-h, 5.5rem) + var(--z-space-s, var(--wp--preset--spacing--30, 1rem))
+  );
   color: var(--z-on-dark, var(--wp--preset--color--base, inherit));
   isolation: isolate;
 }

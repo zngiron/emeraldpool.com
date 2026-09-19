@@ -182,6 +182,14 @@
 /* The header floats, so the page normally has to clear it. A page that opens on
    a Hero does not: the Hero runs under the header, and its height is the
    viewport, not the viewport minus a header. */
+/* The header is fixed, so it is out of flow and core's rule that zeroes the
+   block gap on the first site block lands on the header instead of on main.
+   The gap that survived showed as a pale band of page ground across the top of
+   every hero, read through the header's scrim. */
+.wp-site-blocks > .z-main {
+  margin-block-start: 0;
+}
+
 .z-main {
   padding-block-start: var(--z-header-h);
 }

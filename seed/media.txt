@@ -10,17 +10,15 @@ logo-white|emerald-pool-logo-white.png|Emerald Pool & Patio logo, reversed out
 
 # --- Lifestyle -------------------------------------------------------------
 hero-evening|lifestyle-evening-group.jpg|Six friends in a lit spa under a timber pavilion, a fire burning behind them
-hero-backyard|3T2A5041.jpg|A lit back yard with a hot tub and patio furniture
-hero-hot-tubs|lifestyle-snow-storm.jpg|A woman leaning on the edge of a hot tub in a back yard
+hero-terrace|lifestyle-rooftop-couple.jpg|A couple in a STIL spa on a roof terrace, city lights behind them
+hero-hot-tubs|lifestyle-bf-winter.jpg|A woman alone in a steaming spa, bare autumn trees behind her
 hero-swim-spa|lifestyle-hammock.jpg|A woman floating on a hammock across a swim spa, seen from above
-lifestyle-winter|lifestyle-bf-winter.jpg|A woman alone in a steaming spa, bare autumn trees behind her
+lifestyle-winter|lifestyle-x-series-snow.jpg|A couple in an X Series spa at dusk, trees behind them
 lifestyle-friends|3T2A5585.jpg|Friends talking in a hot tub on a covered patio
 lifestyle-couple|1I7A4726_001-scaled.webp|A couple in a spa on a lit deck
 lifestyle-couple-eyes|lifestyle-couple-eyes.jpg|A couple resting their eyes in a hot tub, water moving around them
 lifestyle-family|lifestyle-family-phones.jpg|A family talking in a hot tub, their phones stacked on the side
-lifestyle-rooftop-couple|lifestyle-rooftop-couple.jpg|A couple in a STIL spa on a roof terrace, city lights behind them
 lifestyle-rooftop-family|lifestyle-rooftop-family.jpg|A family of five in an M Series spa on a roof terrace
-lifestyle-dusk-couple|lifestyle-x-series-snow.jpg|A couple in an X Series spa at dusk, trees behind them
 lifestyle-swim-family|lifestyle-swim-snow.jpg|A family playing in a swim spa, seen from above
 lifestyle-a-series|lifestyle-a-series.jpg|A couple reclining in an A Series spa
 lifestyle-calm-yard|lifestyle-calm-angle.jpg|A Calm 7 spa on a paved terrace beside a lawn

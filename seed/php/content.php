@@ -215,7 +215,7 @@ $pages = array(
 		'slug'     => 'home',
 		'title'    => 'Home',
 		'file'     => 'home.html',
-		'media'    => 'hero-backyard',
+		'media'    => 'hero-terrace',
 		'order'    => 1,
 	),
 	array(
@@ -364,7 +364,7 @@ $posts = array(
 		'slug'    => 'when-to-buy-a-hot-tub',
 		'title'   => 'When is the best time to buy a hot tub?',
 		'excerpt' => 'Every season has an argument for it. Here is what actually changes the price, and what only changes the wait.',
-		'media'   => 'hero-backyard',
+		'media'   => 'hero-terrace',
 		'date'    => '-45 days',
 		'cat'     => 'Buying guides',
 	),
