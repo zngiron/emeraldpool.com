@@ -18,6 +18,19 @@ defined( 'ABSPATH' ) || exit;
 $ep_columns  = max( 2, min( 4, (int) ( $attributes['columns'] ?? 3 ) ) );
 $ep_tax_query = array();
 
+/*
+ * On a spa_type or spa_series archive with no term set on the block, take the
+ * term being viewed. That is what lets the taxonomy templates drop core's query
+ * loop and use the real card — the plan on its sand field, the spec chips and
+ * the price — instead of a bare featured image cropped to 4:3.
+ */
+if ( empty( $attributes['spaType'] ) && empty( $attributes['series'] ) && is_tax( array( 'spa_type', 'spa_series' ) ) ) {
+	$ep_term = get_queried_object();
+	if ( $ep_term instanceof \WP_Term ) {
+		$attributes[ 'spa_type' === $ep_term->taxonomy ? 'spaType' : 'series' ] = $ep_term->slug;
+	}
+}
+
 if ( ! empty( $attributes['spaType'] ) ) {
 	$ep_tax_query[] = array(
 		'taxonomy' => 'spa_type',

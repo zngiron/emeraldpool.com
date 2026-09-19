@@ -130,7 +130,7 @@ body {
 	letter-spacing: -0.04em;
 	font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 144;
 	color: transparent;
-	-webkit-text-stroke: 1px var(--wp--preset--color--border);
+	-webkit-text-stroke: 1px rgba(13, 53, 80, 0.3);
 	margin: 0;
 }
 
@@ -254,6 +254,7 @@ body {
 
 /* Pages that open on a hero let the header sit on the image until it scrolls. */
 body:has(main > .ep-hero:first-child) .ep-site-header,
+body:has(main > .ep-band:first-child) .ep-site-header,
 body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header {
 	background: transparent;
 	border-bottom-color: transparent;
@@ -261,6 +262,7 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header {
 }
 
 body:has(main > .ep-hero:first-child) .ep-site-header :where(a, .wp-block-site-title),
+body:has(main > .ep-band:first-child) .ep-site-header :where(a, .wp-block-site-title),
 body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header :where(a, .wp-block-site-title) {
 	color: var(--wp--preset--color--sand);
 }
@@ -268,6 +270,7 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header :where(a,
 /* Once past the fold the header is opaque again, whatever it started as. */
 .ep-site-header.is-pinned,
 body:has(main > .ep-hero:first-child) .ep-site-header.is-pinned,
+body:has(main > .ep-band:first-child) .ep-site-header.is-pinned,
 body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned {
 	background: color-mix(in srgb, var(--wp--preset--color--base) 92%, transparent);
 	backdrop-filter: saturate(150%) blur(10px);
@@ -295,28 +298,45 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned
  * two lines of type — so it is sized by height, not width: small enough to sit
  * on the header's line and never tall enough to set the header's height.
  */
+.ep-site-header {
+	--ep-logo-height: var(--wp--custom--logo--height);
+}
+
 .ep-site-header :where(.wp-block-site-logo, .wp-block-image) img {
-	max-height: var(--ep-logo-height, 36px);
-	max-width: min(180px, 42vw);
+	max-height: var(--ep-logo-height);
+	max-width: min(240px, 46vw);
 	width: auto;
 	height: auto;
+	display: block;
+}
+
+/*
+ * The header's own height is the mark plus its padding, and it is capped so a
+ * taller mark cannot push the whole page down. 48px + 2 x 20px of band padding
+ * is 88px, which is the number `site.js` publishes as --ep-header-h.
+ */
+.ep-site-header > .wp-block-group {
+	min-height: var(--ep-logo-height);
+	max-height: 88px;
 }
 
 /*
  * Over the hero the header is transparent and the mark — dark blue on nothing —
  * disappears into the photograph. It is printed in light ink there instead.
- * A filter rather than a second file, so there is only one logo to replace at
- * rebrand time.
+ * A second file rather than a `filter: invert()`: the filter also inverts the
+ * umbrella illustration's soft edges, and `content: url()` swaps the whole
+ * image without a second markup path. Rebranding replaces both files.
  */
 body:has(main > .ep-hero:first-child) .ep-site-header:not(.is-pinned) :where(.wp-block-site-logo, .wp-block-image) img,
+body:has(main > .ep-band:first-child) .ep-site-header:not(.is-pinned) :where(.wp-block-site-logo, .wp-block-image) img,
 body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header:not(.is-pinned) :where(.wp-block-site-logo, .wp-block-image) img {
-	filter: brightness(0) invert(1);
-	opacity: 0.92;
+	content: url("../images/logo-white.png");
+	opacity: 0.94;
 }
 
 @media (max-width: 600px) {
 	.ep-site-header {
-		--ep-logo-height: 28px;
+		--ep-logo-height: var(--wp--custom--logo--height-small);
 	}
 
 	.ep-site-header .wp-block-button__link {
@@ -329,6 +349,84 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header:not(.is-p
 .ep-site-header .wp-block-navigation__responsive-container-open,
 .ep-site-header .wp-block-navigation__responsive-container-close {
 	color: currentcolor;
+}
+
+/* --- Section rhythm ------------------------------------------------------ */
+
+/*
+ * One scale, three names, and nothing else sets vertical space on a band.
+ *
+ * Every pattern used to carry its own `padding: var(--wp--preset--spacing--NN)`
+ * inline, which is how the page ended up with five different section heights and
+ * headings that started at four different left edges. The side gutter now comes
+ * from `styles.spacing.padding` in theme.json — `useRootPaddingAwareAlignments`
+ * re-applies it to every full-bleed band automatically — and the vertical
+ * rhythm comes from these three classes.
+ *
+ *   .ep-section           the default band                 --70  (80px → 160px)
+ *   .ep-section--tight    practical information, rules     --60  (64px → 112px)
+ *   .ep-section--tall     the closing statement, the foot  --80  (96px → 208px)
+ *
+ * The tokens are already `clamp()`, so the mobile and desktop values are one
+ * declaration and there is no media query to keep in step.
+ */
+.ep-section {
+	padding-block: var(--wp--preset--spacing--70);
+}
+
+.ep-section--tight {
+	padding-block: var(--wp--preset--spacing--60);
+}
+
+.ep-section--tall {
+	padding-block: var(--wp--preset--spacing--80);
+}
+
+/*
+ * `main` on an interior page is itself a band: it opens under the fixed header
+ * and closes on the footer, so it takes the same rhythm. The home page and the
+ * single spa open on a full-bleed band instead and zero it out below.
+ */
+.ep-main {
+	padding-block: var(--wp--preset--spacing--60) var(--wp--preset--spacing--70);
+}
+
+/* A page whose first child is already a band must not pay for the space twice. */
+.ep-main:has(> .ep-hero:first-child),
+.ep-main:has(> .ep-night:first-child),
+.ep-main:has(> .entry-content > .ep-hero:first-child) {
+	padding-block: 0;
+}
+
+/*
+ * Left edges.
+ *
+ * WordPress's constrained layout centres every direct child at `contentSize`
+ * with `margin-left: auto !important`, which on a 1440px band put a section
+ * heading's left edge at 380px while the heading in the band above it — held in
+ * an `alignwide` grid — started at 56px. Four different left edges on one page,
+ * none of them chosen, was the single biggest source of "things don't line up".
+ *
+ * Inside a band, a page head or an article body, everything starts at the page's
+ * left edge and takes the wide measure; prose then narrows to a reading measure
+ * from that edge rather than from the middle of the page. `!important` is here
+ * only because core's own declaration carries it; nothing else in this file uses
+ * it. Anything explicitly aligned is left alone.
+ */
+:where(.ep-section.wp-block-group, .ep-page-head, .ep-main > .entry-content).is-layout-constrained > *:not(.aligncenter):not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright) {
+	margin-left: 0 !important;
+	margin-right: auto !important;
+	max-width: var(--wp--style--global--wide-size);
+}
+
+/* Text keeps a reading measure; it simply starts where the headings start. */
+:where(.ep-section.wp-block-group, .ep-page-head, .ep-main > .entry-content).is-layout-constrained > :where(p, ul, ol, dl, blockquote, .wp-block-post-excerpt, .wp-block-term-description):not(.aligncenter):not(.alignwide):not(.alignfull) {
+	max-width: 46ch;
+}
+
+/* The foot is asymmetric on purpose: a long lede in, a short legal line out. */
+.ep-site-footer {
+	padding-block: var(--wp--preset--spacing--80) var(--wp--preset--spacing--40);
 }
 
 /* --- Full-bleed bands ----------------------------------------------------- */
@@ -354,26 +452,27 @@ body.admin-bar .ep-hero {
 	min-height: calc(var(--ep-hero-min-height, 92svh) - var(--wp-admin--admin-bar--height, 0px));
 }
 
-/* Non-hero pages need to clear the fixed header. */
+/*
+ * Non-hero pages need to clear the fixed header. This is margin, not padding,
+ * so it composes with the section rhythm above instead of fighting it.
+ */
 main {
-	padding-top: var(--ep-header-h, 5.5rem);
+	margin-top: var(--ep-header-h, 5.5rem);
 }
 
 body:has(main > .ep-hero:first-child) main,
-body:has(main > .entry-content > .ep-hero:first-child) main {
-	padding-top: 0;
+body:has(main > .entry-content > .ep-hero:first-child) main,
+body:has(main > .ep-night:first-child) main {
+	margin-top: 0;
 }
 
 /*
  * A page that opens on a night band instead of a hero — the single spa — would
  * otherwise show a strip of page background between the header and the dark
  * ground, which reads as a seam rather than as a decision. The band absorbs the
- * header's height itself.
+ * header's height itself. The hero does not need this: it is full-viewport and
+ * the header is meant to sit on it.
  */
-body:has(main > .ep-night:first-child) main {
-	padding-top: 0;
-}
-
 main > .ep-night:first-child {
 	padding-top: calc(var(--ep-header-h, 5.5rem) + var(--wp--preset--spacing--60));
 }
@@ -399,19 +498,39 @@ main > .ep-night:first-child {
  * Body links draw their rule on hover rather than carrying one. Buttons, cards
  * and navigation opt out because they signal themselves by other means.
  */
+/*
+ * The animated underline is drawn as a background gradient rather than as a
+ * text-decoration, because a decoration cannot be transitioned. It therefore has
+ * to reproduce the two values theme.json sets on `elements.link` by hand — hence
+ * the shared tokens, so the drawn rule and the real one cannot drift apart.
+ *
+ *   thickness  --wp--custom--underline--thickness   1px
+ *   offset     --wp--custom--underline--offset      0.2em, paid as padding
+ */
 .entry-content a:not(.wp-element-button):not(.ep-card__title a),
 .ep-prose a:not(.wp-element-button) {
 	background-image: linear-gradient(currentcolor, currentcolor);
 	background-position: 0 100%;
 	background-repeat: no-repeat;
-	background-size: 100% 1px;
-	padding-bottom: 0.08em;
+	background-size: 100% var(--wp--custom--underline--thickness);
+	padding-bottom: var(--wp--custom--underline--offset);
 	transition: background-size var(--wp--custom--transition--base);
 }
 
 .entry-content a:not(.wp-element-button):hover,
 .ep-prose a:not(.wp-element-button):hover {
-	background-size: 100% 2px;
+	background-size: 100% calc(var(--wp--custom--underline--thickness) * 2);
+}
+
+/*
+ * Everywhere else an underline can appear — navigation, the footer columns, the
+ * utility bar, the store cards — it is a real text-decoration, and it gets the
+ * same offset and weight as the one theme.json draws in the prose.
+ */
+:where(a) {
+	text-underline-offset: var(--wp--custom--underline--offset);
+	text-decoration-thickness: var(--wp--custom--underline--thickness);
+	text-decoration-skip-ink: auto;
 }
 
 /* --- The asymmetric grid ------------------------------------------------- */
@@ -434,8 +553,9 @@ main > .ep-night:first-child {
 }
 
 .ep-bay > .ep-bay__aside {
-	grid-column: 8 / span 5;
+	grid-column: 7 / span 6;
 	align-self: end;
+	max-width: 46ch;
 }
 
 .ep-bay > .ep-bay__wide {
@@ -459,9 +579,10 @@ main > .ep-night:first-child {
 	margin-right: 0;
 }
 
+/* The same left edge as `.ep-bay__aside`: column 7 of twelve. */
 @media (min-width: 861px) {
 	.ep-indent {
-		padding-left: 33.333%;
+		padding-left: 50%;
 	}
 }
 
@@ -488,56 +609,91 @@ main > .ep-night:first-child {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	align-items: stretch;
-	min-height: 26rem;
-}
-
-.ep-chapter__media {
-	position: relative;
-	overflow: clip;
-	background: var(--wp--preset--color--sand);
-	min-height: 20rem;
-	max-height: 34rem;
-	isolation: isolate;
+	min-height: 30rem;
 }
 
 /*
- * The same plan field the cards use: the shell is a top-down render on white, so
- * it is floated over a faint centre cross and contained rather than cropped.
- * Cropping a plan drawing throws away the only thing it is for.
+ * The frame is a stretched grid cell, not a ratio box: the two halves of a
+ * chapter have to be exactly the same height, and only the grid can guarantee
+ * that. `min-height` sets the floor when the argument beside it is short.
  */
-.ep-chapter__media::before,
-.ep-chapter__media::after {
+.ep-chapter__media {
+	position: relative;
+	overflow: clip;
+	isolation: isolate;
+	min-height: 24rem;
+}
+
+/*
+ * Two kinds of media, two treatments, and they are not interchangeable.
+ *
+ * A plan is a drawing: it is contained, never cropped, and it sits on its own
+ * white sheet with the drawing's centre cross ruled on the sand around it. The
+ * first build multiplied the render straight onto the sand, which reads well in
+ * a browser and disappears wherever the compositor promotes the image to its own
+ * layer — a composited element has no backdrop to blend with. The sheet is the
+ * same idea without that dependency: the paper is a real object on the field.
+ *
+ * A photograph is a window: it fills the frame, cropped from a focal point held
+ * above centre so faces survive, because a photograph letterboxed inside a band
+ * is a postage stamp.
+ */
+.ep-chapter__media--plan {
+	background: var(--wp--preset--color--sand);
+}
+
+/*
+ * The sheet is sized against the frame, not against the file: the renders are
+ * 1000px and 1080px squares and letting them size themselves made a band twice
+ * as tall as the one above it. Absolute positioning gives width a definite
+ * basis, the square ratio gives height, and `max-height` shrinks both together
+ * when the frame is the tighter constraint.
+ */
+.ep-chapter__media--plan img {
+	position: absolute;
+	inset: 50% auto auto 50%;
+	translate: -50% -50%;
+	z-index: 1;
+	height: 80%;
+	width: auto;
+	max-width: min(28rem, 72%);
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	background: var(--wp--preset--color--base);
+	padding: 5%;
+	box-sizing: border-box;
+	display: block;
+	box-shadow: 0 20px 48px -20px rgba(4, 20, 27, 0.5);
+}
+
+/* The plan's own centre cross, ruled on the sand around the sheet. */
+.ep-chapter__media--plan::before,
+.ep-chapter__media--plan::after {
 	content: "";
 	position: absolute;
 	background: rgba(4, 20, 27, 0.14);
-	z-index: 1;
+	z-index: 0;
 	pointer-events: none;
 }
 
-.ep-chapter__media::before {
-	inset: 14% auto 14% 50%;
+.ep-chapter__media--plan::before {
+	inset: 6% auto 6% 50%;
 	width: 1px;
 }
 
-.ep-chapter__media::after {
-	inset: 50% 14% auto 14%;
+.ep-chapter__media--plan::after {
+	inset: 50% 6% auto 6%;
 	height: 1px;
 }
 
-.ep-chapter__media img {
-	position: relative;
-	z-index: 2;
+.ep-chapter__media--photo img {
+	position: absolute;
+	inset: 0;
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
-	padding: clamp(1.25rem, 3vw, 2.75rem);
-	box-sizing: border-box;
+	object-fit: cover;
+	object-position: 50% 36%;
 	display: block;
-	mix-blend-mode: multiply;
-	/* The renders are pale grey on white; a touch of contrast keeps the shell
-	   legible once it is multiplied into the sand. */
-	filter: contrast(1.1);
-	will-change: transform;
 }
 
 .ep-chapter__body {
@@ -600,7 +756,12 @@ main > .ep-night:first-child {
 	}
 
 	.ep-chapter__media {
-		min-height: 16rem;
+		aspect-ratio: 3 / 2;
+		min-height: 0;
+	}
+
+	.ep-chapter__media--plan img {
+		max-width: min(20rem, 70%);
 	}
 }
 
@@ -691,8 +852,14 @@ a.ep-marquee__item:hover {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: 50% 55%;
+	/* Faces sit in the upper half of this frame; hold the crop there. */
+	object-position: 58% 34%;
 	z-index: 0;
+}
+
+.ep-quote-band__media,
+.ep-quote-band__scrim {
+	max-width: none;
 }
 
 .ep-quote-band__scrim {
@@ -706,6 +873,131 @@ a.ep-marquee__item:hover {
 	position: relative;
 	z-index: 1;
 	max-width: 46rem;
+}
+
+/* --- The editorial band --------------------------------------------------- */
+
+/*
+ * A photograph given a whole band, with the argument set into the frame rather
+ * than beside it. It is the interval between two product sections: no price, no
+ * card, no call to action, one paragraph about what the product is for.
+ *
+ * The frame carries the ratio, the image fills it, and the scrim is a separate
+ * layer so the type's contrast does not depend on how dark this particular
+ * photograph happens to be. On a phone the ratio turns upright, because a 21:9
+ * crop of a person 390px wide is a letterbox with a head in it.
+ */
+.ep-band {
+	position: relative;
+	isolation: isolate;
+	display: grid;
+	/*
+	 * One explicit column, or the grid sizes itself from the frame's intrinsic
+	 * width — and a 21:9 frame whose height came from the text beside it is
+	 * 2156px wide on a 1440px page.
+	 */
+	grid-template-columns: minmax(0, 1fr);
+	/* The photograph bleeds; the type inside it keeps the page's gutter. */
+	padding-inline: 0;
+}
+
+.ep-band__frame,
+.ep-band__inner {
+	grid-area: 1 / 1;
+}
+
+/*
+ * The ratio is a floor, not a ceiling: it sets how tall the band is when the
+ * type is short, and `min-height` lets the photograph grow with the type when it
+ * is not — otherwise a three-line heading hangs off the bottom of the frame onto
+ * flat colour.
+ */
+.ep-band__frame {
+	position: relative;
+	margin: 0;
+	width: 100%;
+	aspect-ratio: 21 / 9;
+	min-height: 100%;
+	overflow: clip;
+}
+
+.ep-band--short .ep-band__frame {
+	aspect-ratio: 16 / 9;
+}
+
+.ep-band__media {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 42%;
+	display: block;
+}
+
+/*
+ * Weighted to the side the type sits on, and to the bottom, so a face in the
+ * upper third of the frame is never flattened by the scrim that makes the
+ * paragraph legible.
+ */
+.ep-band__scrim {
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(96deg, rgba(4, 20, 27, 0.9) 0%, rgba(4, 20, 27, 0.66) 46%, rgba(4, 20, 27, 0.12) 100%),
+		linear-gradient(0deg, rgba(4, 20, 27, 0.6) 0%, rgba(4, 20, 27, 0) 55%);
+}
+
+.ep-band__inner {
+	position: relative;
+	z-index: 1;
+	align-self: center;
+	justify-self: start;
+	margin-inline: var(--wp--custom--gutter);
+	max-width: 42rem;
+	padding-block: var(--wp--preset--spacing--60);
+}
+
+/*
+ * A band that opens a page stands in for the hero: the header floats on it, so
+ * the frame bleeds to the top of the viewport and the type clears the header
+ * from inside rather than being pushed down by a band of flat colour.
+ */
+main > .ep-band:first-child {
+	padding-top: 0;
+}
+
+main > .ep-band:first-child .ep-band__frame {
+	min-height: 26rem;
+}
+
+main > .ep-band:first-child .ep-band__inner {
+	/* Bottom-left, like the hero: the same corner carries the argument sitewide. */
+	align-self: end;
+	padding-top: calc(var(--ep-header-h, 5.5rem) + var(--wp--preset--spacing--40));
+	padding-bottom: var(--wp--preset--spacing--50);
+}
+
+.ep-band__text {
+	max-width: 42ch;
+}
+
+.ep-band__text em {
+	font-style: normal;
+	color: var(--wp--preset--color--ember);
+}
+
+@media (max-width: 860px) {
+	.ep-band__frame,
+	.ep-band--short .ep-band__frame {
+		aspect-ratio: 4 / 5;
+	}
+
+	.ep-band__scrim {
+		background: linear-gradient(0deg, rgba(4, 20, 27, 0.92) 0%, rgba(4, 20, 27, 0.7) 46%, rgba(4, 20, 27, 0.16) 100%);
+	}
+
+	.ep-band__inner {
+		align-self: end;
+	}
 }
 
 /* --- The journal -------------------------------------------------------- */
@@ -786,7 +1078,7 @@ a.ep-marquee__item:hover {
 
 	/* The chapter images drift as their section passes the viewport. */
 	@supports (animation-timeline: view()) {
-		.ep-chapter__media img {
+		.ep-chapter__media--photo img {
 			animation: ep-drift linear both;
 			animation-timeline: view();
 			animation-range: cover 0% cover 100%;
@@ -960,6 +1252,12 @@ a.ep-marquee__item:hover {
 
 /* --- Media --------------------------------------------------------------- */
 
+/* A caption is an annotation on the image's own left edge, not a centred label. */
+.wp-block-image figcaption {
+	text-align: left;
+	margin-top: var(--wp--preset--spacing--10);
+}
+
 /* Every image in the design has a declared box, so nothing reflows on load. */
 .ep-media-band {
 	overflow: clip;
@@ -999,6 +1297,8 @@ a.ep-marquee__item:hover {
 
 .ep-utility-bar a:hover {
 	text-decoration: underline;
+	text-underline-offset: var(--wp--custom--underline--offset);
+	text-decoration-thickness: var(--wp--custom--underline--thickness);
 }
 
 /* --- The footer statement ------------------------------------------------ */
@@ -1130,7 +1430,7 @@ a.ep-marquee__item:hover {
 		transform: none;
 	}
 
-	.ep-chapter__media img {
+	.ep-chapter__media--photo img {
 		animation: none;
 		transform: none;
 	}

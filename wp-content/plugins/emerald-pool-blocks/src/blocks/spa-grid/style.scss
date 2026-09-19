@@ -98,10 +98,14 @@
 		background: var(--ep-ember-mark);
 	}
 
+	/*
+	 * The count is quieter than its label by size alone. It used to be quieter by
+	 * `opacity: 0.6` as well, which took muted text on white down to 2.67:1 — the
+	 * one remaining AA failure on the site.
+	 */
 	&__count {
 		font-variant-numeric: tabular-nums;
 		font-size: 0.625rem;
-		opacity: 0.6;
 	}
 }
 

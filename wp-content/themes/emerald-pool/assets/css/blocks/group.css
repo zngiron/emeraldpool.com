@@ -1,7 +1,12 @@
 /* core/group — container behaviour theme.json cannot describe. */
 
-/* A group set to a background colour gets its own side padding at full width. */
-.wp-block-group.alignfull:where(.has-background, .is-style-night, .ep-night) {
+/*
+ * A group set to a background colour gets its own side padding at full width.
+ * The editorial band is the exception: its photograph bleeds and the type inside
+ * it carries the gutter instead, so it opts out here rather than fighting this
+ * rule from a lower-specificity selector.
+ */
+.wp-block-group.alignfull:where(.has-background, .is-style-night, .ep-night):not(.ep-band) {
 	padding-inline: var(--wp--custom--gutter);
 }
 

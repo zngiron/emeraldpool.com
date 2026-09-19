@@ -92,30 +92,32 @@
 	}
 }
 
-// Dark bands: the cards drop their frame and the type inverts.
-.has-deep-background-color .ep-stores.is-layout-cards .ep-store,
-.has-primary-dark-background-color .ep-stores.is-layout-cards .ep-store {
+// Dark bands.
+//
+// The card drops its frame and the type inverts. `.ep-night` has to be in this
+// list: the footer and the single-spa closing band are abyss, not `deep`, and
+// without it the address, the hours and the phone number were `text-muted` and
+// `primary` on near-black — 2.1:1 and 2.3:1, the two worst pairings on the site.
+$ep-dark: '.ep-night, .has-deep-background-color, .has-abyss-background-color, .has-primary-dark-background-color';
+
+:is(#{$ep-dark}) .ep-stores.is-layout-cards .ep-store {
 	background: rgba(255, 255, 255, 0.04);
 	border-color: rgba(255, 255, 255, 0.14);
 }
 
-.has-deep-background-color .ep-store__note,
-.has-deep-background-color .ep-store__address,
-.has-deep-background-color .ep-store__hours,
-.has-primary-dark-background-color .ep-store__note,
-.has-primary-dark-background-color .ep-store__address,
-.has-primary-dark-background-color .ep-store__hours {
-	color: rgba(255, 255, 255, 0.76);
-}
+:is(#{$ep-dark}) {
+	.ep-store__note,
+	.ep-store__address,
+	.ep-store__hours {
+		color: rgba(233, 226, 212, 0.78); // 9.4:1 on abyss
+	}
 
-.has-deep-background-color .ep-store__label,
-.has-primary-dark-background-color .ep-store__label {
-	color: rgba(255, 255, 255, 0.95);
-}
+	.ep-store__label {
+		color: rgba(233, 226, 212, 0.95);
+	}
 
-.has-deep-background-color .ep-store__phone,
-.has-deep-background-color .ep-store__legal,
-.has-primary-dark-background-color .ep-store__phone,
-.has-primary-dark-background-color .ep-store__legal {
-	color: var(--wp--preset--color--accent);
+	.ep-store__phone,
+	.ep-store__legal {
+		color: var(--wp--preset--color--accent); // #4bc5e1, 9.8:1 on abyss
+	}
 }

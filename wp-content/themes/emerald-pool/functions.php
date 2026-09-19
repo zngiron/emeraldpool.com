@@ -14,7 +14,7 @@ namespace EmeraldPool\Theme;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '1.0.0';
+const VERSION = '1.1.0';
 
 /**
  * Files are loaded in dependency order: setup() defines brand_config(), which
