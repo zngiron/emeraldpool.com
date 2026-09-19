@@ -1,0 +1,21 @@
+/* core/table — used for editorial tables; spec tables come from the spa-specs block. */
+
+.wp-block-table table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.wp-block-table th,
+.wp-block-table td {
+	border-bottom: 1px solid var(--wp--preset--color--border);
+	padding: 0.75rem 0.5rem;
+	text-align: left;
+}
+
+.wp-block-table th {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--small);
+	text-transform: uppercase;
+	letter-spacing: var(--wp--custom--eyebrow--spacing);
+	color: var(--wp--preset--color--text-muted);
+}

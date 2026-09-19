@@ -1,0 +1,175 @@
+/*
+ * Emerald Pool — global layer.
+ *
+ * Everything here is something theme.json cannot express: focus behaviour,
+ * the skip link, motion preferences, and the two layout affordances patterns
+ * rely on. If you can say it in theme.json, say it there instead.
+ */
+
+/* --- Accessibility ------------------------------------------------------- */
+
+.skip-link.screen-reader-text {
+	background: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--primary-dark);
+	border-radius: var(--wp--custom--radius--sm);
+	box-shadow: var(--wp--custom--shadow--lift);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	padding: 0.85rem 1.4rem;
+	left: 1rem;
+	top: 1rem;
+	z-index: 100000;
+	text-decoration: none;
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+	outline: 3px solid var(--wp--preset--color--accent);
+	outline-offset: 2px;
+	border-radius: var(--wp--custom--radius--sm);
+}
+
+/* Focus stays visible on dark bands. */
+.has-deep-background-color :where(a, button, summary):focus-visible,
+.has-primary-dark-background-color :where(a, button, summary):focus-visible {
+	outline-color: var(--wp--preset--color--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* --- Type detail --------------------------------------------------------- */
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/* Fraunces reads best with its soft optical axis at display sizes. */
+:where(h1, h2, .has-display-font-size, .has-xx-large-font-size) {
+	font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 120;
+}
+
+:where(p, li) {
+	text-wrap: pretty;
+}
+
+:where(h1, h2, h3) {
+	text-wrap: balance;
+}
+
+/* --- Layout affordances -------------------------------------------------- */
+
+/* Sticky header: applied by the header template part, defined once here. */
+.ep-header-sticky {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	backdrop-filter: saturate(140%) blur(8px);
+	background-color: color-mix(in srgb, var(--wp--preset--color--base) 88%, transparent);
+	border-bottom: 1px solid var(--wp--preset--color--border);
+}
+
+/* A media band whose image bleeds to the viewport edge but whose text does not. */
+.ep-media-band {
+	overflow: clip;
+}
+
+.ep-media-band img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Utility bar above the header: small, quiet, never competes with the nav. */
+.ep-utility-bar {
+	font-size: var(--wp--preset--font-size--small);
+	letter-spacing: 0.01em;
+}
+
+.ep-utility-bar a {
+	text-decoration: none;
+}
+
+.ep-utility-bar a:hover {
+	text-decoration: underline;
+}
+
+/* --- The one form on the site ------------------------------------------- */
+
+/*
+ * There is exactly one form, on the contact page, and it is inline. No modal,
+ * no overlay, no exit-intent, no newsletter interrupt. If a visitor never fills
+ * it in, nothing on the site stops them reading.
+ */
+.ep-form {
+	display: grid;
+	gap: var(--wp--preset--spacing--20);
+	max-width: 34rem;
+}
+
+.ep-form__field {
+	display: grid;
+	gap: 0.4rem;
+	margin: 0;
+}
+
+.ep-form label {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	color: var(--wp--preset--color--primary-dark);
+}
+
+.ep-form__optional {
+	font-weight: 400;
+	color: var(--wp--preset--color--text-muted);
+}
+
+.ep-form input,
+.ep-form select,
+.ep-form textarea {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--base);
+	color: var(--wp--preset--color--text);
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--sm);
+	padding: 0.75rem 0.9rem;
+	width: 100%;
+}
+
+.ep-form input:focus,
+.ep-form select:focus,
+.ep-form textarea:focus {
+	border-color: var(--wp--preset--color--primary);
+}
+
+.ep-form textarea {
+	resize: vertical;
+}
+
+.ep-form__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+	margin: 0;
+}
+
+.ep-form__note {
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--text-muted);
+}
+
+.ep-form button[type="submit"] {
+	border: 0;
+	cursor: pointer;
+}

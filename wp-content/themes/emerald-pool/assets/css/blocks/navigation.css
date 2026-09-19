@@ -1,0 +1,53 @@
+/* core/navigation — desktop spacing plus the off-canvas mobile panel. */
+
+.wp-block-navigation .wp-block-navigation-item__content {
+	padding-block: 0.4rem;
+	border-bottom: 2px solid transparent;
+	transition: border-color var(--wp--custom--transition--base);
+}
+
+.wp-block-navigation .wp-block-navigation-item__content:hover,
+.wp-block-navigation .current-menu-item > .wp-block-navigation-item__content {
+	border-bottom-color: var(--wp--preset--color--accent);
+}
+
+/* Submenus: a calm panel, opened by click or keyboard, never on hover alone. */
+.wp-block-navigation .wp-block-navigation__submenu-container {
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: var(--wp--custom--radius--md);
+	box-shadow: var(--wp--custom--shadow--lift);
+	padding: 0.5rem;
+	min-width: 15rem;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	padding: 0.5rem 0.75rem;
+	border-radius: var(--wp--custom--radius--sm);
+	border-bottom: 0;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover {
+	background-color: var(--wp--preset--color--surface);
+}
+
+/* The off-canvas panel. User-triggered only: no auto-open, no overlay on load. */
+.wp-block-navigation__responsive-container.is-menu-open {
+	background-color: var(--wp--preset--color--base);
+	padding: var(--wp--preset--spacing--40) var(--wp--preset--spacing--30);
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+	padding-top: var(--wp--preset--spacing--30);
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+	font-size: var(--wp--preset--font-size--medium);
+	font-family: var(--wp--preset--font-family--display);
+	font-weight: 500;
+}
+
+.wp-block-navigation__responsive-container-open,
+.wp-block-navigation__responsive-container-close {
+	color: var(--wp--preset--color--primary-dark);
+}

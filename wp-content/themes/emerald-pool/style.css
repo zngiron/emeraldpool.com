@@ -1,0 +1,19 @@
+/*
+Theme Name: Emerald Pool
+Theme URI: https://emeraldpool.com
+Author: Emerald Pool & Patio
+Author URI: https://emeraldpool.com
+Description: A calm, premium block theme for backyard-leisure retailers. All design decisions live in theme.json; all page structure lives in patterns and templates, so the whole site is editable from the Site Editor. Built to be rebranded for another client by editing theme.json and inc/setup.php alone.
+Requires at least: 6.7
+Tested up to: 6.8
+Requires PHP: 8.0
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: emerald-pool
+Tags: block-theme, full-site-editing, one-column, wide-blocks, block-patterns, accessibility-ready
+
+This file is intentionally almost empty. It exists for the theme header only.
+Global styles: theme.json.  Layered CSS: assets/css/theme.css.
+Per-block CSS: assets/css/blocks/*.css (loaded only when that block is on the page).
+*/

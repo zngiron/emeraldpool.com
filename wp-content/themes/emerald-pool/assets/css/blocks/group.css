@@ -1,0 +1,11 @@
+/* core/group — container behaviour theme.json cannot describe. */
+
+/* Cards in a flex row share a height so their footers line up. */
+.wp-block-group.is-style-card {
+	height: 100%;
+}
+
+/* A group set to a background colour gets its own side padding at full width. */
+.wp-block-group.alignfull:where(.has-background) {
+	padding-inline: var(--wp--preset--spacing--20);
+}
