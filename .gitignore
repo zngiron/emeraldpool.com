@@ -9,9 +9,13 @@ wp-content/uploads/
 wp-content/themes/*
 wp-content/plugins/*
 !wp-content/themes/emerald-pool/
+!wp-content/themes/zngiron-base/
 !wp-content/plugins/emerald-pool-blocks/
 !wp-content/plugins/zngiron-blocks/
 
 # The compiled blocks ARE committed: phase 3 and deployment must not need Node.
 !wp-content/plugins/emerald-pool-blocks/build/
 !wp-content/plugins/zngiron-blocks/build/
+
+# Screenshot runs. docs/screenshots/ holds the curated selection.
+.shots/

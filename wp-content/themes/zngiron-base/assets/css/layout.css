@@ -1,0 +1,327 @@
+/*
+ * layout.css — the things theme.json cannot say: the Section rhythm, the Hero's
+ * copy column, the header's two states, the catalogue plate, the footer and the
+ * reveal. Everything else in this theme is a preset.
+ */
+
+/* The reset, and the only one. Without border-box a min-height is the height
+   inside the padding, so a 100svh Hero renders a viewport plus its padding. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------- Section. */
+
+/* One section = one full-bleed Group with a constrained inner layout. A section
+   owns its vertical rhythm and nothing else; width comes from the presets. */
+.z-section {
+  padding-block: var(--wp--preset--spacing--50);
+}
+
+.z-section.is-tight {
+  padding-block: var(--wp--preset--spacing--40);
+}
+
+/* A page that opens on words. The head sits on the wide grid so its first
+   letter lines up with everything below it; the measure is held per element. */
+.z-page-head h1 {
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.z-page-head p {
+  max-width: 55ch;
+}
+
+/* Prose, wherever it runs long. 65ch is the line length, not 720px. */
+.z-prose :where(p, li) {
+  max-width: 65ch;
+}
+
+/* A two-part section head: label and statement left, standfirst right. Below
+   48em it is one column, in source order. */
+.z-lede {
+  display: grid;
+  gap: var(--wp--preset--spacing--30);
+  margin-block-end: var(--wp--preset--spacing--40);
+}
+
+.z-lede > * {
+  min-width: 0;
+}
+
+@media (min-width: 48em) {
+  .z-lede {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--wp--preset--spacing--50);
+    align-items: end;
+  }
+}
+
+/* A question is a line of text, not a banner. These blocks run to the wide grid
+   so their rules do, but the reading column stops where reading gets hard. */
+.z-faq,
+.z-testimonials__viewport,
+.z-compare {
+  max-width: 76ch;
+}
+
+/* ------------------------------------------------------------------ Hero. */
+
+/* theme.json gives every heading the deep primary, which is right on paper and
+   unreadable on a photograph. */
+.z-hero :where(h1, h2, h3, h4, h5, h6) {
+  color: inherit;
+}
+
+/* The eyebrow takes the accent, not a dimmed white: the ember note is the
+   brand's one point of heat and holds 6.6:1 on the scrim, and dimming with
+   opacity fails the audit for good reason. */
+.z-hero .z-eyebrow {
+  color: var(--z-accent);
+}
+
+/* The copy column lines up with the page's content column, not with the Hero's
+   own edge: max() is the root gutter below wideSize and the wide margin above
+   it, so the Hero's first word sits over the section's first word. */
+.z-hero {
+  padding-inline: max(var(--z-gutter), calc((100vw - 1280px) / 2));
+}
+
+/* The block owns its height; the theme owns how much copy fits inside it. At
+   390 the block's padding plus an h1 at the top of the scale pushed a 100svh
+   Hero to 904px against an 844px screen. */
+@media (max-width: 47.99em) {
+  .z-hero {
+    padding-block: var(--z-space-m);
+  }
+
+  .z-hero__heading {
+    font-size: var(--wp--preset--font-size--x-large);
+  }
+
+  .z-hero__text {
+    font-size: var(--wp--preset--font-size--base);
+  }
+}
+
+/* ---------------------------------------------------------------- Header. */
+
+/* Fixed, so a Hero runs the full viewport underneath it. Solid is the default:
+   a script that never loads leaves a legible header rather than sand text on
+   white. `.is-over-hero` is the one class view.js toggles, and it swaps that
+   ground for a scrim gradient — still AA over any photograph. */
+.z-header {
+  position: fixed;
+  inset-block-start: var(--wp-admin--admin-bar--height, 0px);
+  inset-inline: 0;
+  z-index: 100;
+  color: var(--z-on-dark);
+  background-color: var(--wp--preset--color--abyss);
+  transition: background-color var(--wp--custom--transition);
+}
+
+.z-header.is-over-hero {
+  background-color: transparent;
+  background-image: linear-gradient(to bottom, rgba(4, 20, 27, 0.72), rgba(4, 20, 27, 0));
+}
+
+.z-header a {
+  color: inherit;
+}
+
+.z-header .wp-block-site-logo img {
+  max-height: var(--wp--custom--logo--height-small);
+  width: auto;
+}
+
+.z-header__phone {
+  margin: 0;
+  font-family: var(--z-font-mono);
+  font-size: var(--z-size-small);
+  white-space: nowrap;
+}
+
+/* The off-canvas panel clears the admin bar the same way the header does. */
+.z-header .wp-block-navigation__responsive-container.is-menu-open {
+  padding-block-start: calc(var(--wp-admin--admin-bar--height, 0px) + var(--wp--preset--spacing--30));
+}
+
+/* The row never wraps: it is one row, or it is the off-canvas panel. Core
+   switches at 600px, far too early for a row that also carries a phone number
+   and a filled call to action. 1080px is where the whole row last fits,
+   measured at 768, 1024, 1280 and 1440. */
+.z-header .wp-block-navigation__container {
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 1079.98px) {
+  .z-header .wp-block-navigation__responsive-container:not(.is-menu-open) {
+    display: none;
+  }
+
+  .z-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+    display: flex;
+  }
+
+  .z-header__phone {
+    display: none;
+  }
+}
+
+@media (min-width: 64em) {
+  .z-header .wp-block-site-logo img {
+    max-height: var(--wp--custom--logo--height);
+  }
+}
+
+/* ------------------------------------------------------------------ Main. */
+
+/* The header floats, so the page normally has to clear it. A page that opens on
+   a Hero does not: the Hero runs under the header, and its height is the
+   viewport, not the viewport minus a header. */
+.z-main {
+  padding-block-start: var(--z-header-h);
+}
+
+.z-main:has(.z-hero) {
+  padding-block-start: 0;
+}
+
+.z-main > :where(.entry-content, .wp-block-post-content) > * {
+  margin-block: 0;
+}
+
+/* ------------------------------------------------------------- Catalogue. */
+
+/* The catalogue's photography is manufacturer plan renders: line drawings on
+   white. Filled to a frame they crop to a different scale for every model.
+   Contained on the paper ground, and multiplied so the white they were shot on
+   drops out, they read as catalogue plates — all to one scale. */
+.z-post-grid.is-type-spa .z-card__media .z-frame,
+:is(.post-type-archive-spa, .tax-spa_type, .tax-spa_series) .wp-block-post-featured-image,
+.single-spa .wp-block-post-featured-image {
+  background-color: var(--z-surface-alt);
+  padding: var(--wp--preset--spacing--20);
+}
+
+.z-post-grid.is-type-spa .z-card__media .z-frame {
+  aspect-ratio: 1;
+  padding: var(--wp--preset--spacing--30);
+}
+
+/* The Featured Image block writes object-fit inline, which is why this is the
+   theme's one !important. */
+.z-post-grid.is-type-spa .z-card__media .z-frame__media,
+:is(.post-type-archive-spa, .tax-spa_type, .tax-spa_series) .wp-block-post-featured-image img,
+.single-spa .wp-block-post-featured-image img {
+  object-fit: contain !important;
+  mix-blend-mode: multiply;
+}
+
+/* A publication date is a fact about an article, not about a hot tub. */
+:is(.post-type-archive-spa, .tax-spa_type, .tax-spa_series) .wp-block-post-date {
+  display: none;
+}
+
+/* The specification strip under a card title. A wrapping flex row set these
+   ragged — four short pairs, then two long ones on a line of their own width.
+   Two columns keep every card's strip the same shape. */
+.z-card__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--wp--preset--spacing--20);
+  padding-block-start: var(--wp--preset--spacing--10);
+  border-block-start: 1px solid var(--z-rule);
+}
+
+/* ---------------------------------------------------------------- Footer. */
+
+.z-footer__statement {
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.z-footer__columns {
+  display: grid;
+  gap: var(--wp--preset--spacing--40);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.z-footer__columns h2 {
+  margin-block: 0 var(--wp--preset--spacing--20);
+  font-family: var(--z-font-mono);
+  font-size: var(--z-size-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--wp--custom--eyebrow--spacing);
+  text-transform: uppercase;
+  color: var(--z-muted);
+}
+
+.z-footer__legal {
+  border-block-start: 1px solid var(--z-rule);
+  padding-block-start: var(--wp--preset--spacing--30);
+}
+
+.z-footer__legal p {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------- Reveal. */
+
+/* Opt-in and safe by construction. Nothing is hidden until <html> carries
+   .z-motion, and only view.js adds that — after confirming an
+   IntersectionObserver exists and that reduced motion was not asked for. */
+.z-reveal {
+  transition:
+    opacity var(--wp--custom--reveal),
+    transform var(--wp--custom--reveal);
+}
+
+html.z-motion .z-reveal:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.z-motion .z-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------- Trimmings. */
+
+/* A linked title is a heading that happens to be a link. */
+:where(.wp-block-post-title) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.wp-block-post-title) a:hover,
+:where(.wp-block-post-title) a:focus-visible {
+  text-decoration: underline;
+}
+
+.skip-link:focus {
+  z-index: 200;
+  padding: var(--wp--preset--spacing--20);
+  background-color: var(--wp--preset--color--base);
+  color: var(--wp--preset--color--ink);
+}
+
+:where(a, button, summary, input, select, textarea):focus-visible {
+  outline: 2px solid var(--z-accent);
+  outline-offset: 2px;
+}
+
+/* An image inside a Frame is the Frame's business; anywhere else it is never
+   wider than its column. */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
