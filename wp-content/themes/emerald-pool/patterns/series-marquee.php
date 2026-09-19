@@ -17,6 +17,9 @@
  * seamless without measuring anything in JavaScript. Both copies are real links,
  * but the duplicate is hidden from assistive technology so the six names are
  * announced once.
+ *
+ * The band is alignfull: it is a coloured stripe, and at content width it reads
+ * as a floating bar with page background showing down both sides.
  */
 $ep_series = array(
 	'a-series'    => 'A Series',
@@ -28,7 +31,7 @@ $ep_series = array(
 );
 ?>
 <!-- wp:html -->
-<div class="ep-marquee ep-night ep-night--deep">
+<div class="alignfull ep-marquee ep-night ep-night--deep">
 	<div class="ep-marquee__track">
 		<div class="ep-marquee__list">
 			<?php foreach ( $ep_series as $ep_slug => $ep_name ) : ?>

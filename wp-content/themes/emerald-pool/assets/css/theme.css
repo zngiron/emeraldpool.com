@@ -210,7 +210,12 @@ body {
  */
 .ep-site-header {
 	position: fixed;
-	inset: 0 0 auto 0;
+	/*
+	 * Fixed elements are laid out against the viewport, so the admin bar's
+	 * `html { margin-top }` does not move them: without this offset the bar
+	 * sits on top of the header and clips the brand mark.
+	 */
+	inset: var(--wp-admin--admin-bar--height, 0px) 0 auto 0;
 	z-index: 90;
 	background: var(--wp--preset--color--base);
 	border-bottom: 1px solid var(--wp--preset--color--border);
@@ -257,13 +262,35 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned
 	white-space: nowrap;
 }
 
-/* The brand lockup never crowds the nav. */
-.ep-site-header .wp-block-image img {
-	max-width: min(162px, 38vw);
+/*
+ * The brand mark. The supplied logo is a wide lockup — an illustration beside
+ * two lines of type — so it is sized by height, not width: small enough to sit
+ * on the header's line and never tall enough to set the header's height.
+ */
+.ep-site-header :where(.wp-block-site-logo, .wp-block-image) img {
+	max-height: var(--ep-logo-height, 36px);
+	max-width: min(180px, 42vw);
+	width: auto;
 	height: auto;
 }
 
+/*
+ * Over the hero the header is transparent and the mark — dark blue on nothing —
+ * disappears into the photograph. It is printed in light ink there instead.
+ * A filter rather than a second file, so there is only one logo to replace at
+ * rebrand time.
+ */
+body:has(main > .ep-hero:first-child) .ep-site-header:not(.is-pinned) :where(.wp-block-site-logo, .wp-block-image) img,
+body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header:not(.is-pinned) :where(.wp-block-site-logo, .wp-block-image) img {
+	filter: brightness(0) invert(1);
+	opacity: 0.92;
+}
+
 @media (max-width: 600px) {
+	.ep-site-header {
+		--ep-logo-height: 28px;
+	}
+
 	.ep-site-header .wp-block-button__link {
 		padding: 0.7rem 1rem;
 		font-size: 0.6875rem;
@@ -274,6 +301,29 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned
 .ep-site-header .wp-block-navigation__responsive-container-open,
 .ep-site-header .wp-block-navigation__responsive-container-close {
 	color: currentcolor;
+}
+
+/* --- Full-bleed bands ----------------------------------------------------- */
+
+/*
+ * The page is a stack of edge-to-edge coloured bands, and every band carries its
+ * own vertical padding. The root block gap between them therefore prints a strip
+ * of page background between two sections — a bar nobody drew, and the thing
+ * that made the layout look pushed apart. Sections butt; the space is inside
+ * them.
+ */
+.wp-site-blocks > * {
+	margin-block-start: 0;
+}
+
+main > .alignfull {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+/* The hero owes the admin bar its height, or the first screen overflows. */
+body.admin-bar .ep-hero {
+	min-height: calc(var(--ep-hero-min-height, 92svh) - var(--wp-admin--admin-bar--height, 0px));
 }
 
 /* Non-hero pages need to clear the fixed header. */
