@@ -1,402 +1,175 @@
 # Architecture
 
-Two deliverables, one rule between them.
+The site is two pieces under one namespace:
 
-**The theme owns how it looks. The plugin owns what it knows.**
-Change the theme and the catalogue survives. Drop the plugin and the design is untouched.
-That line is what makes this pair liftable onto another client.
+- **`zngiron-blocks`** — a plugin: the content model, the brand data, and twelve
+  server-rendered blocks (eleven sections plus the Card that Card Grid contains). It owns *what a section is*.
+- **`zngiron-base`** — a block theme: presets, templates, parts and patterns. It owns
+  *what a section looks like*.
 
----
+Neither knows the client's name. The brand lives in `config/brand.json` and in the theme's
+presets, which is what makes the pair reusable: a second client is a new `brand.json`, a new
+palette and a new set of photographs, with no template or block edited.
 
-## 1. Folder map
+## Folder map
 
 ```
-wp-content/themes/emerald-pool/
-├── style.css                     Theme header only. No rules live here.
-├── theme.json                    The single source of design truth (v3).
-├── functions.php                 12 lines: requires inc/*.
-├── inc/
-│   ├── setup.php                 Theme supports + brand_config() — the rebrand file.
-│   ├── assets.php                Stylesheet loading, per-block + font preload.
-│   ├── patterns.php              Pattern categories; removes core/remote patterns.
-│   ├── block-styles.php          register_block_style() for core blocks, as data.
-│   └── block-variations.php      Enqueues the editor variation script.
-├── templates/                    13 HTML templates, all thin.
-├── parts/                        header, footer.
-├── patterns/                     16 PHP patterns — where the page content lives.
-└── assets/
-    ├── fonts/                    2 self-hosted variable woff2 (92 KB total).
-    ├── images/                   11 images, only those a pattern or brand_config() references.
-    ├── js/block-variations.js    Editor-only.
-    ├── js/site.js                The one front-end script (~1 KB, deferred).
-    └── css/
-        ├── theme.css             Global layer: focus, skip link, motion, the form.
-        └── blocks/*.css          One file per core block, loaded on demand.
+config/brand.json                     brand name, post types, taxonomies, meta fields,
+                                      locations, social. Read once, filterable.
 
-wp-content/plugins/emerald-pool-blocks/
-├── emerald-pool-blocks.php       Plugin header + one call to Plugin::boot().
-├── package.json                  wp-scripts build/start.
-├── inc/
-│   ├── Plugin.php                The only list of subsystems.
-│   ├── PostTypes.php             CPT + taxonomies from a config array.
-│   ├── Meta.php                  Spec fields from a config array.
-│   ├── Media.php                 Hover video: markup, script module, spa_video_url.
-│   ├── Locations.php             Store data.
-│   ├── Icons.php                 The eight-icon set, in PHP.
-│   ├── Cards.php                 The spa card, shared by two blocks.
-│   ├── BlockCategory.php         One inserter category.
-│   ├── Blocks.php                One loop registers every compiled block.
-│   ├── Schema.php                Product + LocalBusiness JSON-LD.
-│   └── Assets.php                Shared style handle + icon publishing.
-├── assets/shared.css             Spec-figure and card primitives used by 3 blocks.
-├── assets/media.js               Hover video module. No imports, no framework.
-├── src/blocks/<name>/            block.json, index.js, edit.js, save.js|render.php,
-│                                 style.scss, editor.scss, view.js (interactive only).
-└── build/                        COMMITTED. Phase 3 and deploys need no Node.
+wp-content/plugins/zngiron-blocks/
+  zngiron-blocks.php                  bootstrap
+  inc/Plugin.php                      wires the other five
+  inc/Config.php                      reads config/brand.json
+  inc/PostTypes.php                   registers post types and taxonomies from it
+  inc/Meta.php                        register_post_meta + the specs/compare row builders
+  inc/Blocks.php                      registers every block from the build manifest
+  inc/Render.php                      Frame, Card, Buttons — the shared markup
+  inc/Schema.php                      Product JSON-LD on the single catalogue page
+  src/blocks/*/                       twelve blocks: block.json, edit.js, render.php, style.scss
+  src/components/                     Frame, Buttons, Eyebrow (editor)
+  src/frame.scss                      the Frame, Buttons and Eyebrow stylesheet
+  build/                              compiled, committed
+
+wp-content/themes/zngiron-base/
+  style.css                           theme header only
+  theme.json                          every design decision that can be a preset
+  functions.php                       loads inc/
+  inc/setup.php                       theme supports, head tidying
+  inc/assets.php                      two stylesheets, one script, font preloads
+  inc/patterns.php                    the three pattern categories
+  inc/block-styles.php                eight core block styles, held as data
+  assets/css/tokens.css               binds --z-* to theme.json presets
+  assets/css/layout.css               section, hero, header, catalogue, footer, reveal
+  assets/js/view.js                   header state + the reveal (~1 KB, deferred)
+  assets/fonts/*.woff2                Fraunces, Karla, JetBrains Mono — self-hosted
+  assets/images/                      the photographs the patterns preview with
+  templates/                          index, front-page, page, single, archive, 404, search
+  parts/                              header, footer
+  patterns/                           fourteen patterns, one per seeded section
+
+seed/                                 media.txt, spas.json, content/*.html, php/content.php
+tools/screenshot.js                   `make shots`: six widths, four stops, five assertions
 ```
 
----
-
-## 2. Principles
-
-**theme.json first.** Colour, type, spacing, radius, shadow and layout are declared once,
-in `theme.json`, and consumed everywhere as `var(--wp--preset--*)` and `var(--wp--custom--*)`.
-No block, pattern or stylesheet contains a hex value. Options that fragment a design
-— custom colours, custom gradients, custom font sizes, custom spacing, drop caps — are
-switched off, so an editor cannot invent a fourteenth blue.
-
-**Patterns over templates.** A template says *which sections, in what order*. A pattern says
-*what the section is*. Templates are four to eight lines long; content lives in
-`patterns/*.php`, which are PHP and can therefore reference `get_theme_file_uri()`. Rearranging
-a page is reordering pattern references.
-
-**Dynamic blocks over static.** All eleven custom blocks render on the server. Saved post content
-holds only the editable inner blocks and the attributes. The pay-off: the markup of a block can
-change in a later release without invalidating a single saved post, and a pattern file can write
-`<!-- wp:emerald-pool/spa-hero {...} /-->` without hand-copying compiled save output.
-
-**Config-driven content model.** `PostTypes::post_types()`, `PostTypes::taxonomies()`,
-`Meta::fields()`, `Locations::all()` and `Icons::all()` are arrays. The registration loops beneath
-them never change. A new spec field appears in the spec list, the comparison table and the Product
-schema at once, because all three read `Meta::fields()`.
-
-**One concern per file.** Every `inc/` file does one job and says so in its header. No file
-requires reading another to understand.
-
-**No jQuery, no modals, no overlays.** Three blocks are interactive and all three use the
-Interactivity API (`spa-grid` filtering, `testimonial-slider`, `spa-stats` counting). The theme
-ships exactly one front-end script, `assets/js/site.js` — about a kilobyte, deferred, no
-dependencies — and the plugin ships one more, `assets/media.js`, only on pages that render a hover
-clip. Both are covered by §7. There is exactly one form on the site, inline, on the contact page: no pop-up, no
-cookie wall, no newsletter interrupt, no exit-intent. The mobile navigation is an off-canvas
-panel, opened by the visitor.
-
-**Accessibility as a floor, not a feature.** One `<h1>` per template, semantic landmarks
-(`<header>`, `<main>`, `<footer>`, `<section>`), the core skip link, a visible 3px focus ring on
-every interactive element, `prefers-reduced-motion` honoured, real `<dl>` for spec pairs and a real
-`<table>` with `scope` for the comparison, off-screen carousel slides made `inert`, and a polite
-live region for filter results.
-
-**Structured data lives with the data.** `Product` and `LocalBusiness` are emitted by the plugin
-(`inc/Schema.php`) because the plugin owns the post type and the meta they describe: change theme
-and the markup survives; remove the plugin and it correctly disappears. `FAQPage` is the exception
-and is emitted by `faq-accordion`'s own `render.php`, because it describes that block's inner
-content rather than the post.
-
----
-
-## 2a. The design direction
-
-The visual system has a name — **night water** — and every token choice follows from it. The
-subject is a lit, steaming spa in a wet Oregon winter, so the site's ground is deep water-black,
-light sections are punctuation rather than the default, and one warm token (`ember`) carries the
-heat. It is the only warm colour on the site and it is never decorative: it marks the thing that is
-hot, current, or next.
-
-| Decision | Where it lives | Why |
-|---|---|---|
-| `abyss` / `deep` night grounds | `theme.json` palette, `.ep-night` | Dark is the default for product and closing sections. |
-| `sand` paper field | `theme.json` palette, `.ep-card__media` | Bullfrog renders are top-down drawings on white. A drawing on paper cannot float on black, so the field *is* the paper and the sheet is the bright object in the dark room. In a card the render is multiplied into the sand; in a chapter, where the image is composited for the parallax and therefore has no backdrop to blend with, it sits on a real white sheet on that field instead. |
-| Lifestyle photography | `assets/images/hero-*.jpg`, `band-*.jpg`, `series-*-life.jpg` | A plan render says what the product is; a photograph says what it is for. The hero, the editorial bands, half the series chapters, the quote band and the archives are people in warm water. The renders are the catalogue and stay in the catalogue. |
-| `ember` accent | `theme.json` palette | Heat. Used for eyebrow dots, prices, active states, figures and focus rings. |
-| `data` font family | `theme.json` `fontFamilies` | A system monospace stack — zero bytes — gives figures, labels and eyebrows a third voice distinct from the display serif and the body sans. |
-| Display scale to 7rem, `colossal` to 10.5rem | `theme.json` `fontSizes` | Fraunces is the personality; at hero and footer scale it is set with `opsz 144` and `WONK 1`, the display cut rather than the text cut enlarged. |
-| Numbered chapters | home patterns | The four numbered sections are the order a customer actually moves through — see it, the range, after you sign, seventy years. The numbers carry information; they are not ornament. |
-| Duotone presets | `theme.json` `color.duotone` | `night`, `ember`, `steel`, available to any core image. |
-
-The recurring ornament is a hairline and a single ember dot. `register_block_style()` no longer
-offers `card`, `card-group` or `rule-top`: boxes were what made the first build read as a widget
-grid.
-
----
-
-## 2b. Layout — widths, gutters and rhythm
-
-One scale, declared once, consumed everywhere. Every value below comes from
-`theme.json`; `assets/css/theme.css` names the rhythm and nothing else sets it.
-If a pattern, template or seeded page contains a `padding` or `margin` in px or
-rem, that is a bug — grep for it.
-
-### Widths
-
-| Measure | Value | Where it comes from | Used for |
-|---|---|---|---|
-| `content` | 680px | `settings.layout.contentSize` | the reading column: article bodies, standfirsts |
-| `wide` | 1440px | `settings.layout.wideSize` | everything a band holds — heads, grids, cards, rails |
-| `full` | viewport | `align: full` | coloured bands, photographs, the marquee, the hero |
-| gutter | `clamp(1.25rem, 4vw, 3.5rem)` | `custom.gutter`, applied as `styles.spacing.padding` | the page's side margin, 20px → 56px |
-
-`useRootPaddingAwareAlignments` is on, so **a full-bleed band gets the gutter
-back automatically**. A pattern must not declare `padding-left` / `padding-right`;
-doing so is how the first build ended up with two different gutters on one page.
-
-**When to use which.** `full` is a band: a change of ground colour, or a
-photograph. `wide` is the band's contents, and is the default — headings, grids,
-cards, the store cards, the spec rail. `content` is prose, and only prose. There
-is no case for a centred `content` block on this site: core's constrained layout
-centres children at `contentSize` with `margin-left: auto !important`, which is
-why `.ep-section`, `.ep-page-head` and article bodies override it. Everything
-starts at the same left edge; prose narrows to 46ch *from* that edge.
-
-### Section rhythm
-
-Three classes, over `settings.spacing.spacingSizes`. The tokens are `clamp()`,
-so mobile and desktop are one declaration and there is no media query to keep in
-step.
-
-| Class | Token | Mobile → desktop | Used for |
-|---|---|---|---|
-| `.ep-section` | `--wp--preset--spacing--70` | 80px → 160px | the default band |
-| `.ep-section--tight` | `--60` | 64px → 112px | practical information: the store bar, the financing line |
-| `.ep-section--tall` | `--80` | 96px → 208px | the closing statement |
-| `.ep-main` | `--60` / `--70` | — | an interior page that does not open on a band |
-| `.ep-site-footer` | `--80` / `--40` | — | asymmetric on purpose: a long lede in, a short legal line out |
-
-A page whose first child is a hero or a band zeroes `.ep-main`'s padding, and
-`main` clears the fixed header with `margin-top`, not padding, so the two
-compose instead of fighting.
-
-### Block gap
-
-Root gap is `--30`. A band's head-to-content gap is `--50`. Inside a card or a
-chapter body it is `--20`. Nothing else sets one.
-
-### Grids
-
-`.ep-bay` is the twelve-column editorial grid every band head uses: the lede at
-columns 1–6, the aside at 7–12, `.ep-indent` at the same column 7 edge. Below
-860px both span the full width. Card grids take their gutter from
-`--wp--custom--gutter` so a card grid and a band agree about what a column gap is.
-
-### Images
-
-| Context | Ratio | Fit |
-|---|---|---|
-| Card media (`.ep-card__media`) | 4:3 | `contain` — a plan drawing is never cropped |
-| Chapter, plan (`--plan`) | 4:3 frame, 1:1 sheet | `contain` on a white sheet on the sand field |
-| Chapter, photograph (`--photo`) | 4:3 (3:2 mobile) | `cover`, focal point 50% 36% |
-| Editorial band (`.ep-band`) | 21:9 (4:5 mobile) | `cover`, focal point 50% 42% |
-| Quote band | fills the band | `cover`, focal point 58% 34% |
-| Journal card | 3:2 | `cover` |
-| Featured image, article | 16:9 | `cover` |
-
-Photographs of people are cropped from a focal point above centre, so a face is
-never cut and never lands under the heavy end of a scrim. Duotone presets exist
-in `theme.json` and are **not** applied to any photograph of a person.
-
----
-
-## 2c. Motion
-
-Every moving thing on the site is opt-in three times over, and the static page is always the
-correct page.
-
-**Scroll-driven reveals.** `.ep-reveal` is animated by `animation-timeline: view()` where the
-browser has it. Where it does not, `assets/js/site.js` adds `.ep-io` to `<html>` and observes with
-an `IntersectionObserver`. The ordering matters: the element is **visible by default**, and only
-the presence of `.ep-io` allows CSS to start it hidden. A blocked script therefore shows content,
-never hides it.
-
-**Parallax.** `.ep-chapter__media img` drifts about 7% across its section's pass, on the same
-`view()` timeline. There is no scroll listener.
-
-**The marquee.** `.ep-marquee` prints its list twice and translates the track by exactly half its
-width, so the loop is seamless with no measurement and no script. It pauses on hover and on
-`:focus-within`. The duplicate copy is `aria-hidden`, so the six names are announced once.
-
-**The header.** `site.js` publishes the header's height as `--ep-header-h` and toggles `.is-pinned`
-past 80px, rAF-throttled. The solid state is the default; only the transparent-over-hero state is
-opt-in, so a blocked script leaves a readable header.
-
-**Counting.** `spa-stats` renders its figures at full value on the server. `view.js` rewinds and
-replays a figure once, the first time it is seen. Nothing is created by the script.
-
-**`prefers-reduced-motion: reduce`** is honoured last in `theme.css` so it wins: the marquee stops,
-reveals are simply visible, the hero's Ken Burns drift and the scroll cue stop, hover transforms are
-dropped, and no video ever autoplays.
-
----
-
-## 2d. Video
-
-The live emeraldpool.com does **not** have per-model hover video. What it has is four always-looping
-Vimeo backgrounds in a home page mosaic of *category* tiles, plus series-level YouTube clips behind
-a play badge in a lightbox. There is no self-hosted file to mirror and nothing that maps onto a
-model. The mechanism here is therefore built and documented but ships unpopulated.
-
-**The contract.** `spa_video_url` is a spa meta field in the `media` group — the one group
-`Meta::grouped_specs()` skips, because it is an asset rather than something a visitor reads as a
-specification. Set it on a spa and three places light up at once: the card in `spa-grid`, the
-`spa-plan` hero on the single-spa page, and anything else that calls `Media::video()`.
-
-**Loading.** Nothing is fetched until a visitor asks for it. The element carries `preload="none"`
-and its `<source>` holds a `data-src`, not a `src`, so the browser has no URL to fetch until
-`assets/media.js` hands it one. The poster is the spa's own featured image, already on the page.
-
-**Behaviour by input.** Fine pointer: hover or keyboard focus on the card plays, leaving stops.
-Coarse pointer: there is no hover, so the clip plays while the card is the thing on screen.
-Reduced motion: it never starts, and CSS hides the element so the poster is the whole experience.
-
-**Why a plain module and not the Interactivity API.** That API exists to keep rendered markup in
-step with state. Playing a video on hover changes no markup and stores no state — it is a side
-effect on a media element — and the API's runtime is roughly ten times the size of `media.js`. The
-blocks that do hold state use the Interactivity API, as this document requires.
-
-The element is `aria-hidden` and `tabindex="-1"`: it is decoration over an image that already
-carries the alt text, it is muted and it loops, so there is nothing for a screen reader or a
-keyboard to operate.
-
----
-
-## 3. Rebranding for a new client — about an hour
-
-### Files you change
-
-| File | What to change | Time |
-|---|---|---|
-| `theme.json` | `settings.color.palette` (10 slugs, keep the names), `fontFamilies` + `fontFace` paths, `spacingSizes` if the client's rhythm differs, `layout` widths. | 20 min |
-| `assets/fonts/` | Drop in two woff2 files, delete the old ones. | 5 min |
-| `inc/assets.php` | The two filenames in `preload_fonts()`. | 1 min |
-| `inc/setup.php` | `brand_config()`: name, tagline, phone, logo path. | 5 min |
-| `assets/images/` | Replace `logo.png`, `favicon.ico`, the heroes and the product shots. | 10 min |
-| `patterns/*.php` | The copy. Structure stays; you are editing sentences and image filenames. | 20 min |
-| `parts/footer.html` | The four column link lists and the legal line. | 5 min |
-| Plugin `inc/Locations.php` | The client's shops. | 3 min |
-| Plugin `inc/PostTypes.php` | Rename `spa` and its taxonomies if the client sells something else. | 5 min |
-| Plugin `inc/Meta.php` | The spec fields for that product. | 10 min |
-
-### Files you do not touch
-
-`style.css` · `functions.php` · `inc/assets.php` (beyond the font names) · `inc/patterns.php` ·
-`inc/block-styles.php` · `inc/block-variations.php` ·
-every file in `templates/` · `assets/css/**` · every `src/blocks/**` file ·
-`inc/Plugin.php` · `inc/Blocks.php` · `inc/Cards.php` · `inc/BlockCategory.php` · `inc/Assets.php` ·
-`inc/Schema.php` · `assets/shared.css`.
-
-That is the test of the architecture: the rebrand list is content and tokens, and the do-not-touch
-list is all the code.
-
-### Checklist
-
-1. `cp -r wp-content/themes/emerald-pool wp-content/themes/<client>` and edit the `style.css` header.
-2. Rewrite `theme.json` palette and fonts. Load the site: everything reskins at once.
-3. Swap the images, then edit the pattern copy.
-4. Update `Locations::all()`, `Meta::fields()`, and the post type labels/slug.
-5. `npm run build` in the plugin only if you changed a block. Rebranding does not need it.
-6. Check one page of each template, and tab through the header.
-
----
-
-## 4. How to add a block
-
-1. `mkdir src/blocks/<name>` and write `block.json` with `"apiVersion": 3`,
-   `"category": "emerald-pool"`, a real `description`, a useful `example` for the inserter preview,
-   and `supports` that match what the block is for.
-2. `index.js` registers it. `edit.js` is the editor. For a data-driven block use
-   `render.php` plus `ServerSideRender` in the editor, so the preview is the real output.
-3. Styles: `style.scss` for both sides, `editor.scss` for editor-only affordances. Use only
-   theme.json variables. If you need a chip or a card, list `"emerald-pool-shared"` in the
-   block.json `style` array rather than writing a third copy.
-4. Interactive? Add `"viewScriptModule": "file:./view.js"` and `"supports": {"interactivity": true}`,
-   and use `@wordpress/interactivity`. No other library is permitted.
-5. `npm run build`. The block registers itself: `inc/Blocks.php` loops over
-   `build/blocks-manifest.php` (WordPress 6.8+) or `build/blocks/*/block.json`. There is no list
-   to update.
-6. Add a row to `docs/BLOCKS.md`.
-
-## 5. How to add a post type, taxonomy, spec field or icon
-
-- **Post type or taxonomy:** one entry in `PostTypes::post_types()` or `PostTypes::taxonomies()`.
-  `default_terms` seeds the terms on first load. Flush rewrites once.
-- **Spec field:** one entry in `Meta::fields()` with a `label`, `type`, `group` and optionally
-  `suffix` and `primary`. It then appears in the spec list, on the card chips (if `primary`), in the
-  comparison table, in the Product schema and in the REST API — and, because the keys are
-  unprefixed and `show_in_rest`, it is immediately available to core **block bindings**
-  (`core/post-meta`) in the editor. `templates/single-spa.html` already binds a paragraph to
-  `spa_dimensions` as the worked example.
-- **Icon:** one entry in `Icons::all()`. The editor picker reads the same array through the
-  `emerald-pool-icons` script, so there is no second copy of the artwork in JavaScript.
-- **Store:** one entry in `Locations::all()`.
-
-Every one of these arrays is behind a filter (`emerald_pool_post_types`, `emerald_pool_spa_fields`,
-`emerald_pool_locations`, `emerald_pool_icons`, `emerald_pool_brand_config`), so a site-specific
-plugin can extend them without forking.
-
----
-
-## 6. Page weight
-
-Measured on the home page, which is the heaviest:
-
-| | Budget | Actual |
-|---|---|---|
-| CSS (linked + inlined block styles) | < 200 KB | ~33 KB gzipped (154 KB raw) |
-| JavaScript | < 40 KB | ~31 KB gzipped (114 KB raw) |
-| Fonts | — | ~90 KB (2 variable woff2, latin, preloaded) |
-
-Two things keep JavaScript down. WordPress's emoji polyfill — twemoji, its loader and the blob it
-builds, about 17 KB on every page — is removed in `inc/setup.php`, because nothing in the design
-uses emoji and every supported browser draws them itself. And the Interactivity API runtime
-(~27 KB) is the single largest script: it is shared by all three interactive blocks, which is why
-the hover video deliberately does not use it.
-
----
-
-## 6a. Checking it
-
-Three scripts, all read-only, all run against the seeded site at
-`http://localhost:8080`. They need `pip install playwright pillow` and
-`playwright install chromium`; nothing else on the host.
-
-| Script | What it asserts | Exit |
-|---|---|---|
-| `seed/crawl.py` | Every internal link and every image `src`/`srcset` on every seeded page resolves. No `#` placeholder anchors. | 1 on any failure |
-| `seed/axe.py` | axe-core `color-contrast` across 14 pages at 1440 and 390. AA only — the AAA `color-contrast-enhanced` rule is not the bar. | 1 on any violation |
-| `seed/shots.py` | Regenerates `docs/screenshots/` | 0 |
-
-`shots.py` stitches a scrolled viewport rather than using Playwright's
-`full_page`: on a page a few thousand pixels tall Chromium's one-shot capture
-drops absolutely-positioned images inside clipped containers, so the series
-chapters and the editorial bands came out as empty colour fields. It is a
-capture artefact rather than a rendering one, but it makes the screenshots lie,
-which is worse.
-
----
-
-## 7. Known deviations from `docs/IA-UX-AUDIT.md`
-
-- **URLs.** The audit proposed `/hot-tubs/<model>/`. Achieving that needs per-term permalink
-  rewriting, which is a production concern with redirect implications. This build ships
-  `/spas/<model>/`, `/spa-type/hot-tubs/` and `/series/x-series/` — clean, readable and permanent.
-  The mapping to the audit's URLs is a rewrite rule, not an architecture change.
-- **`spa-filter` and `payment-estimator`** from the audit's block table were dropped. Filtering is
-  built into `spa-grid` (chips, Interactivity API, no reload), which is the same feature without a
-  second block. The estimator was cut for scope.
-- **`spa-hero` is generic.** The audit sketched it as the single-spa summary rail; here it is the
-  reusable page hero, and the single-spa summary is composed from core blocks plus block bindings,
-  which is more editable.
-- **The contact form is markup only.** It is a real, labelled, accessible, inline form with no
-  mail handler wired up. Connecting it to a mailer is a production task.
-- **Hover video ships unpopulated.** See §2d: the live site has no per-model clip to mirror, so
-  `spa_video_url` is empty on all ten seeded spas. The mechanism is complete and verified; it needs
-  source footage, which is a content decision rather than a build task.
+## The sizing contract
+
+This is the part that makes the system templatable. It is the same six rules everywhere.
+
+| | |
+|---|---|
+| Widths | `contentSize` 720px, `wideSize` 1280px, plus full bleed |
+| Root padding | 24px, stepping to 48px at 1024px, with `useRootPaddingAwareAlignments` |
+| Section | one core Group, `alignfull`, `.z-section`, constrained inner layout |
+| Media | always a Frame with a fixed `aspect-ratio` from {21:9, 16:9, 3:2, 4:5, 1:1} |
+| Hero | `100svh`, `75svh` or `50svh`, less the admin bar; copy max 60ch, bottom left |
+| Grid | CSS grid, equal-height cards, gutters from the spacing scale. Never flex |
+
+An image never sets the height of a layout: the ratio does, and `object-fit` decides what
+happens inside it. `object-position` is editable per image with the core focal point picker,
+so a client's photographs drop in without anyone retouching them to fit.
+
+Two consequences worth knowing:
+
+- **`box-sizing: border-box` is load-bearing.** Without it a Hero asking for `100svh` renders
+  a viewport *plus* its own padding, and the first screen is never the first screen.
+- **Product renders are not photographs.** Manufacturer plan renders are line drawings on
+  white. They are contained on the `surface-alt` ground and multiplied, so every model is
+  drawn to the same scale and none of them floats on a white rectangle.
+
+Type is fluid between 360px and 1440px and stops there, so 1920 and 2560 are the same type at
+a wider measure rather than a larger page. Prose is capped at 65ch by the element, not by the
+column.
+
+## Token aliases
+
+Blocks never read a preset directly and never contain a raw value. They read `--z-*`, and
+`assets/css/tokens.css` is the only place those are bound — always to a theme.json preset.
+
+| Alias | Bound to |
+|---|---|
+| `--z-space-xs / -s / -m / -l` | spacing presets 20 / 30 / 40 / 50 |
+| `--z-size-small / -eyebrow / -figure / -quote` | font sizes small / custom eyebrow / xx-large / large |
+| `--z-font-display / -ui / -mono` | font families display / ui / mono |
+| `--z-accent` / `--z-on-accent` | colours accent / abyss — a ground and the text that clears AA on it |
+| `--z-on-dark` / `--z-muted` | colours sand / muted |
+| `--z-surface-alt` / `--z-rule` | colours surface-alt / rule |
+| `--z-scrim` / `--z-radius` | `settings.custom` scrim / radius |
+| `--z-gutter` | the root padding step, 24px → 48px at 1024px |
+| `--z-header-h` | the fixed header's height, republished by `view.js` |
+
+Two contexts redefine a few of them and nothing else should: `.z-night`, where `--z-muted`
+and `--z-rule` would otherwise fail contrast on the dark ground, and the pinned header.
+
+## How to rebrand
+
+1. **`theme.json`** — the palette, the three font families and their `fontFace` entries, the
+   type scale and the six spacing steps. Keep the slugs; change the values. `--z-*` follows,
+   and so does every block.
+2. **`config/brand.json`** — the brand name, the post types and taxonomies, the meta fields
+   and which of them appear in the Specs Table (`specs`) and the Compare Table (`compare`),
+   the locations and the social links. Adding a meta field here adds it to both tables, to
+   the card strip and to the Product schema, with no code change.
+3. **`assets/`** — the three `.woff2` files, the logo, the favicon, and the photographs the
+   patterns preview with. `inc/assets.php` preloads the fonts by name; that is the only list.
+4. **`seed/`** — `media.txt`, `spas.json` and `content/*.html` are this demo's content. A real
+   client site replaces them with its own, or drops the seed entirely.
+
+Nothing else names a client. There is no client string in a template, a part, a block or a
+stylesheet.
+
+## Adding a block
+
+```sh
+cd wp-content/plugins/zngiron-blocks
+mkdir src/blocks/my-block            # block.json, index.js, edit.js, render.php, style.scss
+npm run build
+```
+
+`inc/Blocks.php` registers everything in the build manifest, so there is nothing to add to a
+list. Four rules: `apiVersion: 3`; server-rendered from `render.php` so the editor preview and
+the front end come from one template; an `example` so the inserter shows something real; and
+every value a `--z-*` alias with a `--wp--preset--*` fallback, never a hex colour. If the block
+shows an image it uses `Render::frame()`.
+
+## Breakpoints
+
+There are four, and each one exists for a reason rather than for a device.
+
+| | |
+|---|---|
+| `40em` (640px) | a card grid goes from one column to two |
+| `48em` (768px) | Media Text splits into two columns; the Hero leaves its phone type scale |
+| `64em` (1024px) | root padding steps 24 → 48; the logo goes 36 → 48; three- and four-column grids appear |
+| `1080px` | the navigation row stops fitting and becomes the off-canvas panel |
+
+The last one is the only one that is measured rather than chosen. The row carries a logo, six
+items, a phone number and a filled call to action; 1080px is where all of that last fits on one
+line, verified at 768, 1024, 1280 and 1440. Core switches its own overlay at 600px, which is far
+too early for that row, so `layout.css` overrides it.
+
+## make shots
+
+```sh
+make shots                                   # six widths, every seeded page
+make shots ARGS="--widths=390 --pages=home"  # one stop, while working
+```
+
+Viewport screenshots at 1:1 — never full-page, because scaling a whole page into one image hides
+exactly the defects that matter. Six widths (390, 768, 1024, 1440, 1920, 2560), four scroll
+positions (top, 1000, 2600, 5000) and the off-canvas navigation opened below 1080px. At every
+stop it asserts:
+
+1. `scrollWidth === clientWidth`, and names any element sticking out sideways;
+2. every element on screen has computed opacity 1 once it has come to rest;
+3. header text clears 4.5:1 against the header's own ground, in both of its states;
+4. no button or chip label is wider than the box drawn for it;
+5. one navigation row at desktop widths, the off-canvas toggle below;
+6. a full-height Hero is exactly the viewport, ±2px;
+7. no console errors.
+
+Shots land in `.shots/` (ignored). `docs/screenshots/` is a curated twenty.
+
+`make crawl` walks every internal link and image and fails on a 404 or a `#` placeholder.
+`make axe` runs axe-core's `color-contrast` rule over every page at 1440 and 390, at the top
+and scrolled, so the transparent-over-hero header and the solid pinned header are both measured.
