@@ -77,6 +77,16 @@ function ep_upsert( array $args ): int {
 
 	$args['post_status'] = $args['post_status'] ?? 'publish';
 
+	/*
+	 * wp_insert_post() and wp_update_post() both unslash what they are given, so
+	 * content has to arrive slashed or every backslash in it is eaten. Block
+	 * delimiters are JSON, and JSON spells a line break `\n`: unslashed, the hero's
+	 * `metaBody` reached the database as the letter `n` and the hot tubs hero read
+	 * "7 MODELS, WET-TESTEDNEUGENE · MON–SAT 9–6". Slash once, here, so every
+	 * caller of this helper is safe rather than each one remembering.
+	 */
+	$args = wp_slash( $args );
+
 	if ( $existing ) {
 		$args['ID'] = (int) $existing[0];
 		$id         = wp_update_post( $args, true );

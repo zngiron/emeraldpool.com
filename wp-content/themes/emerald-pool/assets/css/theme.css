@@ -252,34 +252,52 @@ body {
 		color var(--wp--custom--transition--slow);
 }
 
-/* Pages that open on a hero let the header sit on the image until it scrolls. */
-body:has(main > .ep-hero:first-child) .ep-site-header,
-body:has(main > .ep-band:first-child) .ep-site-header,
-body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header {
+/*
+ * Pages that open on a hero let the header sit on the image until it scrolls.
+ *
+ * Every one of these selectors is written `:not(.is-pinned)`. A `:has()` carries
+ * the specificity of its argument, so `body:has(main > .ep-hero:first-child)
+ * .ep-site-header` is a 0-3-3 selector and silently outranked the 0-2-0 pinned
+ * rules below it: the header went solid white on scroll while its navigation,
+ * phone link and chevrons stayed sand. The logo swap already guarded itself this
+ * way and was the only part that behaved. Opt the transparent state out by state
+ * rather than trying to out-specify it.
+ */
+body:has(main > .ep-hero:first-child) .ep-site-header:not(.is-pinned),
+body:has(main > .ep-band:first-child) .ep-site-header:not(.is-pinned),
+body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header:not(.is-pinned) {
 	background: transparent;
 	border-bottom-color: transparent;
 	color: var(--wp--preset--color--sand);
 }
 
-body:has(main > .ep-hero:first-child) .ep-site-header :where(a, .wp-block-site-title),
-body:has(main > .ep-band:first-child) .ep-site-header :where(a, .wp-block-site-title),
-body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header :where(a, .wp-block-site-title) {
+body:has(main > .ep-hero:first-child) .ep-site-header:not(.is-pinned) :where(a, .wp-block-site-title),
+body:has(main > .ep-band:first-child) .ep-site-header:not(.is-pinned) :where(a, .wp-block-site-title),
+body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header:not(.is-pinned) :where(a, .wp-block-site-title) {
 	color: var(--wp--preset--color--sand);
 }
 
 /* Once past the fold the header is opaque again, whatever it started as. */
-.ep-site-header.is-pinned,
-body:has(main > .ep-hero:first-child) .ep-site-header.is-pinned,
-body:has(main > .ep-band:first-child) .ep-site-header.is-pinned,
-body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned {
+.ep-site-header.is-pinned {
 	background: color-mix(in srgb, var(--wp--preset--color--base) 92%, transparent);
 	backdrop-filter: saturate(150%) blur(10px);
 	border-bottom-color: var(--wp--preset--color--border);
 	color: var(--wp--preset--color--ink);
 }
 
-.ep-site-header.is-pinned :where(a, .wp-block-site-title) {
+.ep-site-header.is-pinned :where(a, .wp-block-site-title),
+.ep-site-header.is-pinned .wp-block-navigation {
 	color: var(--wp--preset--color--ink);
+}
+
+/* Chevrons and the toggles are drawn in currentcolor and follow the links. */
+.ep-site-header.is-pinned :where(
+	.wp-block-navigation__submenu-icon,
+	.wp-block-navigation__responsive-container-open,
+	.wp-block-navigation__responsive-container-close
+) {
+	color: var(--wp--preset--color--ink);
+	fill: currentcolor;
 }
 
 .ep-site-header.is-pinned .wp-block-button__link {
@@ -372,6 +390,22 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header:not(.is-p
  */
 .ep-section {
 	padding-block: var(--wp--preset--spacing--70);
+}
+
+/*
+ * Bands butt.
+ *
+ * An interior page's content is a flow of full-bleed bands inside a constrained
+ * `.ep-main`, and core's constrained layout puts the root block gap — `--30`,
+ * 32px — between every pair of children. Between two coloured grounds that gap
+ * is not space, it is a 32px stripe of page background: on /hot-tubs/ it drew a
+ * white band across the seam between the hero and the night section under it.
+ * A band carries its own vertical rhythm in its padding, so two adjacent bands
+ * need nothing between them. Only full-bleed neighbours are zeroed; a band that
+ * follows prose still gets its gap.
+ */
+:where(.ep-main, .ep-main > .entry-content, .ep-main > .wp-block-post-content) > .alignfull + .alignfull {
+	margin-block-start: 0;
 }
 
 .ep-section--tight {
@@ -1062,52 +1096,44 @@ main > .ep-band:first-child .ep-band__inner {
 /* --- Scroll-driven reveal ------------------------------------------------ */
 
 /*
- * The reveal is opt-in three times over, so content is never hidden by a
- * feature that did not load:
- *   1. plain CSS         — element is visible, no animation;
- *   2. scroll timelines  — the browser animates it against the view() timeline;
- *   3. no timelines + JS — assets/js/reveal.js adds .ep-io to <html> and
- *                          observes, so only then does the element start hidden.
- * Under prefers-reduced-motion none of it applies.
+ * The reveal is opt-in, and the element is visible until something that is
+ * demonstrably running takes responsibility for showing it:
+ *   1. plain CSS, no JS, or reduced motion — the element is simply visible;
+ *   2. assets/js/site.js puts `.ep-motion-ready` on <html> and starts an
+ *      IntersectionObserver; only then may an element start hidden, and the
+ *      observer reveals anything already on screen on its first callback.
+ *
+ * It used to be driven by `animation-timeline: view()` over
+ * `animation-range: entry 8% cover 32%`. A `view()` range is measured against
+ * the *subject's* own height, so a band taller than the viewport — which every
+ * `.ep-bay` and card grid on this site is — sat permanently part-way along its
+ * own range: measured at 0.25–0.72 opacity at rest, i.e. permanently half
+ * faded, with `both` holding the faded fill outside the range as well. A
+ * viewport-relative observer has no such failure mode: an element is either on
+ * screen, and therefore revealed, or it is not.
  */
 @media (prefers-reduced-motion: no-preference) {
-	@supports (animation-timeline: view()) {
-		.ep-reveal {
-			animation: ep-rise linear both;
-			animation-timeline: view();
-			animation-range: entry 8% cover 32%;
-		}
-	}
-
-	.ep-io .ep-reveal:not(.is-revealed) {
-		opacity: 0;
-		transform: translateY(1.75rem);
-	}
-
-	.ep-io .ep-reveal {
+	.ep-motion-ready .ep-reveal {
 		transition: opacity var(--wp--custom--transition--reveal),
 			transform var(--wp--custom--transition--reveal);
 	}
 
-	/* The chapter images drift as their section passes the viewport. */
+	.ep-motion-ready .ep-reveal:not(.is-revealed) {
+		opacity: 0;
+		transform: translateY(1.75rem);
+	}
+
+	/*
+	 * The chapter images drift as their section passes the viewport. This one
+	 * keeps `view()`: it animates transform only, so a mid-range resting value
+	 * is a slightly offset photograph, never invisible content.
+	 */
 	@supports (animation-timeline: view()) {
 		.ep-chapter__media--photo img {
 			animation: ep-drift linear both;
 			animation-timeline: view();
 			animation-range: cover 0% cover 100%;
 		}
-	}
-}
-
-@keyframes ep-rise {
-	from {
-		opacity: 0;
-		transform: translateY(2.25rem);
-	}
-
-	to {
-		opacity: 1;
-		transform: translateY(0);
 	}
 }
 
@@ -1438,7 +1464,7 @@ main > .ep-band:first-child .ep-band__inner {
 	}
 
 	.ep-reveal,
-	.ep-io .ep-reveal:not(.is-revealed) {
+	.ep-motion-ready .ep-reveal:not(.is-revealed) {
 		opacity: 1;
 		transform: none;
 	}

@@ -34,8 +34,15 @@ $ep_hero = wp_json_encode(
 		'mediaUrl'       => get_theme_file_uri( 'assets/images/hero-evening.jpg' ),
 		'mediaAlt'       => 'Six friends talking in a lit hot tub under a timber pavilion after dark, a fire burning behind them',
 		'videoUrl'       => '',
+		/*
+		 * x is off centre so that at phone width — where the frame is a portrait
+		 * crop of a landscape photograph and only the horizontal axis has any
+		 * slack — the window lands on the whole group rather than slicing two
+		 * of them off at the right edge. On desktop there are 63px of slack, so
+		 * the same number moves the picture by four.
+		 */
 		'focalPoint'     => array(
-			'x' => 0.5,
+			'x' => 0.56,
 			'y' => 0.38,
 		),
 		'eyebrow'        => 'Eugene &amp; Bend, Oregon · since 1955',

@@ -62,17 +62,22 @@
 		sync();
 	}
 
-	/* ------------------------------------------- 2. reveal fallback only. */
+	/* -------------------------------------------------- 2. the reveal. */
 
 	/*
-	 * Browsers that support animation-timeline do the reveals themselves, in
-	 * CSS, off the main thread. This runs only where they do not.
+	 * Nothing on the page is hidden until this runs, and this runs only where an
+	 * observer exists and motion is wanted. `.ep-motion-ready` on <html> is the
+	 * one switch that lets CSS start an element hidden, so a script that never
+	 * loads, a browser without IntersectionObserver, and a visitor who asked for
+	 * reduced motion all get the same thing: content, visible.
+	 *
+	 * The observer is deliberately viewport-relative and cheap to satisfy —
+	 * threshold 0, no negative root margin — so a band taller than the viewport,
+	 * an element already on screen at load, and an element landed on by
+	 * `scrollTo` or an in-page anchor all resolve to revealed on the first
+	 * callback, which fires immediately on observe.
 	 */
-	if (
-		reduced.matches ||
-		! ( 'IntersectionObserver' in window ) ||
-		CSS.supports( 'animation-timeline', 'view()' )
-	) {
+	if ( reduced.matches || ! ( 'IntersectionObserver' in window ) ) {
 		return;
 	}
 
@@ -82,22 +87,45 @@
 		return;
 	}
 
-	/* Only now is it safe for CSS to start these elements hidden. */
-	document.documentElement.classList.add( 'ep-io' );
+	var reveal = function ( el ) {
+		el.classList.add( 'is-revealed' );
+	};
 
 	var observer = new IntersectionObserver(
 		function ( entries ) {
 			entries.forEach( function ( entry ) {
 				if ( entry.isIntersecting ) {
-					entry.target.classList.add( 'is-revealed' );
+					reveal( entry.target );
 					observer.unobserve( entry.target );
 				}
 			} );
 		},
-		{ rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
+		{ threshold: 0 }
 	);
+
+	/* Only now is it safe for CSS to start these elements hidden. */
+	document.documentElement.classList.add( 'ep-motion-ready' );
 
 	targets.forEach( function ( el ) {
 		observer.observe( el );
+	} );
+
+	/*
+	 * A last resort. If the observer is ever throttled out of existence — a
+	 * background tab restored, a browser that drops callbacks under memory
+	 * pressure — the page must not be left blank. Anything still hidden a couple
+	 * of seconds after load is simply shown.
+	 */
+	window.addEventListener( 'load', function () {
+		window.setTimeout( function () {
+			document
+				.querySelectorAll( '.ep-reveal:not(.is-revealed)' )
+				.forEach( function ( el ) {
+					if ( el.getBoundingClientRect().top < window.innerHeight ) {
+						reveal( el );
+						observer.unobserve( el );
+					}
+				} );
+		}, 2000 );
 	} );
 } )();

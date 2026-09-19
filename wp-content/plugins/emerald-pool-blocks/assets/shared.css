@@ -138,7 +138,12 @@
  * field is a light colour.
  */
 .ep-card__still {
-	padding: 6%;
+	/*
+	 * The drawing is inset far enough from the foot of the sheet to leave the
+	 * dimension line its own margin. Percentage padding resolves against the
+	 * sheet's width, so 9% of a 405px tile is the 36px the caption occupies.
+	 */
+	padding: 6% 6% 9%;
 	box-sizing: border-box;
 	mix-blend-mode: multiply;
 	filter: contrast(1.1);
@@ -162,7 +167,20 @@
 	transform: translateY(-2%) scale(1.04);
 }
 
-/* The dimension annotation, in the plan's own margin. */
+/*
+ * The dimension annotation, in the plan's own margin.
+ *
+ * The class selector is doubled deliberately. `.ep-night :where(p, li, dd, dt,
+ * figcaption)` in the theme is also a single-class selector, and it loads after
+ * this file, so it won `color` on equal specificity and printed this caption in
+ * sand on the sand sheet — invisible. The annotation belongs to the paper, not
+ * to the night ground it sits on, so it states that at a weight the ground
+ * cannot take back.
+ */
+.ep-card .ep-card__dims {
+	color: rgba(4, 20, 27, 0.5);
+}
+
 .ep-card__dims {
 	position: absolute;
 	inset: auto auto 0.75rem 0.9rem;
@@ -172,7 +190,6 @@
 	font-size: 0.625rem;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	color: rgba(4, 20, 27, 0.45);
 	pointer-events: none;
 }
 

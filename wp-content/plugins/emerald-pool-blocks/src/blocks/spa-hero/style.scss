@@ -260,9 +260,54 @@
 	}
 }
 
+/*
+ * The hero is art-directed at phone width.
+ *
+ * A 390px frame is a portrait crop of a landscape photograph: there is no
+ * vertical slack left to move a face with, so a group sitting at the middle of
+ * the frame sits behind the headline whatever `object-position` says — on the
+ * home page the family's faces were printed through the standfirst. So the
+ * photograph takes the top of the frame and the argument sits on the night
+ * ground below it, with the scrim carrying one into the other. The picture now
+ * has its own aspect, which gives `object-position` room to work horizontally,
+ * and no face can ever be under type.
+ */
 @media (max-width: 860px) {
 	.ep-hero {
-		padding-top: calc(var(--ep-header-h, 5.5rem) + var(--wp--preset--spacing--50));
+		/*
+		 * The picture's height is a length, not a fraction of the frame, and the
+		 * copy is padded past exactly that length. A fraction would move with
+		 * the length of the copy — a three-line headline pushed the photograph
+		 * down onto itself — and the whole point is that type never lands on the
+		 * photograph at all.
+		 */
+		--ep-hero-media-h: 46svh;
+
+		/*
+		 * The frame is the picture plus the copy, and no taller. The block's
+		 * `minHeight` attribute is a desktop composition instruction — a 92svh
+		 * hero with its content pinned to the bottom edge — and honouring it here
+		 * only opened a void between the photograph and the eyebrow.
+		 */
+		min-height: 0;
+		padding-top: calc(var(--ep-hero-media-h) + var(--wp--preset--spacing--30));
+
+		&__media,
+		&__video {
+			inset: 0 0 auto 0;
+			height: var(--ep-hero-media-h);
+		}
+
+		&__scrim {
+			background: linear-gradient(
+				180deg,
+				rgba(4, 20, 27, calc(var(--ep-hero-overlay, 0.62) * 0.8)) 0%,
+				rgba(4, 20, 27, calc(var(--ep-hero-overlay, 0.62) * 0.18)) 34%,
+				rgba(4, 20, 27, 0.5) calc(var(--ep-hero-media-h) - 6rem),
+				rgb(4, 20, 27) var(--ep-hero-media-h),
+				rgb(4, 20, 27) 100%
+			);
+		}
 
 		&__inner {
 			grid-template-columns: minmax(0, 1fr);
