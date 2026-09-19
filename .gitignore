@@ -1,7 +1,6 @@
 .env
 node_modules/
 build/
-scratch/
 .DS_Store
 
 # WordPress core drops its bundled themes/plugins into the bind mounts.
@@ -9,8 +8,6 @@ scratch/
 wp-content/uploads/
 wp-content/themes/*
 wp-content/plugins/*
-!wp-content/themes/.gitkeep
-!wp-content/plugins/.gitkeep
 !wp-content/themes/emerald-pool/
 !wp-content/plugins/emerald-pool-blocks/
 

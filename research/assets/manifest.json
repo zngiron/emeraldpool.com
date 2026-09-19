@@ -1,328 +1,184 @@
 {
- "generated": "2026-09-19",
- "source": "https://emeraldpool.com",
- "count": 40,
- "assets": [
-  {
-   "filename": "1757972433.jpg",
-   "sizeKB": 121,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/1757972433.jpg",
-   "depicts": "home: Kids on their inflatables in the pool",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "home"
-  },
-  {
-   "filename": "1I7A4726_001-scaled.webp",
-   "sizeKB": 155,
-   "source": "https://www.spadealership.com/wp-content/uploads/2025/10/1I7A4726_001-scaled.webp",
-   "depicts": "jetpak-therapy-system: Couple relaxing in a Bullfrog Spa",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "jetpak-therapy-system"
-  },
-  {
-   "filename": "1i7a4873-2076071.jpg",
-   "sizeKB": 156,
-   "source": "https://cdn.spasoftwaresolutions.net/banner_photos/1i7a4873-2076071.jpg",
-   "depicts": "CSS background image on model-45083",
-   "suggestedUse": "section background / hero",
-   "fromPage": "model-45083"
-  },
-  {
-   "filename": "3T2A4560_1.jpg",
-   "sizeKB": 145,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/3T2A4560_1.jpg",
-   "depicts": "services: image",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "services"
-  },
-  {
-   "filename": "3T2A5041.jpg",
-   "sizeKB": 300,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/04/3T2A5041.jpg",
-   "depicts": "CSS background image on home",
-   "suggestedUse": "section background / hero",
-   "fromPage": "home"
-  },
-  {
-   "filename": "3T2A5585.jpg",
-   "sizeKB": 177,
-   "source": "https://www.spadealership.com/wp-content/uploads/2025/10/3T2A5585.jpg",
-   "depicts": "jetpak-therapy-system: Three women relaxing in a Bullfrog Spa",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "jetpak-therapy-system"
-  },
-  {
-   "filename": "3T2A5613_2.jpg",
-   "sizeKB": 158,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/3T2A5613_2.jpg",
-   "depicts": "OG/social image for hot-tubs",
-   "suggestedUse": "hero or card background",
-   "fromPage": "hot-tubs"
-  },
-  {
-   "filename": "7294665.jpg",
-   "sizeKB": 289,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/7294665.jpg",
-   "depicts": "OG/social image for services",
-   "suggestedUse": "hero or card background",
-   "fromPage": "services"
-  },
-  {
-   "filename": "7731327.jpg",
-   "sizeKB": 175,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/04/7731327.jpg",
-   "depicts": "OG/social image for get-quote",
-   "suggestedUse": "hero or card background",
-   "fromPage": "get-quote"
-  },
-  {
-   "filename": "8867434.jpg",
-   "sizeKB": 100,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/8867434.jpg",
-   "depicts": "OG/social image for contact-us",
-   "suggestedUse": "hero or card background",
-   "fromPage": "contact-us"
-  },
-  {
-   "filename": "9620215.jpg",
-   "sizeKB": 209,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/9620215.jpg",
-   "depicts": "services: image",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "services"
-  },
-  {
-   "filename": "a7-choice-topdown-395431.jpg",
-   "sizeKB": 61,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/a7-choice-topdown-395431.jpg",
-   "depicts": "Bullfrog Spas Model A7D — Model A7",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45091"
-  },
-  {
-   "filename": "a7d-top-down-71713.jpg",
-   "sizeKB": 94,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/a7d-top-down-71713.jpg",
-   "depicts": "OG/social image for model-45091",
-   "suggestedUse": "hero or card background",
-   "fromPage": "model-45091"
-  },
-  {
-   "filename": "a7l-top-down-29045.jpg",
-   "sizeKB": 71,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/a7l-top-down-29045.jpg",
-   "depicts": "Bullfrog Spas Model A7D — Model A7L",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45091"
-  },
-  {
-   "filename": "a8l-top-down-78210.jpg",
-   "sizeKB": 101,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/a8l-top-down-78210.jpg",
-   "depicts": "Bullfrog Spas Model A7D — Model A8L",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45091"
-  },
-  {
-   "filename": "a9l-top-down-89059.jpg",
-   "sizeKB": 115,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/a9l-top-down-89059.jpg",
-   "depicts": "bullfrog-spas: image",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "bullfrog-spas"
-  },
-  {
-   "filename": "best.png",
-   "sizeKB": 2334,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/04/best.png",
-   "depicts": "OG/social image for home",
-   "suggestedUse": "hero or card background",
-   "fromPage": "home"
-  },
-  {
-   "filename": "calm-7-topdown-1084771.jpg",
-   "sizeKB": 58,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/calm-7-topdown-1084771.jpg",
-   "depicts": "bullfrog-spas: image",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "bullfrog-spas"
-  },
-  {
-   "filename": "careers-emerald-pool-patio.jpg",
-   "sizeKB": 203,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/04/careers-emerald-pool-patio.jpg",
-   "depicts": "OG/social image for careers",
-   "suggestedUse": "hero or card background",
-   "fromPage": "careers"
-  },
-  {
-   "filename": "contractor10.jpg",
-   "sizeKB": 170,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/contractor10.jpg",
-   "depicts": "services: image",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "services"
-  },
-  {
-   "filename": "core-1800l-top-182091.jpg",
-   "sizeKB": 76,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/dream_maker_spas/2025/core-1800l-top-182091.jpg",
-   "depicts": "Bullfrog Spas Model M8 — Core 1800L",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45071"
-  },
-  {
-   "filename": "core1800c-189238.jpg",
-   "sizeKB": 75,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/dream_maker_spas/2025/core1800c-189238.jpg",
-   "depicts": "Bullfrog Spas Model M8 — Core 1800C",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45071"
-  },
-  {
-   "filename": "emerald-pool-logo-blue-70.png",
-   "sizeKB": 20,
-   "source": "https://emeraldpool.com/wp-content/plugins/sss-emeraldpool-dot-com-local-variables-and-settings-wp-plugin/images/emerald-pool-logo-blue-70.png",
-   "depicts": "Emerald Pool & Patio wordmark logo (blue)",
-   "suggestedUse": "site header logo",
-   "fromPage": "global"
-  },
-  {
-   "filename": "favicon.ico",
-   "sizeKB": 1,
-   "source": "https://emeraldpool.com/favicon.ico",
-   "depicts": "favicon",
-   "suggestedUse": "site icon",
-   "fromPage": "global"
-  },
-  {
-   "filename": "Flora-Duffy-Swim-6_1.jpg",
-   "sizeKB": 190,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/Flora-Duffy-Swim-6_1.jpg",
-   "depicts": "OG/social image for swim-spas",
-   "suggestedUse": "hero or card background",
-   "fromPage": "swim-spas"
-  },
-  {
-   "filename": "how-to-enjoy-your-hot-tub-this-winter.jpg",
-   "sizeKB": 116,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/how-to-enjoy-your-hot-tub-this-winter.jpg",
-   "depicts": "OG/social image for how-to-enjoy-your-hot-tub-this-winter",
-   "suggestedUse": "hero or card background",
-   "fromPage": "how-to-enjoy-your-hot-tub-this-winter"
-  },
-  {
-   "filename": "IronStrike-wbst-Tahoma2100_PD-1136x852-1.jpg",
-   "sizeKB": 96,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/IronStrike-wbst-Tahoma2100_PD-1136x852-1.jpg",
-   "depicts": "CSS background image on home",
-   "suggestedUse": "section background / hero",
-   "fromPage": "home"
-  },
-  {
-   "filename": "jetpak-personalization-low-960.jpg",
-   "sizeKB": 23,
-   "source": "https://www.spadealership.com/wp-content/uploads/2025/10/jetpak-personalization-low-960.jpg",
-   "depicts": "jetpak-therapy-system: A close up of a man changing out a JetPak",
-   "suggestedUse": "pattern/lifestyle image",
-   "fromPage": "jetpak-therapy-system"
-  },
-  {
-   "filename": "m6-top-down-312403.jpg",
-   "sizeKB": 58,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m6-top-down-312403.jpg",
-   "depicts": "OG/social image for model-45073",
-   "suggestedUse": "hero or card background",
-   "fromPage": "model-45073"
-  },
-  {
-   "filename": "m7-top-down-392714.jpg",
-   "sizeKB": 71,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m7-top-down-392714.jpg",
-   "depicts": "Bullfrog Spas Model M6 — Model M7",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45073"
-  },
-  {
-   "filename": "m8-top-down-2026-527020.jpg",
-   "sizeKB": 78,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/m8-top-down-2026-527020.jpg",
-   "depicts": "OG/social image for model-45071",
-   "suggestedUse": "hero or card background",
-   "fromPage": "model-45071"
-  },
-  {
-   "filename": "m9-top-down-602603.jpg",
-   "sizeKB": 102,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m9-top-down-602603.jpg",
-   "depicts": "Bullfrog Spas Model M8 — Model M9",
-   "suggestedUse": "spa CPT featured image / gallery",
-   "fromPage": "model-45071"
-  },
-  {
-   "filename": "meet-our-team-main-pg-emerald-pool-and-patio_1.jpg",
-   "sizeKB": 276,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/03/meet-our-team-main-pg-emerald-pool-and-patio_1.jpg",
-   "depicts": "OG/social image for about-us",
-   "suggestedUse": "hero or card background",
-   "fromPage": "about-us"
-  },
-  {
-   "filename": "pexels-f-h-13201426-scaled.jpg",
-   "sizeKB": 412,
-   "source": "https://emeraldpool.com/wp-content/uploads/2024/02/pexels-f-h-13201426-scaled.jpg",
-   "depicts": "CSS background image on home",
-   "suggestedUse": "section background / hero",
-   "fromPage": "home"
-  },
-  {
-   "filename": "s150-topdown-454196.jpg",
-   "sizeKB": 81,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s150-topdown-454196.jpg",
-   "depicts": "Bullfrog Spas S150 Swim Spa — top-down product render",
-   "suggestedUse": "spa CPT featured image (swim spa)",
-   "fromPage": "model-45083"
-  },
-  {
-   "filename": "s180xd-topdown-723269.jpg",
-   "sizeKB": 98,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s180xd-topdown-723269.jpg",
-   "depicts": "Bullfrog Spas S180XD Swim Spa — top-down product render",
-   "suggestedUse": "spa CPT featured image (swim spa)",
-   "fromPage": "model-45085"
-  },
-  {
-   "filename": "s200-topdown-658305.jpg",
-   "sizeKB": 103,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s200-topdown-658305.jpg",
-   "depicts": "Bullfrog Spas S200 Swim Spa — top-down product render",
-   "suggestedUse": "spa CPT featured image (swim spa)",
-   "fromPage": "model-45084"
-  },
-  {
-   "filename": "stil-7-top-down-301987.jpg",
-   "sizeKB": 47,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/stil-7-top-down-301987.jpg",
-   "depicts": "Bullfrog Spas STIL7 — top-down product render",
-   "suggestedUse": "spa CPT featured image (hot tub)",
-   "fromPage": "hot-tubs"
-  },
-  {
-   "filename": "x6l-standard-snow-top-1064121.jpg",
-   "sizeKB": 102,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x6l-standard-snow-top-1064121.jpg",
-   "depicts": "Bullfrog Spas Model X6L — top-down product render",
-   "suggestedUse": "spa CPT featured image (hot tub)",
-   "fromPage": "hot-tubs"
-  },
-  {
-   "filename": "x7-standard-snow-top-1582766.jpg",
-   "sizeKB": 141,
-   "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x7-standard-snow-top-1582766.jpg",
-   "depicts": "Bullfrog Spas Model X7 — top-down product render",
-   "suggestedUse": "spa CPT featured image (hot tub)",
-   "fromPage": "model-45078"
-  }
- ],
- "note": "Scraped from emeraldpool.com for a non-commercial internal demo. Largest srcset variant preferred; files <20KB dropped except logo/favicon."
+  "generated": "2026-09-19",
+  "source": "https://emeraldpool.com",
+  "count": 22,
+  "assets": [
+    {
+      "filename": "1I7A4726_001-scaled.webp",
+      "sizeKB": 155,
+      "source": "https://www.spadealership.com/wp-content/uploads/2025/10/1I7A4726_001-scaled.webp",
+      "depicts": "jetpak-therapy-system: Couple relaxing in a Bullfrog Spa",
+      "suggestedUse": "pattern/lifestyle image",
+      "fromPage": "jetpak-therapy-system"
+    },
+    {
+      "filename": "3T2A4560_1.jpg",
+      "sizeKB": 145,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/3T2A4560_1.jpg",
+      "depicts": "services: image",
+      "suggestedUse": "pattern/lifestyle image",
+      "fromPage": "services"
+    },
+    {
+      "filename": "3T2A5041.jpg",
+      "sizeKB": 300,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/04/3T2A5041.jpg",
+      "depicts": "CSS background image on home",
+      "suggestedUse": "section background / hero",
+      "fromPage": "home"
+    },
+    {
+      "filename": "3T2A5585.jpg",
+      "sizeKB": 177,
+      "source": "https://www.spadealership.com/wp-content/uploads/2025/10/3T2A5585.jpg",
+      "depicts": "jetpak-therapy-system: Three women relaxing in a Bullfrog Spa",
+      "suggestedUse": "pattern/lifestyle image",
+      "fromPage": "jetpak-therapy-system"
+    },
+    {
+      "filename": "3T2A5613_2.jpg",
+      "sizeKB": 158,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/3T2A5613_2.jpg",
+      "depicts": "OG/social image for hot-tubs",
+      "suggestedUse": "hero or card background",
+      "fromPage": "hot-tubs"
+    },
+    {
+      "filename": "a7d-top-down-71713.jpg",
+      "sizeKB": 94,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/a7d-top-down-71713.jpg",
+      "depicts": "OG/social image for model-45091",
+      "suggestedUse": "hero or card background",
+      "fromPage": "model-45091"
+    },
+    {
+      "filename": "calm-7-topdown-1084771.jpg",
+      "sizeKB": 58,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/calm-7-topdown-1084771.jpg",
+      "depicts": "bullfrog-spas: image",
+      "suggestedUse": "pattern/lifestyle image",
+      "fromPage": "bullfrog-spas"
+    },
+    {
+      "filename": "emerald-pool-logo-blue-70.png",
+      "sizeKB": 20,
+      "source": "https://emeraldpool.com/wp-content/plugins/sss-emeraldpool-dot-com-local-variables-and-settings-wp-plugin/images/emerald-pool-logo-blue-70.png",
+      "depicts": "Emerald Pool & Patio wordmark logo (blue)",
+      "suggestedUse": "site header logo",
+      "fromPage": "global"
+    },
+    {
+      "filename": "favicon.ico",
+      "sizeKB": 1,
+      "source": "https://emeraldpool.com/favicon.ico",
+      "depicts": "favicon",
+      "suggestedUse": "site icon",
+      "fromPage": "global"
+    },
+    {
+      "filename": "Flora-Duffy-Swim-6_1.jpg",
+      "sizeKB": 190,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/Flora-Duffy-Swim-6_1.jpg",
+      "depicts": "OG/social image for swim-spas",
+      "suggestedUse": "hero or card background",
+      "fromPage": "swim-spas"
+    },
+    {
+      "filename": "how-to-enjoy-your-hot-tub-this-winter.jpg",
+      "sizeKB": 116,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/how-to-enjoy-your-hot-tub-this-winter.jpg",
+      "depicts": "OG/social image for how-to-enjoy-your-hot-tub-this-winter",
+      "suggestedUse": "hero or card background",
+      "fromPage": "how-to-enjoy-your-hot-tub-this-winter"
+    },
+    {
+      "filename": "jetpak-personalization-low-960.jpg",
+      "sizeKB": 23,
+      "source": "https://www.spadealership.com/wp-content/uploads/2025/10/jetpak-personalization-low-960.jpg",
+      "depicts": "jetpak-therapy-system: A close up of a man changing out a JetPak",
+      "suggestedUse": "pattern/lifestyle image",
+      "fromPage": "jetpak-therapy-system"
+    },
+    {
+      "filename": "m6-top-down-312403.jpg",
+      "sizeKB": 58,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m6-top-down-312403.jpg",
+      "depicts": "OG/social image for model-45073",
+      "suggestedUse": "hero or card background",
+      "fromPage": "model-45073"
+    },
+    {
+      "filename": "m8-top-down-2026-527020.jpg",
+      "sizeKB": 78,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/m8-top-down-2026-527020.jpg",
+      "depicts": "OG/social image for model-45071",
+      "suggestedUse": "hero or card background",
+      "fromPage": "model-45071"
+    },
+    {
+      "filename": "m9-top-down-602603.jpg",
+      "sizeKB": 102,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m9-top-down-602603.jpg",
+      "depicts": "Bullfrog Spas Model M8 \u2014 Model M9",
+      "suggestedUse": "spa CPT featured image / gallery",
+      "fromPage": "model-45071"
+    },
+    {
+      "filename": "meet-our-team-main-pg-emerald-pool-and-patio_1.jpg",
+      "sizeKB": 276,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/03/meet-our-team-main-pg-emerald-pool-and-patio_1.jpg",
+      "depicts": "OG/social image for about-us",
+      "suggestedUse": "hero or card background",
+      "fromPage": "about-us"
+    },
+    {
+      "filename": "s150-topdown-454196.jpg",
+      "sizeKB": 81,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s150-topdown-454196.jpg",
+      "depicts": "Bullfrog Spas S150 Swim Spa \u2014 top-down product render",
+      "suggestedUse": "spa CPT featured image (swim spa)",
+      "fromPage": "model-45083"
+    },
+    {
+      "filename": "s180xd-topdown-723269.jpg",
+      "sizeKB": 98,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s180xd-topdown-723269.jpg",
+      "depicts": "Bullfrog Spas S180XD Swim Spa \u2014 top-down product render",
+      "suggestedUse": "spa CPT featured image (swim spa)",
+      "fromPage": "model-45085"
+    },
+    {
+      "filename": "s200-topdown-658305.jpg",
+      "sizeKB": 103,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s200-topdown-658305.jpg",
+      "depicts": "Bullfrog Spas S200 Swim Spa \u2014 top-down product render",
+      "suggestedUse": "spa CPT featured image (swim spa)",
+      "fromPage": "model-45084"
+    },
+    {
+      "filename": "stil-7-top-down-301987.jpg",
+      "sizeKB": 47,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/stil-7-top-down-301987.jpg",
+      "depicts": "Bullfrog Spas STIL7 \u2014 top-down product render",
+      "suggestedUse": "spa CPT featured image (hot tub)",
+      "fromPage": "hot-tubs"
+    },
+    {
+      "filename": "x6l-standard-snow-top-1064121.jpg",
+      "sizeKB": 102,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x6l-standard-snow-top-1064121.jpg",
+      "depicts": "Bullfrog Spas Model X6L \u2014 top-down product render",
+      "suggestedUse": "spa CPT featured image (hot tub)",
+      "fromPage": "hot-tubs"
+    },
+    {
+      "filename": "x7-standard-snow-top-1582766.jpg",
+      "sizeKB": 141,
+      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x7-standard-snow-top-1582766.jpg",
+      "depicts": "Bullfrog Spas Model X7 \u2014 top-down product render",
+      "suggestedUse": "spa CPT featured image (hot tub)",
+      "fromPage": "model-45078"
+    }
+  ],
+  "note": "Scraped from emeraldpool.com for a non-commercial internal demo. Largest srcset variant preferred; files <20KB dropped except logo/favicon. Phase 3 pruned this set to the files the theme and seed actually use."
 }

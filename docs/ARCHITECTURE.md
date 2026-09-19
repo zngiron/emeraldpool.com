@@ -27,7 +27,7 @@ wp-content/themes/emerald-pool/
 ├── patterns/                     14 PHP patterns — where the page content lives.
 └── assets/
     ├── fonts/                    2 self-hosted variable woff2 (92 KB total).
-    ├── images/                   21 images, only those a pattern references.
+    ├── images/                   15 images, only those a pattern or brand_config() references.
     ├── js/block-variations.js    Editor-only. Nothing ships to the front end.
     └── css/
         ├── theme.css             Global layer: focus, skip link, motion, the form.
