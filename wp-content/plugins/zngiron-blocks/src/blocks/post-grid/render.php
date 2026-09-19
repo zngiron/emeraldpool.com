@@ -44,7 +44,15 @@ $z_query = new \WP_Query(
     )
 );
 
-$z_wrapper = get_block_wrapper_attributes( array( 'class' => 'z-post-grid has-' . $z_columns . '-columns' ) );
+/*
+ * The post type is on the wrapper so a theme can tell a catalogue of product
+ * renders from a grid of photographs. They are not the same object: a render is
+ * a drawing on white that wants containing on a paper ground, a photograph wants
+ * filling its frame. The block does not decide that; it says what it is.
+ */
+$z_wrapper = get_block_wrapper_attributes(
+    array( 'class' => 'z-post-grid has-' . $z_columns . '-columns is-type-' . sanitize_html_class( $z_post_type ) )
+);
 
 if ( ! $z_query->have_posts() ) {
     printf(
