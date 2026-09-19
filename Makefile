@@ -2,7 +2,7 @@ SHELL := /bin/bash
 include .env
 export
 
-.PHONY: up down logs wp install seed reset
+.PHONY: up down logs wp install seed reset shots crawl axe
 
 up:
 	docker compose up -d
@@ -37,3 +37,18 @@ reset:
 	docker compose up -d
 	@sleep 10
 	$(MAKE) install
+
+# Viewport screenshots plus the layout assertions, at six widths.
+# Shots land in .shots/ (ignored); docs/screenshots/ is a curated selection.
+# usage: make shots ARGS="--widths=390,1440 --pages=home"
+OUT ?= .shots
+shots:
+	node tools/screenshot.js $(OUT) $(ARGS)
+
+# Every internal link and image, once.
+crawl:
+	python3 seed/crawl.py $(WP_URL)
+
+# axe-core colour contrast, AA.
+axe:
+	python3 seed/axe.py $(WP_URL)
