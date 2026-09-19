@@ -8,8 +8,9 @@ The site is a base theme (`zngiron-base`) plus a blocks plugin (`zngiron-blocks`
 namespace, with a strict sizing contract so another brand's photographs and copy drop in
 without per-image tuning. Emerald Pool is the first brand configured on it.
 
-See `docs/ARCHITECTURE.md` for how it fits together, `docs/BLOCKS.md` for the blocks, and
-`docs/superpowers/specs/` for the design the build follows.
+Start at `docs/CTO-SUMMARY.md`. `docs/ARCHITECTURE.md` is how it fits together, `docs/BLOCKS.md`
+is the blocks, `docs/IA-UX-AUDIT.md` is the audit and the IA that shipped, and
+`docs/superpowers/specs/` is the design the build follows.
 
 ## Requirements
 
@@ -76,18 +77,19 @@ seed/
   media.txt               attachment key -> file in research/assets
   content/*.html          block markup for each page and journal post
   php/content.php         creates the posts, pages, menu and options (idempotent)
+  crawl.py                `make crawl`: every internal link and image
+  axe.py                  `make axe`: axe-core colour contrast
 research/                 scraped source material
   pages/*.md                per-page copy, headings, CTAs, images
   site.json                 nav, footer, contact, page index, taxonomies
   spa-specs.json            spec tables for 7 representative models
   design-tokens.md          observed colours, fonts, spacing
-  assets/                   22 downloaded images + manifest.json
+  assets/                   33 downloaded images + manifest.json
 docs/
+  CTO-SUMMARY.md          what was delivered, and what production would need — start here
   ARCHITECTURE.md         the folder map, the sizing contract, and how to rebrand
   BLOCKS.md               the twelve custom blocks
-  PLAN.md                 the build plan
-  IA-UX-AUDIT.md          audit of the live site + the IA this rebuild implements
-  CTO-SUMMARY.md          what was delivered, and what production would need
+  IA-UX-AUDIT.md          audit of the live site + the IA that shipped
   screenshots/            twenty curated captures of the seeded site
   superpowers/specs/      the approved design this build follows
 ```

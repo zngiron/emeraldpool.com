@@ -1,11 +1,17 @@
-# emeraldpool.com — IA / UX / UI / code audit + proposed rebuild
+# emeraldpool.com — IA / UX / UI / code audit, and the IA that shipped
 
-Audited 2026-09-19 against the live site. Stack: WordPress 7.1.1, WooCommerce 11.1.1, classic PHP
-theme `wordpress-spa-logic-hot-tubs-theme`, driven by the `spa-software-solutions` (SSS) vendor
-catalog plugin plus a per-client settings plugin. Hosting: SiteGround (SG Optimizer).
+Audited 2026-09-19 against the live site, then rebuilt. **The IA described here is delivered**: run
+`make up && make install && make seed` and browse http://localhost:8080. Section 2 is the findings
+from the live site, kept as the record of why the rebuild looks the way it does. Section 3 is the
+shipped information architecture, and section 4 is the page-by-page plan the build followed.
+
+The live stack at the time of the audit: WordPress 7.1.1, WooCommerce 11.1.1, classic PHP theme
+`wordpress-spa-logic-hot-tubs-theme`, driven by the `spa-software-solutions` vendor catalog plugin
+plus a per-client settings plugin. Hosting: SiteGround (SG Optimizer).
 
 Raw extraction lives in `research/pages/*.md`, `research/site.json`, `research/spa-specs.json`,
-`research/design-tokens.md`, `research/assets/manifest.json`.
+`research/design-tokens.md`, `research/assets/manifest.json`. What the delivered system is made of
+is in `docs/ARCHITECTURE.md`; what it looks like is in `docs/screenshots/`.
 
 ---
 
@@ -119,57 +125,58 @@ signup · © 2026 · Accessibility · Privacy · vendor credit.
 
 ---
 
-## 3. Proposed IA
+## 3. The IA that shipped
 
-Scope for this demo: **marketing site only. No WooCommerce.** Products are a `spa` custom post type
-with `spa_collection`, `spa_type` and `spa_feature` taxonomies. Clean, permanent URLs.
+Marketing site only, **no WooCommerce**. Products are a `spa` custom post type with two taxonomies,
+`spa_type` and `spa_series`, and clean permanent URLs.
 
 ```
 /                             Home
-/hot-tubs/                    Hot Tubs — listing (archive of spa_type=hot-tub)
-/hot-tubs/<model>/            Single spa   e.g. /hot-tubs/bullfrog-x7/
-/swim-spas/                   Swim Spas — listing (archive of spa_type=swim-spa)
-/swim-spas/<model>/           Single spa   e.g. /swim-spas/bullfrog-s200/
-/collections/<series>/        Series landing (A · M · X · STIL · Calm · Swim)
-/why-bullfrog/                Why Bullfrog — one page absorbing the six "Difference" pages
-/services/                    Services hub
-/services/<service>/          Individual service
+/hot-tubs/                    Hot tubs — curated page: hero, filtered grid, compare table
+/swim-spas/                   Swim spas — same shape
+/spas/                        Every model (the post type archive)
+/spas/<model>/                Single spa           e.g. /spas/bullfrog-x7/
+/spa-type/<type>/             Type archive         hot-tubs · swim-spas
+/series/<series>/             Series archive       a-series · m-series · x-series · stil · calm ·
+                                                   swim-series
+/services/                    Services
 /financing/                   Financing
-/about/                       About
-/locations/eugene/            Eugene store  (indexable, map, hours, phone)
-/locations/bend/              Bend store
-/blog/  /blog/<post>/         Blog
+/about/                       About, including both showrooms
+/journal/  /<post>/           Journal
 /faq/                         FAQ
-/contact/                     Contact
+/contact/                     Contact — the one form on the site
+/privacy/  /accessibility/    Policies
 ```
 
-Redirects: every `/models/detail/?unit_id=N` → its new `/hot-tubs/<model>/` slug;
-`/spas-hot-tubs/`, `/bullfrog-spas/` → `/hot-tubs/`; `/shop/`, `/cart/`, `/checkout/`,
-`/my-account/`, `/mockup/`, `/grills-mockup/` → 410 or home.
-
-### Proposed navigation
-
-Primary (7 items, max 2 levels, no mega menu):
+Navigation is six items and one button, two levels deep, no mega menu:
 
 ```
-Hot Tubs   → All Hot Tubs · By Series (A · M · X · STIL · Calm) · Compare Models
-Swim Spas  → All Swim Spas · Swim Series
-Why Bullfrog
-Services   → All Services · Water Care · Delivery & Install · Repair · Seasonal
+Hot Tubs   → All hot tubs · A Series · M Series · X Series · STIL · Calm · Every model
+Swim Spas
+Services
 Financing
-About      → Our Story · Eugene · Bend · Blog · FAQ
-Contact            [persistent button: "Get a Quote"]
+About      → Our story · Journal · FAQ
+Contact                          [phone number, and a filled "Get a quote"]
 ```
 
-Utility bar: phone for the nearer store · store hours · Eugene/Bend switcher.
-Footer: 4 columns (Products · Services · Company · Visit Us) + one newsletter field. **One** contact
-form, on `/contact/` only; everywhere else a CTA that links to it.
+Below 1080px that row becomes an off-canvas panel — measured, not chosen: 1080px is where a logo,
+six items, a phone number and a filled call to action last fit on one line.
 
+Two things in the audit were deliberately not shipped. Product URLs are `/spas/<model>/` rather than
+`/hot-tubs/<model>/`, because the type-aware rewrite carries a redirect map for 4,090 existing
+`/models/detail/?unit_id=N` URLs and that map is the real work. And the six "Difference" pages are
+absorbed into `/about/` and `/services/` rather than into a separate `/why-bullfrog/`.
+
+Redirects production will still need: every `/models/detail/?unit_id=N` to its new slug;
+`/spas-hot-tubs/` and `/bullfrog-spas/` to `/hot-tubs/`; `/shop/`, `/cart/`, `/checkout/`,
+`/my-account/`, `/mockup/` and `/grills-mockup/` to 410 or home.
 ---
 
 ## 4. Page-by-page section plan
 
-Each section below is a block pattern. Custom blocks are marked **[block]**.
+The section order the build followed, page by page. Working names in **[block: …]** are from the
+audit; what each became is in the table in section 5, and every section below is a pattern in
+`wp-content/themes/zngiron-base/patterns/`.
 
 ### Home
 1. Hero — full-bleed lifestyle image, H1 "Oregon's hot tub, pool and patio people since 1955", sub, dual CTA (Browse Hot Tubs / Book a Site Consultation). **[block: hero-media]**
@@ -250,18 +257,23 @@ Schema: `FAQPage` JSON-LD.
 
 ---
 
-## 5. Custom blocks this implies (phase 2 — pick 5–8)
+## 5. What the audit's blocks became
 
-| Block | Used on |
+Twelve blocks shipped, namespace `zngiron`. The audit's working names map onto them like this:
+
+| Audit name | Shipped as |
 |---|---|
-| `spa-grid` | Home, both listings, single spa |
-| `spa-filter` | Both listings |
-| `spec-table` | Single spa |
-| `location-bar` | Home, About, Contact, footer |
-| `quote-cta` | Nearly every page |
-| `faq-accordion` | FAQ, single spa, Financing |
-| `testimonial-slider` | Home, About |
-| `payment-estimator` | Financing |
+| `hero-media` | `zngiron/hero` |
+| `spa-grid` + `spa-filter` | `zngiron/post-grid` — any post type, optional taxonomy filter chips |
+| `spec-table` | `zngiron/specs-table`, plus `zngiron/compare-table` for models side by side |
+| `location-bar` | `zngiron/locations` |
+| `quote-cta` | core Buttons through the shared `Render::buttons()` — it never needed a block |
+| `faq-accordion` | `zngiron/faq`, with FAQPage JSON-LD |
+| `testimonial-slider` | `zngiron/testimonials` |
+| `payment-estimator` | not built — a finance calculator is a regulated-copy decision, not a build task |
+
+Five more arrived that the audit did not name: `zngiron/media-text`, `zngiron/card-grid` and its
+`zngiron/card`, `zngiron/stats` and `zngiron/marquee`. The full inventory with attributes is in `docs/BLOCKS.md`.
 
 `theme.json` supplies the palette, type scale and spacing scale from `research/design-tokens.md`,
 so none of these blocks ships its own colours.
