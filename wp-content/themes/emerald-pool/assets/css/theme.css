@@ -254,6 +254,21 @@ body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned
 /* The filled CTA is the one solid mark in the header and never inverts. */
 .ep-site-header .wp-block-button__link {
 	padding: 0.8rem 1.4rem;
+	white-space: nowrap;
+}
+
+/* The brand lockup never crowds the nav. */
+.ep-site-header .wp-block-image img {
+	max-width: min(162px, 38vw);
+	height: auto;
+}
+
+@media (max-width: 600px) {
+	.ep-site-header .wp-block-button__link {
+		padding: 0.7rem 1rem;
+		font-size: 0.6875rem;
+		letter-spacing: 0.08em;
+	}
 }
 
 .ep-site-header .wp-block-navigation__responsive-container-open,
@@ -269,6 +284,20 @@ main {
 body:has(main > .ep-hero:first-child) main,
 body:has(main > .entry-content > .ep-hero:first-child) main {
 	padding-top: 0;
+}
+
+/*
+ * A page that opens on a night band instead of a hero — the single spa — would
+ * otherwise show a strip of page background between the header and the dark
+ * ground, which reads as a seam rather than as a decision. The band absorbs the
+ * header's height itself.
+ */
+body:has(main > .ep-night:first-child) main {
+	padding-top: 0;
+}
+
+main > .ep-night:first-child {
+	padding-top: calc(var(--ep-header-h, 5.5rem) + var(--wp--preset--spacing--60));
 }
 
 /* The phone number reads as a link, not a button. */

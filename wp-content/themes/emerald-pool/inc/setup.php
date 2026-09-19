@@ -74,11 +74,43 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\after_setup_theme' );
 
 /**
  * Trim head output the design does not use.
+ *
+ * The emoji polyfill is the expensive one: twemoji plus its loader and the blob
+ * it builds come to roughly 17 KB of JavaScript on every page, to replace emoji
+ * that every browser this theme supports already draws itself. Nothing in the
+ * design uses them, so they are removed rather than deferred.
  */
 function tidy_head(): void {
 	remove_action( 'wp_head', 'wp_generator' );
 	remove_action( 'wp_head', 'rsd_link' );
 	remove_action( 'wp_head', 'wlwmanifest_link' );
+
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+
+	add_filter( 'emoji_svg_url', '__return_false' );
+	add_filter(
+		'wp_resource_hints',
+		static function ( array $urls, string $relation ): array {
+			if ( 'dns-prefetch' !== $relation ) {
+				return $urls;
+			}
+
+			return array_values(
+				array_filter(
+					$urls,
+					static fn( $url ): bool => ! is_string( $url ) || ! str_contains( $url, 's.w.org' )
+				)
+			);
+		},
+		10,
+		2
+	);
 }
 add_action( 'init', __NAMESPACE__ . '\\tidy_head' );
 

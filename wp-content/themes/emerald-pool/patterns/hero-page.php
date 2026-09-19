@@ -15,9 +15,11 @@ $ep_hero = wp_json_encode(
 		'mediaUrl'       => get_theme_file_uri( 'assets/images/hero-hot-tubs.jpg' ),
 		'mediaAlt'       => 'A hot tub on a covered deck, lid open, water still',
 		'eyebrow'        => 'Hot tubs',
-		'heading'        => 'Six to nine seats, built for Oregon',
+		'heading'        => 'Six to nine seats, built for <em>Oregon</em>',
 		'standfirst'     => 'Every model here is insulated for a wet, cold winter and serviced by our own people.',
-		'overlayOpacity' => 52,
+		'overlayOpacity' => 66,
+		'metaHeading'    => 'On the floor now',
+		'metaBody'       => "Eugene · Mon–Sat 9–6\nBend · Mon–Fri 9–6, Sat 9–5",
 		'minHeight'      => 46,
 		'align'          => 'full',
 	)

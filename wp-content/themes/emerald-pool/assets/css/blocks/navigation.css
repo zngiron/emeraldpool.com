@@ -2,52 +2,103 @@
 
 .wp-block-navigation .wp-block-navigation-item__content {
 	padding-block: 0.4rem;
-	border-bottom: 2px solid transparent;
-	transition: border-color var(--wp--custom--transition--base);
+	position: relative;
 }
 
-.wp-block-navigation .wp-block-navigation-item__content:hover,
-.wp-block-navigation .current-menu-item > .wp-block-navigation-item__content {
-	border-bottom-color: var(--wp--preset--color--accent);
+/*
+ * The underline is drawn on hover rather than carried, and it is drawn from the
+ * left, so the nav is still and quiet until it is used.
+ */
+.wp-block-navigation .wp-block-navigation-item__content::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 1px;
+	background: var(--wp--preset--color--ember);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform var(--wp--custom--transition--base);
+}
+
+.wp-block-navigation .wp-block-navigation-item__content:hover::after,
+.wp-block-navigation .current-menu-item > .wp-block-navigation-item__content::after {
+	transform: scaleX(1);
 }
 
 /* Submenus: a calm panel, opened by click or keyboard, never on hover alone. */
 .wp-block-navigation .wp-block-navigation__submenu-container {
-	background-color: var(--wp--preset--color--base);
-	border: 1px solid var(--wp--preset--color--border);
-	border-radius: var(--wp--custom--radius--md);
+	background-color: var(--wp--preset--color--abyss);
+	border: 0;
+	border-radius: 0;
 	box-shadow: var(--wp--custom--shadow--lift);
-	padding: 0.5rem;
+	padding: 0.5rem 0;
 	min-width: 15rem;
 }
 
 .wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
-	padding: 0.5rem 0.75rem;
-	border-radius: var(--wp--custom--radius--sm);
-	border-bottom: 0;
+	padding: 0.55rem 1rem;
+	color: var(--wp--preset--color--sand);
 }
 
 .wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover {
-	background-color: var(--wp--preset--color--surface);
+	color: var(--wp--preset--color--ember);
 }
 
-/* The off-canvas panel. User-triggered only: no auto-open, no overlay on load. */
+.wp-block-navigation .wp-block-navigation__submenu-container .wp-block-navigation-item__content::after {
+	display: none;
+}
+
+/* --- The off-canvas panel ------------------------------------------------ */
+
+/*
+ * User-triggered only: no auto-open, no overlay on load. It is the night ground
+ * like the rest of the design, and the items are set at display scale because
+ * there are only six of them and the panel is otherwise empty.
+ */
 .wp-block-navigation__responsive-container.is-menu-open {
-	background-color: var(--wp--preset--color--base);
-	padding: var(--wp--preset--spacing--40) var(--wp--preset--spacing--30);
+	background-color: var(--wp--preset--color--abyss);
+	padding: var(--wp--preset--spacing--40) var(--wp--custom--gutter);
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
-	padding-top: var(--wp--preset--spacing--30);
+	padding-top: var(--wp--preset--spacing--40);
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
-	font-size: var(--wp--preset--font-size--medium);
 	font-family: var(--wp--preset--font-family--display);
-	font-weight: 500;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	letter-spacing: -0.03em;
+	color: var(--wp--preset--color--sand);
+	padding-block: 0.3rem;
 }
 
-.wp-block-navigation__responsive-container-open,
+/* Inside the panel a submenu is an indented list, not a floating card. */
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+	background: none;
+	box-shadow: none;
+	padding: 0 0 var(--wp--preset--spacing--20) 0;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation__submenu-container
+	.wp-block-navigation-item__content {
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgba(233, 226, 212, 0.62);
+	padding: 0.4rem 0;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container {
+	gap: var(--wp--preset--spacing--10);
+}
+
+.wp-block-navigation__responsive-container-open {
+	color: currentcolor;
+}
+
 .wp-block-navigation__responsive-container-close {
-	color: var(--wp--preset--color--primary-dark);
+	color: var(--wp--preset--color--sand);
 }
