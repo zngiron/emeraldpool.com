@@ -68,7 +68,7 @@ docs/
   PLAN.md                 the build plan
   IA-UX-AUDIT.md          audit of the live site + the IA this rebuild implements
   ARCHITECTURE.md         how the theme and plugin are put together
-  BLOCKS.md               the nine custom blocks
+  BLOCKS.md               the eleven custom blocks
   CTO-SUMMARY.md          what was delivered, and what production would need
   screenshots/            mobile and desktop captures of the seeded site
 ```

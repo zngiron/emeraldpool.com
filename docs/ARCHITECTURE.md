@@ -20,15 +20,15 @@ wp-content/themes/emerald-pool/
 │   ├── assets.php                Stylesheet loading, per-block + font preload.
 │   ├── patterns.php              Pattern categories; removes core/remote patterns.
 │   ├── block-styles.php          register_block_style() for core blocks, as data.
-│   ├── block-variations.php      Enqueues the editor variation script.
-│   └── template-parts.php        Registers the extra "band" part area.
+│   └── block-variations.php      Enqueues the editor variation script.
 ├── templates/                    13 HTML templates, all thin.
-├── parts/                        header, footer, cta-band.
-├── patterns/                     14 PHP patterns — where the page content lives.
+├── parts/                        header, footer.
+├── patterns/                     15 PHP patterns — where the page content lives.
 └── assets/
     ├── fonts/                    2 self-hosted variable woff2 (92 KB total).
-    ├── images/                   15 images, only those a pattern or brand_config() references.
-    ├── js/block-variations.js    Editor-only. Nothing ships to the front end.
+    ├── images/                   11 images, only those a pattern or brand_config() references.
+    ├── js/block-variations.js    Editor-only.
+    ├── js/site.js                The one front-end script (~1 KB, deferred).
     └── css/
         ├── theme.css             Global layer: focus, skip link, motion, the form.
         └── blocks/*.css          One file per core block, loaded on demand.
@@ -40,6 +40,7 @@ wp-content/plugins/emerald-pool-blocks/
 │   ├── Plugin.php                The only list of subsystems.
 │   ├── PostTypes.php             CPT + taxonomies from a config array.
 │   ├── Meta.php                  Spec fields from a config array.
+│   ├── Media.php                 Hover video: markup, script module, spa_video_url.
 │   ├── Locations.php             Store data.
 │   ├── Icons.php                 The eight-icon set, in PHP.
 │   ├── Cards.php                 The spa card, shared by two blocks.
@@ -47,7 +48,8 @@ wp-content/plugins/emerald-pool-blocks/
 │   ├── Blocks.php                One loop registers every compiled block.
 │   ├── Schema.php                Product + LocalBusiness JSON-LD.
 │   └── Assets.php                Shared style handle + icon publishing.
-├── assets/shared.css             Chip and card primitives used by 3 blocks.
+├── assets/shared.css             Spec-figure and card primitives used by 3 blocks.
+├── assets/media.js               Hover video module. No imports, no framework.
 ├── src/blocks/<name>/            block.json, index.js, edit.js, save.js|render.php,
 │                                 style.scss, editor.scss, view.js (interactive only).
 └── build/                        COMMITTED. Phase 3 and deploys need no Node.
@@ -68,7 +70,7 @@ switched off, so an editor cannot invent a fourteenth blue.
 `patterns/*.php`, which are PHP and can therefore reference `get_theme_file_uri()`. Rearranging
 a page is reordering pattern references.
 
-**Dynamic blocks over static.** All nine custom blocks render on the server. Saved post content
+**Dynamic blocks over static.** All eleven custom blocks render on the server. Saved post content
 holds only the editable inner blocks and the attributes. The pay-off: the markup of a block can
 change in a later release without invalidating a single saved post, and a pattern file can write
 `<!-- wp:emerald-pool/spa-hero {...} /-->` without hand-copying compiled save output.
@@ -81,9 +83,11 @@ schema at once, because all three read `Meta::fields()`.
 **One concern per file.** Every `inc/` file does one job and says so in its header. No file
 requires reading another to understand.
 
-**No jQuery, no modals, no overlays.** Two blocks are interactive and both use the Interactivity
-API (`spa-grid` filtering, `testimonial-slider`). The theme enqueues no JavaScript at all on the
-front end. There is exactly one form on the site, inline, on the contact page: no pop-up, no
+**No jQuery, no modals, no overlays.** Three blocks are interactive and all three use the
+Interactivity API (`spa-grid` filtering, `testimonial-slider`, `spa-stats` counting). The theme
+ships exactly one front-end script, `assets/js/site.js` — about a kilobyte, deferred, no
+dependencies — and the plugin ships one more, `assets/media.js`, only on pages that render a hover
+clip. Both are covered by §7. There is exactly one form on the site, inline, on the contact page: no pop-up, no
 cookie wall, no newsletter interrupt, no exit-intent. The mobile navigation is an off-canvas
 panel, opened by the visitor.
 
@@ -98,6 +102,92 @@ live region for filter results.
 and the markup survives; remove the plugin and it correctly disappears. `FAQPage` is the exception
 and is emitted by `faq-accordion`'s own `render.php`, because it describes that block's inner
 content rather than the post.
+
+---
+
+## 2a. The design direction
+
+The visual system has a name — **night water** — and every token choice follows from it. The
+subject is a lit, steaming spa in a wet Oregon winter, so the site's ground is deep water-black,
+light sections are punctuation rather than the default, and one warm token (`ember`) carries the
+heat. It is the only warm colour on the site and it is never decorative: it marks the thing that is
+hot, current, or next.
+
+| Decision | Where it lives | Why |
+|---|---|---|
+| `abyss` / `deep` night grounds | `theme.json` palette, `.ep-night` | Dark is the default for product and closing sections. |
+| `sand` paper field | `theme.json` palette, `.ep-card__media` | Bullfrog renders are top-down drawings on white. A drawing on paper cannot float on black, so the field *is* the paper and the sheet is the bright object in the dark room. |
+| `ember` accent | `theme.json` palette | Heat. Used for eyebrow dots, prices, active states, figures and focus rings. |
+| `data` font family | `theme.json` `fontFamilies` | A system monospace stack — zero bytes — gives figures, labels and eyebrows a third voice distinct from the display serif and the body sans. |
+| Display scale to 7rem, `colossal` to 10.5rem | `theme.json` `fontSizes` | Fraunces is the personality; at hero and footer scale it is set with `opsz 144` and `WONK 1`, the display cut rather than the text cut enlarged. |
+| Numbered chapters | home patterns | The four numbered sections are the order a customer actually moves through — see it, the range, after you sign, seventy years. The numbers carry information; they are not ornament. |
+| Duotone presets | `theme.json` `color.duotone` | `night`, `ember`, `steel`, available to any core image. |
+
+The recurring ornament is a hairline and a single ember dot. `register_block_style()` no longer
+offers `card`, `card-group` or `rule-top`: boxes were what made the first build read as a widget
+grid.
+
+---
+
+## 2b. Motion
+
+Every moving thing on the site is opt-in three times over, and the static page is always the
+correct page.
+
+**Scroll-driven reveals.** `.ep-reveal` is animated by `animation-timeline: view()` where the
+browser has it. Where it does not, `assets/js/site.js` adds `.ep-io` to `<html>` and observes with
+an `IntersectionObserver`. The ordering matters: the element is **visible by default**, and only
+the presence of `.ep-io` allows CSS to start it hidden. A blocked script therefore shows content,
+never hides it.
+
+**Parallax.** `.ep-chapter__media img` drifts about 7% across its section's pass, on the same
+`view()` timeline. There is no scroll listener.
+
+**The marquee.** `.ep-marquee` prints its list twice and translates the track by exactly half its
+width, so the loop is seamless with no measurement and no script. It pauses on hover and on
+`:focus-within`. The duplicate copy is `aria-hidden`, so the six names are announced once.
+
+**The header.** `site.js` publishes the header's height as `--ep-header-h` and toggles `.is-pinned`
+past 80px, rAF-throttled. The solid state is the default; only the transparent-over-hero state is
+opt-in, so a blocked script leaves a readable header.
+
+**Counting.** `spa-stats` renders its figures at full value on the server. `view.js` rewinds and
+replays a figure once, the first time it is seen. Nothing is created by the script.
+
+**`prefers-reduced-motion: reduce`** is honoured last in `theme.css` so it wins: the marquee stops,
+reveals are simply visible, the hero's Ken Burns drift and the scroll cue stop, hover transforms are
+dropped, and no video ever autoplays.
+
+---
+
+## 2c. Video
+
+The live emeraldpool.com does **not** have per-model hover video. What it has is four always-looping
+Vimeo backgrounds in a home page mosaic of *category* tiles, plus series-level YouTube clips behind
+a play badge in a lightbox. There is no self-hosted file to mirror and nothing that maps onto a
+model. The mechanism here is therefore built and documented but ships unpopulated.
+
+**The contract.** `spa_video_url` is a spa meta field in the `media` group — the one group
+`Meta::grouped_specs()` skips, because it is an asset rather than something a visitor reads as a
+specification. Set it on a spa and three places light up at once: the card in `spa-grid`, the
+`spa-plan` hero on the single-spa page, and anything else that calls `Media::video()`.
+
+**Loading.** Nothing is fetched until a visitor asks for it. The element carries `preload="none"`
+and its `<source>` holds a `data-src`, not a `src`, so the browser has no URL to fetch until
+`assets/media.js` hands it one. The poster is the spa's own featured image, already on the page.
+
+**Behaviour by input.** Fine pointer: hover or keyboard focus on the card plays, leaving stops.
+Coarse pointer: there is no hover, so the clip plays while the card is the thing on screen.
+Reduced motion: it never starts, and CSS hides the element so the poster is the whole experience.
+
+**Why a plain module and not the Interactivity API.** That API exists to keep rendered markup in
+step with state. Playing a video on hover changes no markup and stores no state — it is a side
+effect on a media element — and the API's runtime is roughly ten times the size of `media.js`. The
+blocks that do hold state use the Interactivity API, as this document requires.
+
+The element is `aria-hidden` and `tabindex="-1"`: it is decoration over an image that already
+carries the alt text, it is muted and it loops, so there is nothing for a screen reader or a
+keyboard to operate.
 
 ---
 
@@ -121,7 +211,7 @@ content rather than the post.
 ### Files you do not touch
 
 `style.css` · `functions.php` · `inc/assets.php` (beyond the font names) · `inc/patterns.php` ·
-`inc/block-styles.php` · `inc/block-variations.php` · `inc/template-parts.php` ·
+`inc/block-styles.php` · `inc/block-variations.php` ·
 every file in `templates/` · `assets/css/**` · every `src/blocks/**` file ·
 `inc/Plugin.php` · `inc/Blocks.php` · `inc/Cards.php` · `inc/BlockCategory.php` · `inc/Assets.php` ·
 `inc/Schema.php` · `assets/shared.css`.
@@ -177,7 +267,25 @@ plugin can extend them without forking.
 
 ---
 
-## 6. Known deviations from `docs/IA-UX-AUDIT.md`
+## 6. Page weight
+
+Measured on the home page, which is the heaviest:
+
+| | Budget | Actual |
+|---|---|---|
+| CSS (linked + inlined block styles) | < 200 KB | ~93 KB |
+| JavaScript | < 40 KB | ~32 KB |
+| Fonts | — | ~90 KB (2 variable woff2, latin, preloaded) |
+
+Two things keep JavaScript down. WordPress's emoji polyfill — twemoji, its loader and the blob it
+builds, about 17 KB on every page — is removed in `inc/setup.php`, because nothing in the design
+uses emoji and every supported browser draws them itself. And the Interactivity API runtime
+(~27 KB) is the single largest script: it is shared by all three interactive blocks, which is why
+the hover video deliberately does not use it.
+
+---
+
+## 7. Known deviations from `docs/IA-UX-AUDIT.md`
 
 - **URLs.** The audit proposed `/hot-tubs/<model>/`. Achieving that needs per-term permalink
   rewriting, which is a production concern with redirect implications. This build ships
@@ -191,3 +299,6 @@ plugin can extend them without forking.
   which is more editable.
 - **The contact form is markup only.** It is a real, labelled, accessible, inline form with no
   mail handler wired up. Connecting it to a mailer is a production task.
+- **Hover video ships unpopulated.** See §2c: the live site has no per-model clip to mirror, so
+  `spa_video_url` is empty on all ten seeded spas. The mechanism is complete and verified; it needs
+  source footage, which is a content decision rather than a build task.

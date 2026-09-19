@@ -7,14 +7,15 @@ runs today, and to show that the result is liftable onto the next client.
 
 ## What is in the box
 
-**A block theme, `emerald-pool`.** `theme.json` v3 holds the whole design system — ten colours,
-a type scale on two self-hosted variable fonts, a spacing scale, radii, shadows and layout widths.
-Thirteen HTML templates, three template parts and fifteen patterns. No stylesheet anywhere contains
+**A block theme, `emerald-pool`.** `theme.json` v3 holds the whole design system — fourteen
+colours, three duotone presets, a type scale on two self-hosted variable fonts plus a zero-byte
+monospace stack for figures, a fluid spacing scale, radii, shadows and layout widths.
+Thirteen HTML templates, two template parts and fifteen patterns. No stylesheet anywhere contains
 a hex value, and the options that let a design drift — custom colours, custom gradients, custom font
 sizes, drop caps — are switched off in settings.
 
-**A plugin, `emerald-pool-blocks`.** The `spa` post type, three taxonomies, ten spec fields and
-nine custom blocks, all registered from config arrays rather than hand-written registration calls.
+**A plugin, `emerald-pool-blocks`.** The `spa` post type, three taxonomies, eleven spec fields and
+eleven custom blocks, all registered from config arrays rather than hand-written registration calls.
 The block inventory, with attributes, is in `docs/BLOCKS.md`; the architecture and the rebrand
 procedure are in `docs/ARCHITECTURE.md`.
 
@@ -40,6 +41,48 @@ rather than a heading. There is one form on the entire site, inline on `/contact
 labels — no modal, no newsletter interrupt, no cookie wall, no exit-intent. The audit that produced
 this is `docs/IA-UX-AUDIT.md`.
 
+## The design
+
+The first pass of this build was competent and forgettable: everything centred, every item in a
+bordered card, every section the same height, type that never rose above a comfortable 3rem. It
+looked like a template because it was made of the moves a template makes.
+
+The second pass has a direction and a name — **night water**. The subject is not a product; it is
+the moment the product exists for: a lit, steaming spa in a wet Oregon winter, at dusk, when nobody
+else is outside. So the site's ground is deep water-black, light sections are punctuation rather
+than the default, and one warm token — ember — carries the heat and is never spent on decoration.
+
+Five decisions carry it.
+
+**The hero is a full viewport and an argument, not a banner.** One line of Fraunces at its display
+optical size, bottom-left; the two things a visitor actually came for — which showroom, what hours —
+pinned to the opposite corner in a monospace face. The photograph is graded down in CSS rather than
+re-exported, which turns catalogue daylight into the dusk the rest of the page is set in.
+
+**The product renders are treated as what they are.** Bullfrog ships its models as top-down images
+on white, which is to say plan drawings on paper. So the card is not a box containing a thumbnail:
+it is a sheet of warm sand paper, ruled with the drawing's own centre cross, dimensions annotated
+in the margin, casting a shadow onto the night ground. The sheet is the bright object in the dark
+room. That single idea runs from the grid card to the single-spa opening.
+
+**The home page is a sequence, so it is numbered.** Four chapters — see it, understand the range,
+what happens after you sign, seventy years of doing it — in the order a customer moves through them.
+The numbers carry information; they are not an editorial affectation. The six series, which used to
+be six identical tiles that said only that there were six of them, are now six full-bleed alternating
+chapters, each with the one sentence that says what that series actually is.
+
+**Motion is real but never load-bearing.** Scroll-driven reveals run on `animation-timeline: view()`
+where the browser has it, off the main thread, with an `IntersectionObserver` standing in where it
+does not — and elements are visible by default, so a blocked script can only fail to animate, never
+fail to show. The series marquee is pure CSS. `prefers-reduced-motion` is honoured last in the
+cascade, so it wins: nothing moves, nothing autoplays, and the page is simply still.
+
+**Boxes are gone.** The recurring ornament is a hairline and a single ember dot. `register_block_style()`
+no longer offers `card` or `card-group`, because those were the moves that made the first pass read
+as a widget grid.
+
+The full token table is in `docs/ARCHITECTURE.md` §2a, the motion contract in §2b.
+
 ## Architecture worth noting
 
 **`theme.json` is the single source of design truth.** Change the palette and every block, pattern
@@ -55,16 +98,20 @@ and `show_in_rest`, a paragraph on the single-spa template is bound to `spa_dime
 `core/post-meta` — no shortcode, no template tag, and an editor can bind another field without a
 developer.
 
-**Two blocks are interactive and both use the Interactivity API.** The spa grid filters by series
-without a page reload; the testimonial slider moves only when a reader moves it. **The theme
-enqueues no JavaScript at all on the front end, and there is no jQuery on the page.** The live site
-loads two copies of it.
+**Three blocks are interactive and all three use the Interactivity API.** The spa grid filters by
+series without a page reload; the testimonial slider moves only when a reader moves it; the stat
+column counts up once when it is first seen. **There is no jQuery on the page** — the live site
+loads two copies of it. The theme ships exactly one front-end script, about a kilobyte, which
+publishes the header's height, toggles its scrolled state, and stands in for scroll-driven
+animation on browsers without `animation-timeline`. Everything it does is an enhancement: with the
+script blocked, the header is solid and every revealed element renders visible.
 
-**Weight, measured on the seeded home page:** 149 KB of CSS and 22 KB of JavaScript, against the
+**Weight, measured on the seeded home page:** ~93 KB of CSS and ~32 KB of JavaScript, against the
 live site's single 610 KB combined stylesheet plus two jQuery copies and a third-party widget with
-its API token in the page source. The HTML document is 139 KB in this local build, most of it
-WordPress's unminified inline block styles with `SCRIPT_DEBUG` on; a production build with style
-concatenation cuts that substantially.
+its API token in the page source. Two decisions keep JavaScript down: WordPress's emoji polyfill
+(~17 KB per page, for something every supported browser draws itself) is removed, and the hover
+video uses a one-kilobyte script module rather than pulling the Interactivity API runtime onto
+pages that would not otherwise need it.
 
 **The rebrand path is content and tokens only.** `docs/ARCHITECTURE.md` §3 lists the files you touch
 for a new client — palette, fonts, logo, pattern copy, store records, spec fields — and the far
@@ -88,19 +135,34 @@ host; `build/` is committed so a deploy never needs a Node toolchain.
 |---|---|
 | ![Home, desktop](screenshots/home-desktop.png) | ![Hot tubs listing, desktop](screenshots/hot-tubs-desktop.png) |
 
-| Single spa | FAQ |
+| Single spa | Series filter applied |
 |---|---|
-| ![Single spa, desktop](screenshots/spa-single-desktop.png) | ![FAQ, desktop](screenshots/faq-desktop.png) |
+| ![Single spa, desktop](screenshots/spa-single-desktop.png) | ![Hot tubs, filtered](screenshots/hot-tubs-filtered-desktop.png) |
 
-| Contact | Mobile |
+| Contact | FAQ |
 |---|---|
-| ![Contact, desktop](screenshots/contact-desktop.png) | ![Home, mobile](screenshots/home-mobile.png) |
+| ![Contact, desktop](screenshots/contact-desktop.png) | ![FAQ, desktop](screenshots/faq-desktop.png) |
+
+| Home, mobile | Navigation, open |
+|---|---|
+| ![Home, mobile](screenshots/home-mobile.png) | ![Mobile navigation](screenshots/home-mobile-nav-open.png) |
 
 Every page was checked at 390px and 1440px: no console errors, no PHP notices, no horizontal
 scroll, no overlays. The off-canvas navigation, the grid filter chips, the FAQ disclosures and the
-slider controls were all exercised in the browser.
+slider controls were all exercised in the browser. The header's transparent-to-solid transition was
+asserted on scroll; the hover video was asserted playing (`video.paused === false`) on pointer,
+on keyboard focus and, on a coarse pointer, in view; and the whole page was re-rendered under
+`prefers-reduced-motion: reduce` to confirm it is static and complete.
 
 ## What production would need next
+
+**Footage for the hover video.** The mechanism is built, documented and verified end to end, and
+it is switched on by setting one meta field per spa. It ships empty because emeraldpool.com has no
+per-model clip to mirror — what looks like a hover video there is four always-looping Vimeo
+backgrounds on *category* tiles, plus series-level YouTube clips behind a play badge. Getting real
+per-model footage is a content decision, and mirroring a manufacturer's marketing video out of
+Vimeo and YouTube into this repository is a licensing decision rather than a build task. Both
+belong with the client.
 
 **A mailer behind the contact form.** The form is real, labelled and accessible markup with no
 handler. Production wants a POST endpoint, server-side validation, a spam control that is not a
