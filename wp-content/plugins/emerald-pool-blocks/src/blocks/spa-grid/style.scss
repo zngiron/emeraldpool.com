@@ -1,16 +1,21 @@
 /**
  * Spa grid — front end.
+ *
+ * The grid is a field of plan views, not a row of boxes, so it is wider-gapped
+ * than a card grid would be and the filter chips read as a legend rather than
+ * as buttons on a toolbar.
  */
 .ep-grid-block {
 	display: flex;
 	flex-direction: column;
-	gap: var(--wp--preset--spacing--30);
+	gap: var(--wp--preset--spacing--40);
 }
 
 .ep-grid {
 	display: grid;
 	grid-template-columns: repeat(var(--ep-grid-columns, 3), minmax(0, 1fr));
-	gap: var(--wp--preset--spacing--20);
+	column-gap: var(--wp--custom--gutter);
+	row-gap: var(--wp--preset--spacing--60);
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -44,39 +49,64 @@
 	}
 }
 
+/* --- Filters ------------------------------------------------------------- */
+
+/*
+ * A legend, not a toolbar: names on a rule, the active one marked by the ember
+ * dot the rest of the design uses for "this one".
+ */
 .ep-grid__filters {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.5rem;
+	gap: 0 var(--wp--preset--spacing--30);
+	border-top: 1px solid var(--ep-line, var(--wp--preset--color--border));
+	padding-top: var(--wp--preset--spacing--20);
 }
 
 .ep-filter {
 	display: inline-flex;
-	align-items: center;
-	gap: 0.5rem;
-	font-family: var(--wp--preset--font-family--body);
-	font-size: var(--wp--preset--font-size--small);
-	font-weight: 600;
-	color: var(--wp--preset--color--primary-dark);
-	background: var(--wp--preset--color--base);
-	border: 1px solid var(--wp--preset--color--border);
-	border-radius: var(--wp--custom--radius--pill);
-	padding: 0.5rem 1rem;
+	align-items: baseline;
+	gap: 0.45rem;
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ep-fg-quiet, var(--wp--preset--color--text-muted));
+	background: none;
+	border: 0;
+	border-radius: 0;
+	padding: 0.55rem 0;
 	cursor: pointer;
-	transition: background var(--wp--custom--transition--base), border-color var(--wp--custom--transition--base);
+	position: relative;
+	transition: color var(--wp--custom--transition--base);
 
 	&:hover {
-		border-color: var(--wp--preset--color--primary);
+		color: var(--wp--preset--color--ember);
 	}
 
 	&[aria-pressed="true"] {
-		background: var(--wp--preset--color--primary);
-		border-color: var(--wp--preset--color--primary);
-		color: var(--wp--preset--color--base);
+		color: var(--ep-fg, var(--wp--preset--color--ink));
+	}
+
+	&[aria-pressed="true"]::before {
+		content: "";
+		position: absolute;
+		inset: -1px auto auto 0;
+		width: 100%;
+		height: 2px;
+		background: var(--wp--preset--color--ember);
 	}
 
 	&__count {
 		font-variant-numeric: tabular-nums;
-		opacity: 0.65;
+		font-size: 0.625rem;
+		opacity: 0.6;
 	}
+}
+
+.ep-night .ep-grid__filters {
+	--ep-line: rgba(233, 226, 212, 0.18);
+	--ep-fg: var(--wp--preset--color--sand);
+	--ep-fg-quiet: rgba(233, 226, 212, 0.6);
 }

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "emerald-pool/spa-plan",
+  "title": "Spa plan view",
+  "category": "emerald-pool",
+  "icon": "layout",
+  "description": "The current spa's render on its paper field, with the dimension annotation and, where the model has one, the clip that plays on hover.",
+  "keywords": [
+    "spa",
+    "image",
+    "plan",
+    "render",
+    "hero"
+  ],
+  "textdomain": "emerald-pool-blocks",
+  "attributes": {
+    "showDimensions": {
+      "type": "boolean",
+      "default": true
+    },
+    "showScale": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "usesContext": [
+    "postId"
+  ],
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "example": {
+    "attributes": {
+      "showDimensions": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": [
+    "file:./style-index.css",
+    "emerald-pool-shared"
+  ],
+  "render": "file:./render.php"
+}

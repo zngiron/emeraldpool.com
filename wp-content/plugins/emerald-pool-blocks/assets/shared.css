@@ -6,90 +6,191 @@
  * colour-free.
  */
 
-/* A spec chip: "6 seats", "112 jets". Reads as data, not as a tag. */
+/* --- Spec figures -------------------------------------------------------- */
+
+/*
+ * "7 seats", "112 jets". These were pills, which made them look like filter
+ * controls a visitor could press. They are readings, so they are set as
+ * readings: the value in the data face over a small label, divided by hairlines.
+ */
 .ep-chips {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.4rem;
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	border-top: 1px solid var(--ep-line, var(--wp--preset--color--border));
 }
 
 .ep-chip {
-	display: inline-flex;
-	align-items: baseline;
-	gap: 0.35rem;
-	font-size: var(--wp--preset--font-size--small);
-	line-height: 1.2;
-	padding: 0.35rem 0.7rem;
-	border: 1px solid var(--wp--preset--color--border);
-	border-radius: var(--wp--custom--radius--pill);
-	color: var(--wp--preset--color--text-muted);
-	background: var(--wp--preset--color--base);
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	padding: 0.65rem 1.1rem 0 0;
+	margin-right: 1.1rem;
+	border-right: 1px solid var(--ep-line, var(--wp--preset--color--border));
+}
+
+.ep-chip:last-child {
+	border-right: 0;
+	margin-right: 0;
+	padding-right: 0;
 }
 
 .ep-chip__value {
-	font-weight: 700;
-	color: var(--wp--preset--color--primary-dark);
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--preset--font-size--small);
 	font-variant-numeric: tabular-nums;
+	color: var(--ep-fg, var(--wp--preset--color--ink));
 }
 
-/* A card frame used by the grid and the comparison table. */
+.ep-chip__label {
+	font-family: var(--wp--preset--font-family--data);
+	font-size: 0.625rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ep-fg-quiet, var(--wp--preset--color--text-muted));
+}
+
+/* --- The spa card -------------------------------------------------------- */
+
+/*
+ * No border, no radius, no panel. The image is the card; the words sit under it.
+ * Colour comes from two variables the surrounding block sets, so the same card
+ * works on the light page and on the night ground without a second ruleset.
+ */
 .ep-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	background: var(--wp--preset--color--base);
-	border: 1px solid var(--wp--preset--color--border);
-	border-radius: var(--wp--custom--radius--md);
-	overflow: hidden;
+	gap: var(--wp--preset--spacing--20);
 	height: 100%;
-	transition: box-shadow var(--wp--custom--transition--base), transform var(--wp--custom--transition--base);
+	--ep-line: var(--wp--preset--color--border);
+	--ep-fg: var(--wp--preset--color--ink);
+	--ep-fg-quiet: var(--wp--preset--color--text-muted);
 }
 
-.ep-card:has(a:hover),
-.ep-card:has(a:focus-visible) {
-	box-shadow: var(--wp--custom--shadow--lift);
-	transform: translateY(-2px);
+.ep-night .ep-card {
+	--ep-line: rgba(233, 226, 212, 0.18);
+	--ep-fg: var(--wp--preset--color--sand);
+	--ep-fg-quiet: rgba(233, 226, 212, 0.6);
 }
 
+/*
+ * The plan field.
+ *
+ * Bullfrog ships its models as top-down renders on white, which is to say as
+ * plan drawings on paper — and a drawing on paper cannot float on black without
+ * bringing its white rectangle with it. So the field is the paper: a warm sand
+ * panel with the drawing's own centre cross ruled on it, casting a shadow onto
+ * the night ground behind. The sheet is the bright object in the dark room.
+ */
 .ep-card__media {
-	background: var(--wp--preset--color--surface-alt);
+	position: relative;
 	aspect-ratio: 4 / 3;
+	overflow: clip;
+	background: var(--wp--preset--color--sand);
+	isolation: isolate;
+	box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.55);
+	transition: box-shadow var(--wp--custom--transition--slow);
 }
 
-.ep-card__media img {
+.ep-card:hover .ep-card__media,
+.ep-card:focus-within .ep-card__media {
+	box-shadow: 0 34px 70px -22px rgba(224, 138, 60, 0.4);
+}
+
+.ep-card__media::before,
+.ep-card__media::after {
+	content: "";
+	position: absolute;
+	background: rgba(4, 20, 27, 0.14);
+	z-index: 1;
+	pointer-events: none;
+}
+
+.ep-card__media::before {
+	inset: 12% auto 12% 50%;
+	width: 1px;
+}
+
+.ep-card__media::after {
+	inset: 50% 12% auto 12%;
+	height: 1px;
+}
+
+.ep-card__still,
+.ep-card__video {
+	position: absolute;
+	inset: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: contain;
 	display: block;
+	z-index: 2;
+	transition: transform var(--wp--custom--transition--slow),
+		opacity var(--wp--custom--transition--base);
+}
+
+/*
+ * The render is a JPEG with white baked in. Multiply drops that white into the
+ * paper instead of stamping a white box on it, which is the whole reason the
+ * field is a light colour.
+ */
+.ep-card__still {
+	padding: 6%;
+	box-sizing: border-box;
 	mix-blend-mode: multiply;
+	filter: contrast(1.1);
+}
+
+/* The clip sits over the still and is revealed, not swapped, so there is no flash. */
+.ep-card__video {
+	object-fit: cover;
+	opacity: 0;
+	z-index: 3;
+}
+
+.ep-card:hover .ep-card__video,
+.ep-card:focus-within .ep-card__video {
+	opacity: 1;
+}
+
+/* The shell lifts under the pointer. This is the whole hover, on purpose. */
+.ep-card:hover .ep-card__still,
+.ep-card:focus-within .ep-card__still {
+	transform: translateY(-2%) scale(1.04);
+}
+
+/* The dimension annotation, in the plan's own margin. */
+.ep-card__dims {
+	position: absolute;
+	inset: auto auto 0.75rem 0.9rem;
+	z-index: 4;
+	margin: 0;
+	font-family: var(--wp--preset--font-family--data);
+	font-size: 0.625rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgba(4, 20, 27, 0.45);
+	pointer-events: none;
 }
 
 .ep-card__body {
 	display: flex;
 	flex-direction: column;
-	gap: 0.7rem;
-	padding: var(--wp--preset--spacing--20);
+	gap: 0.55rem;
 	flex: 1;
-}
-
-.ep-card__eyebrow {
-	font-size: var(--wp--custom--eyebrow--size);
-	font-weight: 700;
-	letter-spacing: var(--wp--custom--eyebrow--spacing);
-	text-transform: uppercase;
-	color: var(--wp--preset--color--primary);
-	margin: 0;
 }
 
 .ep-card__title {
 	font-family: var(--wp--preset--font-family--display);
-	font-size: var(--wp--preset--font-size--medium);
-	font-weight: 500;
-	line-height: 1.18;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	line-height: 1;
+	letter-spacing: -0.03em;
 	margin: 0;
-	color: var(--wp--preset--color--primary-dark);
+	color: var(--ep-fg);
 }
 
 .ep-card__title a {
@@ -97,37 +198,68 @@
 	text-decoration: none;
 }
 
+/* The title's link covers the whole card, so the image is clickable too. */
 .ep-card__title a::after {
 	content: "";
 	position: absolute;
 	inset: 0;
+	z-index: 5;
 }
 
-.ep-card {
-	position: relative;
+.ep-card:hover .ep-card__title,
+.ep-card:focus-within .ep-card__title {
+	color: var(--wp--preset--color--ember);
 }
 
-.ep-card__title a:hover {
-	text-decoration: underline;
-}
-
-.ep-card__price {
+.ep-card__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1rem;
 	margin: 0;
-	font-size: var(--wp--preset--font-size--small);
-	color: var(--wp--preset--color--text-muted);
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ep-fg-quiet);
 }
 
 .ep-card__price strong {
-	color: var(--wp--preset--color--ink);
+	color: var(--wp--preset--color--ember);
+	font-weight: 500;
 	font-variant-numeric: tabular-nums;
 }
 
-/* An empty state that tells the editor what to do rather than rendering nothing. */
+.ep-card__body .ep-chips {
+	margin-top: auto;
+}
+
+/* --- Empty state --------------------------------------------------------- */
+
+/* Tells the editor what to do rather than rendering nothing. */
 .ep-empty {
-	border: 1px dashed var(--wp--preset--color--border);
-	border-radius: var(--wp--custom--radius--md);
+	border: 1px dashed var(--ep-line, var(--wp--preset--color--border));
 	padding: var(--wp--preset--spacing--30);
-	color: var(--wp--preset--color--text-muted);
+	color: var(--ep-fg-quiet, var(--wp--preset--color--text-muted));
 	text-align: center;
+	font-family: var(--wp--preset--font-family--data);
 	font-size: var(--wp--preset--font-size--small);
+}
+
+/* --- Reduced motion ------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+	.ep-card__still,
+	.ep-card__video {
+		transition: none;
+	}
+
+	.ep-card:hover .ep-card__still,
+	.ep-card:focus-within .ep-card__still {
+		transform: none;
+	}
+
+	/* The clip never autoplays, so it is never revealed. */
+	.ep-card__video {
+		display: none;
+	}
 }

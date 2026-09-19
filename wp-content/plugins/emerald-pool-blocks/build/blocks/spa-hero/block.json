@@ -5,7 +5,7 @@
   "title": "Hero",
   "category": "emerald-pool",
   "icon": "cover-image",
-  "description": "A full-bleed opening statement: background image, scrim, eyebrow, heading, standfirst and up to two buttons.",
+  "description": "A full-viewport opening statement: background image or muted video, scrim, eyebrow, heading, standfirst, buttons, and a utility row pinned to the bottom of the frame.",
   "keywords": [
     "hero",
     "banner",
@@ -50,11 +50,11 @@
     },
     "overlayOpacity": {
       "type": "number",
-      "default": 55
+      "default": 62
     },
     "minHeight": {
       "type": "number",
-      "default": 66
+      "default": 92
     },
     "contentAlign": {
       "type": "string",
@@ -63,6 +63,22 @@
         "center"
       ],
       "default": "left"
+    },
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "metaHeading": {
+      "type": "string",
+      "default": ""
+    },
+    "metaBody": {
+      "type": "string",
+      "default": ""
+    },
+    "showScrollCue": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -86,9 +102,11 @@
   "example": {
     "attributes": {
       "eyebrow": "Eugene &amp; Bend, Oregon",
-      "heading": "Warm water, all winter long",
+      "heading": "Warm water is a winter plan",
       "standfirst": "Three generations of getting Oregon backyards right.",
-      "overlayOpacity": 55,
+      "metaHeading": "Two showrooms",
+      "metaBody": "Eugene · Mon–Sat 9–6\nBend · Mon–Fri 9–6",
+      "overlayOpacity": 62,
       "minHeight": 40
     }
   },

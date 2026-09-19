@@ -40,7 +40,9 @@ final class Meta {
 	/**
 	 * Field definitions.
 	 *
-	 * `group` drives the sections of the spec list.
+	 * `group` drives the sections of the spec list. The `media` group is the one
+	 * exception: it holds asset URLs the design uses but no visitor reads as a
+	 * specification, so grouped_specs() skips it.
 	 * `suffix` is appended on display only; the stored value stays numeric.
 	 *
 	 * @return array<string, array{label:string, type:string, group:string, suffix?:string, primary?:bool}>
@@ -109,6 +111,11 @@ final class Meta {
 					'label' => __( 'Brochure URL', 'emerald-pool-blocks' ),
 					'type'  => 'string',
 					'group' => 'commercial',
+				),
+				'spa_video_url'         => array(
+					'label' => __( 'Hover video URL', 'emerald-pool-blocks' ),
+					'type'  => 'string',
+					'group' => 'media',
 				),
 			)
 		);
@@ -232,8 +239,8 @@ final class Meta {
 		$out = array();
 
 		foreach ( self::fields() as $key => $field ) {
-			if ( 'spa_brochure_url' === $key ) {
-				continue; // A link, not a spec row.
+			if ( in_array( $field['group'], array( 'media' ), true ) || 'spa_brochure_url' === $key ) {
+				continue; // A link or an asset, not a spec row.
 			}
 
 			$value = self::display_value( $post_id, $key );

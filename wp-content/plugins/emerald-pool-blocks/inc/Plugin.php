@@ -37,6 +37,7 @@ final class Plugin {
 		Meta::class,
 		Locations::class,
 		Cards::class,
+		Media::class,
 		Icons::class,
 		BlockCategory::class,
 		Blocks::class,

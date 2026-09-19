@@ -5,35 +5,108 @@
 	"title": "Hero",
 	"category": "emerald-pool",
 	"icon": "cover-image",
-	"description": "A full-bleed opening statement: background image, scrim, eyebrow, heading, standfirst and up to two buttons.",
-	"keywords": [ "hero", "banner", "header", "cover" ],
+	"description": "A full-viewport opening statement: background image or muted video, scrim, eyebrow, heading, standfirst, buttons, and a utility row pinned to the bottom of the frame.",
+	"keywords": [
+		"hero",
+		"banner",
+		"header",
+		"cover"
+	],
 	"textdomain": "emerald-pool-blocks",
 	"attributes": {
-		"eyebrow": { "type": "string", "default": "" },
-		"heading": { "type": "string", "default": "" },
-		"standfirst": { "type": "string", "default": "" },
-		"headingLevel": { "type": "number", "default": 1 },
-		"mediaId": { "type": "number" },
-		"mediaUrl": { "type": "string", "default": "" },
-		"mediaAlt": { "type": "string", "default": "" },
-		"focalPoint": { "type": "object", "default": { "x": 0.5, "y": 0.5 } },
-		"overlayOpacity": { "type": "number", "default": 55 },
-		"minHeight": { "type": "number", "default": 66 },
-		"contentAlign": { "type": "string", "enum": [ "left", "center" ], "default": "left" }
+		"eyebrow": {
+			"type": "string",
+			"default": ""
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"standfirst": {
+			"type": "string",
+			"default": ""
+		},
+		"headingLevel": {
+			"type": "number",
+			"default": 1
+		},
+		"mediaId": {
+			"type": "number"
+		},
+		"mediaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"mediaAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"focalPoint": {
+			"type": "object",
+			"default": {
+				"x": 0.5,
+				"y": 0.5
+			}
+		},
+		"overlayOpacity": {
+			"type": "number",
+			"default": 62
+		},
+		"minHeight": {
+			"type": "number",
+			"default": 92
+		},
+		"contentAlign": {
+			"type": "string",
+			"enum": [
+				"left",
+				"center"
+			],
+			"default": "left"
+		},
+		"videoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"metaHeading": {
+			"type": "string",
+			"default": ""
+		},
+		"metaBody": {
+			"type": "string",
+			"default": ""
+		},
+		"showScrollCue": {
+			"type": "boolean",
+			"default": false
+		}
 	},
 	"supports": {
 		"anchor": true,
-		"align": [ "wide", "full" ],
+		"align": [
+			"wide",
+			"full"
+		],
 		"html": false,
-		"spacing": { "padding": true, "margin": [ "top", "bottom" ] },
-		"interactivity": { "clientNavigation": true }
+		"spacing": {
+			"padding": true,
+			"margin": [
+				"top",
+				"bottom"
+			]
+		},
+		"interactivity": {
+			"clientNavigation": true
+		}
 	},
 	"example": {
 		"attributes": {
 			"eyebrow": "Eugene &amp; Bend, Oregon",
-			"heading": "Warm water, all winter long",
+			"heading": "Warm water is a winter plan",
 			"standfirst": "Three generations of getting Oregon backyards right.",
-			"overlayOpacity": 55,
+			"metaHeading": "Two showrooms",
+			"metaBody": "Eugene · Mon–Sat 9–6\nBend · Mon–Fri 9–6",
+			"overlayOpacity": 62,
 			"minHeight": 40
 		}
 	},

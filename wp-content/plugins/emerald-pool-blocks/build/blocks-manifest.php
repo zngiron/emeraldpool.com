@@ -382,7 +382,7 @@ return array(
 		'title' => 'Hero',
 		'category' => 'emerald-pool',
 		'icon' => 'cover-image',
-		'description' => 'A full-bleed opening statement: background image, scrim, eyebrow, heading, standfirst and up to two buttons.',
+		'description' => 'A full-viewport opening statement: background image or muted video, scrim, eyebrow, heading, standfirst, buttons, and a utility row pinned to the bottom of the frame.',
 		'keywords' => array(
 			'hero',
 			'banner',
@@ -427,11 +427,11 @@ return array(
 			),
 			'overlayOpacity' => array(
 				'type' => 'number',
-				'default' => 55
+				'default' => 62
 			),
 			'minHeight' => array(
 				'type' => 'number',
-				'default' => 66
+				'default' => 92
 			),
 			'contentAlign' => array(
 				'type' => 'string',
@@ -440,6 +440,22 @@ return array(
 					'center'
 				),
 				'default' => 'left'
+			),
+			'videoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'metaHeading' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'metaBody' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showScrollCue' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'supports' => array(
@@ -463,15 +479,74 @@ return array(
 		'example' => array(
 			'attributes' => array(
 				'eyebrow' => 'Eugene &amp; Bend, Oregon',
-				'heading' => 'Warm water, all winter long',
+				'heading' => 'Warm water is a winter plan',
 				'standfirst' => 'Three generations of getting Oregon backyards right.',
-				'overlayOpacity' => 55,
+				'metaHeading' => 'Two showrooms',
+				'metaBody' => 'Eugene · Mon–Sat 9–6
+Bend · Mon–Fri 9–6',
+				'overlayOpacity' => 62,
 				'minHeight' => 40
 			)
 		),
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'spa-plan' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'emerald-pool/spa-plan',
+		'title' => 'Spa plan view',
+		'category' => 'emerald-pool',
+		'icon' => 'layout',
+		'description' => 'The current spa\'s render on its paper field, with the dimension annotation and, where the model has one, the clip that plays on hover.',
+		'keywords' => array(
+			'spa',
+			'image',
+			'plan',
+			'render',
+			'hero'
+		),
+		'textdomain' => 'emerald-pool-blocks',
+		'attributes' => array(
+			'showDimensions' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showScale' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'usesContext' => array(
+			'postId'
+		),
+		'supports' => array(
+			'anchor' => true,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'html' => false,
+			'spacing' => array(
+				'padding' => true,
+				'margin' => array(
+					'top',
+					'bottom'
+				)
+			)
+		),
+		'example' => array(
+			'attributes' => array(
+				'showDimensions' => true
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'style' => array(
+			'file:./style-index.css',
+			'emerald-pool-shared'
+		),
 		'render' => 'file:./render.php'
 	),
 	'spa-specs' => array(
@@ -535,6 +610,86 @@ return array(
 			'file:./style-index.css',
 			'emerald-pool-shared'
 		),
+		'render' => 'file:./render.php'
+	),
+	'spa-stats' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'emerald-pool/spa-stats',
+		'title' => 'Stat column',
+		'category' => 'emerald-pool',
+		'icon' => 'chart-bar',
+		'description' => 'Four figures about the business, held against a sticky heading as they scroll past. Each number counts up once, the first time it is seen.',
+		'keywords' => array(
+			'stats',
+			'numbers',
+			'figures',
+			'about'
+		),
+		'textdomain' => 'emerald-pool-blocks',
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'standfirst' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			)
+		),
+		'supports' => array(
+			'anchor' => true,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'html' => false,
+			'spacing' => array(
+				'padding' => true,
+				'margin' => array(
+					'top',
+					'bottom'
+				)
+			),
+			'interactivity' => true
+		),
+		'example' => array(
+			'attributes' => array(
+				'heading' => 'Seventy years of the same job',
+				'items' => array(
+					array(
+						'value' => 1955,
+						'label' => 'Trading since',
+						'format' => 'plain'
+					),
+					array(
+						'value' => 2,
+						'label' => 'Showrooms, both with water in them'
+					),
+					array(
+						'value' => 11000,
+						'label' => 'Spas delivered',
+						'prefix' => 'over '
+					)
+				)
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => array(
+			'file:./style-index.css',
+			'emerald-pool-shared'
+		),
+		'viewScriptModule' => 'file:./view.js',
 		'render' => 'file:./render.php'
 	),
 	'store-locator-card' => array(
