@@ -295,6 +295,28 @@ $pages = array(
 		'media'    => '',
 		'order'    => 9,
 	),
+	/*
+	 * The footer's legal line linked to both of these from the first build and
+	 * neither existed, which was the only pair of broken links on the demo. They
+	 * are real pages rather than removed links: a site that says it is built to
+	 * WCAG AA should be willing to say so on a page.
+	 */
+	array(
+		'slug'     => 'accessibility',
+		'title'    => 'Accessibility',
+		'file'     => 'accessibility.html',
+		'template' => '',
+		'media'    => '',
+		'order'    => 10,
+	),
+	array(
+		'slug'     => 'privacy',
+		'title'    => 'Privacy',
+		'file'     => 'privacy.html',
+		'template' => '',
+		'media'    => '',
+		'order'    => 11,
+	),
 );
 
 // The posts page used to live at /blog/; the footer and the menu both point at
@@ -394,6 +416,40 @@ foreach ( $posts as $post ) {
 	}
 	if ( ! is_wp_error( $term ) ) {
 		wp_set_post_categories( $id, array( (int) $term['term_id'] ) );
+	}
+}
+
+// ---------------------------------------------------------------- 3b. taxonomy copy.
+
+/*
+ * Term descriptions are the standfirst on every archive. Without them the
+ * taxonomy pages opened on a bare two-word title over a photograph, which is a
+ * label rather than a page.
+ */
+WP_CLI::log( '==> Taxonomy descriptions' );
+
+$terms = array(
+	'spa_type'   => array(
+		'hot-tubs'  => 'Six to nine seats, insulated for a wet Oregon winter and serviced by our own technicians. Every model below is filled and heated in Eugene or Bend — come and sit in one before you decide.',
+		'swim-spas' => 'Swim against a current at one end, soak at the other. Twelve to seventeen feet, and the deep one is five feet through, which is the difference between training and treading water.',
+	),
+	'spa_series' => array(
+		'a-series'    => 'The JetPak wall: every seat backs onto a therapy pack you can lift out with two hands and swap. The shell stays, the massage follows whoever is in it.',
+		'm-series'    => 'More water, more pumps, elevated seating and the returns hidden in the shell. The largest spas either showroom stocks, and they need a poured pad.',
+		'x-series'    => 'The same shell and the same insulation without the JetPak wall. The most spa per pound we sell, and the easiest full-size model to get through a side gate.',
+		'stil'        => 'A flush square cabinet and a low profile, hardware behind removable panels. The one architects specify, and the one that stops looking like a hot tub when the cover is on.',
+		'calm'        => 'One pump, seven seats, and the same cover and insulation as everything above it — which is where the running cost actually comes from.',
+		'swim-series' => 'Three lengths of swim spa, from a twelve-foot plunge to a seventeen-foot lane. Soak at one end while somebody swims at the other.',
+	),
+);
+
+foreach ( $terms as $ep_tax => $ep_items ) {
+	foreach ( $ep_items as $ep_slug => $ep_description ) {
+		$ep_term = get_term_by( 'slug', $ep_slug, $ep_tax );
+		if ( $ep_term instanceof WP_Term ) {
+			wp_update_term( $ep_term->term_id, $ep_tax, array( 'description' => $ep_description ) );
+			WP_CLI::log( sprintf( '    described %-11s %s', $ep_tax, $ep_slug ) );
+		}
 	}
 }
 

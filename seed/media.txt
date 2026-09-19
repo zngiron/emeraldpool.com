@@ -1,14 +1,39 @@
 # key|file in research/assets|attachment title
+#
+# Two libraries, deliberately kept apart:
+#   lifestyle-*  photographs of people in warm water — what the product is for
+#   spa-*        Bullfrog's top-down plan renders — what the product is
+# A page that leads on a render and nothing else reads as a catalogue, so every
+# template pairs the two.
 logo|emerald-pool-logo-blue-70.png|Emerald Pool & Patio logo
+
+# --- Lifestyle -------------------------------------------------------------
+hero-evening|lifestyle-evening-group.jpg|Six friends in a lit spa under a timber pavilion, a fire burning behind them
 hero-backyard|3T2A5041.jpg|A lit back yard with a hot tub and patio furniture
-hero-hot-tubs|3T2A5613_2.jpg|A hot tub on a covered deck
-hero-swim-spa|Flora-Duffy-Swim-6_1.jpg|A swimmer working against the current in a swim spa
-about-team|meet-our-team-main-pg-emerald-pool-and-patio_1.jpg|The Emerald Pool & Patio team
-services|3T2A4560_1.jpg|A technician servicing pool equipment
+hero-hot-tubs|lifestyle-snow-storm.jpg|A woman leaning on the edge of a hot tub in a back yard
+hero-swim-spa|lifestyle-hammock.jpg|A woman floating on a hammock across a swim spa, seen from above
+lifestyle-winter|lifestyle-bf-winter.jpg|A woman alone in a steaming spa, bare autumn trees behind her
 lifestyle-friends|3T2A5585.jpg|Friends talking in a hot tub on a covered patio
 lifestyle-couple|1I7A4726_001-scaled.webp|A couple in a spa on a lit deck
+lifestyle-couple-eyes|lifestyle-couple-eyes.jpg|A couple resting their eyes in a hot tub, water moving around them
+lifestyle-family|lifestyle-family-phones.jpg|A family talking in a hot tub, their phones stacked on the side
+lifestyle-rooftop-couple|lifestyle-rooftop-couple.jpg|A couple in a STIL spa on a roof terrace, city lights behind them
+lifestyle-rooftop-family|lifestyle-rooftop-family.jpg|A family of five in an M Series spa on a roof terrace
+lifestyle-dusk-couple|lifestyle-x-series-snow.jpg|A couple in an X Series spa at dusk, trees behind them
+lifestyle-swim-family|lifestyle-swim-snow.jpg|A family playing in a swim spa, seen from above
+lifestyle-a-series|lifestyle-a-series.jpg|A couple reclining in an A Series spa
+lifestyle-calm-yard|lifestyle-calm-angle.jpg|A Calm 7 spa on a paved terrace beside a lawn
+lifestyle-jetpak-couple|lifestyle-couple-jetpak.jpg|A couple lifting JetPaks out of a spa, mountains behind them
+lifestyle-soak|lifestyle-woman-soak.jpg|A woman alone in a swim spa against a planted wall
+lifestyle-portrait|lifestyle-showroom.jpg|A man resting in a spa beside a planted wall
+lifestyle-water|lifestyle-new-year.jpg|Spa water lit from below at golden hour
+lifestyle-courtyard|lifestyle-courtyard.jpg|A plunge pool on a timber deck in a walled courtyard
+about-team|meet-our-team-main-pg-emerald-pool-and-patio_1.jpg|A lit pool and spa on an Emerald Pool & Patio job at dusk
+services|3T2A4560_1.jpg|A technician servicing pool equipment
 feature-jetpak|jetpak-personalization-low-960.jpg|Swapping a JetPak in a spa wall
 blog-winter|how-to-enjoy-your-hot-tub-this-winter.jpg|A hot tub in use on a winter evening
+
+# --- Plan renders ----------------------------------------------------------
 spa-bullfrog-a7d|a7d-top-down-71713.jpg|Bullfrog A7D
 spa-bullfrog-m6|m6-top-down-312403.jpg|Bullfrog M6
 spa-bullfrog-m9|m9-top-down-602603.jpg|Bullfrog M9

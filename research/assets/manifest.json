@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-19",
   "source": "https://emeraldpool.com",
-  "count": 22,
+  "count": 40,
   "assets": [
     {
       "filename": "1I7A4726_001-scaled.webp",
@@ -100,6 +100,150 @@
       "fromPage": "jetpak-therapy-system"
     },
     {
+      "filename": "lifestyle-a-series.jpg",
+      "sizeKB": 75,
+      "source": "https://cdn.spasoftwaresolutions.net/collections/s2009405-1079342.jpg",
+      "depicts": "home: a couple reclining in an A Series spa, water moving",
+      "suggestedUse": "series chapter / lifestyle band",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-bf-winter.jpg",
+      "sizeKB": 317,
+      "source": "https://emeraldpool.com/wp-content/uploads/2025/12/BF-Winter--scaled.jpg",
+      "depicts": "blog: a woman alone in a steaming spa, bare autumn trees behind",
+      "suggestedUse": "full-bleed editorial band (evenings)",
+      "fromPage": "blog"
+    },
+    {
+      "filename": "lifestyle-calm-angle.jpg",
+      "sizeKB": 146,
+      "source": "https://cdn.spasoftwaresolutions.net/collections/calm7-angle2-72dpi-1542292.jpg",
+      "depicts": "home: a Calm 7 spa on a paved terrace beside a lawn",
+      "suggestedUse": "series chapter — Calm (context, not plan)",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-couple-dusk.jpg",
+      "sizeKB": 99,
+      "source": "https://bfs.spadealership.com/wp-content/uploads/2023/06/bullfrog-spas-benefits-header.jpg",
+      "depicts": "bullfrog-spas-benefits: a couple in a spa in a green back yard (21:9 banner crop)",
+      "suggestedUse": "wide editorial band",
+      "fromPage": "bullfrog-spas-benefits"
+    },
+    {
+      "filename": "lifestyle-couple-eyes.jpg",
+      "sizeKB": 115,
+      "source": "https://bfs.spadealership.com/wp-content/uploads/2023/06/bullfrog-spas-paceful-mind.jpg",
+      "depicts": "bullfrog-spas-benefits: a couple resting their eyes in a spa",
+      "suggestedUse": "testimonials ground / lifestyle band",
+      "fromPage": "bullfrog-spas-benefits"
+    },
+    {
+      "filename": "lifestyle-couple-jetpak.jpg",
+      "sizeKB": 216,
+      "source": "https://www.spadealership.com/wp-content/uploads/2025/10/S2006438.jpg",
+      "depicts": "jetpak-therapy-system: a couple lifting JetPaks out of a spa, mountains behind",
+      "suggestedUse": "single-spa lifestyle band",
+      "fromPage": "jetpak-therapy-system"
+    },
+    {
+      "filename": "lifestyle-courtyard.jpg",
+      "sizeKB": 412,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/pexels-f-h-13201426-scaled.jpg",
+      "depicts": "home: a plunge pool on a timber deck in a walled courtyard",
+      "suggestedUse": "services / quiet band",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-evening-group.jpg",
+      "sizeKB": 450,
+      "source": "https://www.spadealership.com/wp-content/uploads/2026/08/20241009_BF_KWP_DAY02_SHOT11_5424-scaled.jpg",
+      "depicts": "promotions: a group in a lit spa under a timber pavilion, fire burning, after dark",
+      "suggestedUse": "hero — people, night, fire",
+      "fromPage": "promotions"
+    },
+    {
+      "filename": "lifestyle-family-phones.jpg",
+      "sizeKB": 136,
+      "source": "https://bfs.spadealership.com/wp-content/uploads/2023/06/bullfrog-spas-peaceful-home.jpg",
+      "depicts": "bullfrog-spas-benefits: a family talking in a spa, phones stacked on the side",
+      "suggestedUse": "lifestyle band — Calm series",
+      "fromPage": "bullfrog-spas-benefits"
+    },
+    {
+      "filename": "lifestyle-hammock.jpg",
+      "sizeKB": 136,
+      "source": "https://bfs.spadealership.com/wp-content/uploads/2023/06/bullfrog-spas-body.jpg",
+      "depicts": "bullfrog-spas-benefits: a woman floating on a hammock in a swim spa, seen from above",
+      "suggestedUse": "swim spas band",
+      "fromPage": "bullfrog-spas-benefits"
+    },
+    {
+      "filename": "lifestyle-new-year.jpg",
+      "sizeKB": 187,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/welcome-the-new-year-emerald-pool-patio.jpg",
+      "depicts": "home: spa water lit from below at golden hour (21:9 banner crop)",
+      "suggestedUse": "wide texture band",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-rooftop-couple.jpg",
+      "sizeKB": 71,
+      "source": "https://cdn.spasoftwaresolutions.net/collections/rooftop-couple-01-480065.jpg",
+      "depicts": "home: a couple in a STIL spa on a roof terrace, city lights behind",
+      "suggestedUse": "series chapter — STIL",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-rooftop-family.jpg",
+      "sizeKB": 133,
+      "source": "https://cdn.spasoftwaresolutions.net/collections/rooftop-family-03-654236.jpg",
+      "depicts": "home: a family of five in an M Series spa on a roof terrace",
+      "suggestedUse": "series chapter — M Series",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-showroom.jpg",
+      "sizeKB": 142,
+      "source": "https://www.spadealership.com/wp-content/uploads/2025/11/3T2A4912.jpg",
+      "depicts": "promotions: a man in a spa beside a planted wall",
+      "suggestedUse": "about — people-led story",
+      "fromPage": "promotions"
+    },
+    {
+      "filename": "lifestyle-snow-storm.jpg",
+      "sizeKB": 209,
+      "source": "https://www.spadealership.com/wp-content/uploads/2024/04/X-Series_Storm-Snow_Lifestyle_AC5I3709-scaled.jpg",
+      "depicts": "promotions: a woman leaning on the edge of a spa in a back yard",
+      "suggestedUse": "hot tubs hero",
+      "fromPage": "promotions"
+    },
+    {
+      "filename": "lifestyle-swim-snow.jpg",
+      "sizeKB": 101,
+      "source": "https://cdn.spasoftwaresolutions.net/collections/swim-series-timber-snow-lifestyle-ac5i0538-1311727.jpg",
+      "depicts": "home: a family playing in a Swim Series spa, seen from above",
+      "suggestedUse": "series chapter — Swim Series",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-woman-soak.jpg",
+      "sizeKB": 156,
+      "source": "https://emeraldpool.com/wp-content/uploads/2024/03/thumb-13.jpg",
+      "depicts": "home: a woman alone in a swim spa against a planted wall",
+      "suggestedUse": "about / lifestyle band",
+      "fromPage": "home"
+    },
+    {
+      "filename": "lifestyle-x-series-snow.jpg",
+      "sizeKB": 108,
+      "source": "https://cdn.spasoftwaresolutions.net/collections/x-series-storm-snow-lifestyle-ac5i4032-1232431.jpg",
+      "depicts": "home: a couple in an X Series spa at dusk, trees behind",
+      "suggestedUse": "series chapter — X Series",
+      "fromPage": "home"
+    },
+    {
       "filename": "m6-top-down-312403.jpg",
       "sizeKB": 58,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m6-top-down-312403.jpg",
@@ -119,7 +263,7 @@
       "filename": "m9-top-down-602603.jpg",
       "sizeKB": 102,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/m9-top-down-602603.jpg",
-      "depicts": "Bullfrog Spas Model M8 \u2014 Model M9",
+      "depicts": "Bullfrog Spas Model M8 — Model M9",
       "suggestedUse": "spa CPT featured image / gallery",
       "fromPage": "model-45071"
     },
@@ -135,7 +279,7 @@
       "filename": "s150-topdown-454196.jpg",
       "sizeKB": 81,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s150-topdown-454196.jpg",
-      "depicts": "Bullfrog Spas S150 Swim Spa \u2014 top-down product render",
+      "depicts": "Bullfrog Spas S150 Swim Spa — top-down product render",
       "suggestedUse": "spa CPT featured image (swim spa)",
       "fromPage": "model-45083"
     },
@@ -143,7 +287,7 @@
       "filename": "s180xd-topdown-723269.jpg",
       "sizeKB": 98,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s180xd-topdown-723269.jpg",
-      "depicts": "Bullfrog Spas S180XD Swim Spa \u2014 top-down product render",
+      "depicts": "Bullfrog Spas S180XD Swim Spa — top-down product render",
       "suggestedUse": "spa CPT featured image (swim spa)",
       "fromPage": "model-45085"
     },
@@ -151,7 +295,7 @@
       "filename": "s200-topdown-658305.jpg",
       "sizeKB": 103,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/s200-topdown-658305.jpg",
-      "depicts": "Bullfrog Spas S200 Swim Spa \u2014 top-down product render",
+      "depicts": "Bullfrog Spas S200 Swim Spa — top-down product render",
       "suggestedUse": "spa CPT featured image (swim spa)",
       "fromPage": "model-45084"
     },
@@ -159,7 +303,7 @@
       "filename": "stil-7-top-down-301987.jpg",
       "sizeKB": 47,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2025/stil-7-top-down-301987.jpg",
-      "depicts": "Bullfrog Spas STIL7 \u2014 top-down product render",
+      "depicts": "Bullfrog Spas STIL7 — top-down product render",
       "suggestedUse": "spa CPT featured image (hot tub)",
       "fromPage": "hot-tubs"
     },
@@ -167,7 +311,7 @@
       "filename": "x6l-standard-snow-top-1064121.jpg",
       "sizeKB": 102,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x6l-standard-snow-top-1064121.jpg",
-      "depicts": "Bullfrog Spas Model X6L \u2014 top-down product render",
+      "depicts": "Bullfrog Spas Model X6L — top-down product render",
       "suggestedUse": "spa CPT featured image (hot tub)",
       "fromPage": "hot-tubs"
     },
@@ -175,10 +319,10 @@
       "filename": "x7-standard-snow-top-1582766.jpg",
       "sizeKB": 141,
       "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/x7-standard-snow-top-1582766.jpg",
-      "depicts": "Bullfrog Spas Model X7 \u2014 top-down product render",
+      "depicts": "Bullfrog Spas Model X7 — top-down product render",
       "suggestedUse": "spa CPT featured image (hot tub)",
       "fromPage": "model-45078"
     }
   ],
-  "note": "Scraped from emeraldpool.com for a non-commercial internal demo. Largest srcset variant preferred; files <20KB dropped except logo/favicon. Phase 3 pruned this set to the files the theme and seed actually use."
+  "note": "Lifestyle photography (people in warm water, back yards at dusk, families, steam) was re-scraped on 2026-09-19 from emeraldpool.com and the Bullfrog-owned pages it embeds, taking the largest srcset variant of each. It is the second half of the picture library: the top-down renders are the catalogue, these are what the catalogue is for."
 }
