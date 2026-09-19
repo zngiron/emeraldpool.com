@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/faq",
+  "title": "FAQ",
+  "category": "zngiron",
+  "icon": "editor-help",
+  "description": "Questions and answers as native disclosure elements, with FAQPage structured data emitted alongside.",
+  "keywords": [ "faq", "questions", "accordion" ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "heading": { "type": "string", "default": "" },
+    "items": { "type": "array", "default": [] }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [ "wide" ],
+    "html": false,
+    "color": { "text": true, "background": true },
+    "spacing": { "padding": true, "margin": [ "top", "bottom" ] }
+  },
+  "example": {
+    "attributes": {
+      "heading": "Questions we get asked",
+      "items": [
+        { "question": "How long does delivery take?", "answer": "Two to four weeks for a stocked model." },
+        { "question": "Do you service what you sell?", "answer": "Yes — our own technicians, our own parts." }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,69 @@
+/**
+ * Hero.
+ *
+ * Height comes from svh so a mobile browser's collapsing toolbar cannot make
+ * the section jump, and the admin bar is subtracted so a logged-in editor sees
+ * the same first screen a visitor does.
+ */
+.z-hero {
+  --z-hero-height: 75svh;
+
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: calc(var(--z-hero-height) - var(--wp-admin--admin-bar--height, 0px));
+  padding: var(--z-space-l, var(--wp--preset--spacing--50, 3rem));
+  color: var(--z-on-dark, var(--wp--preset--color--base, inherit));
+  isolation: isolate;
+}
+
+.z-hero.is-height-full {
+  --z-hero-height: 100svh;
+}
+
+.z-hero.is-height-short {
+  --z-hero-height: 50svh;
+}
+
+.z-hero__frame,
+.z-hero__frame .z-frame {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+.z-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top right,
+    var(--z-scrim, rgb(0 0 0 / 70%)),
+    transparent 65%
+  );
+}
+
+.z-hero__copy {
+  max-width: 60ch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--z-space-s, var(--wp--preset--spacing--30, 1rem));
+}
+
+.z-hero__heading {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.z-hero__text {
+  margin: 0;
+  max-width: 55ch;
+}
+
+.z-hero__meta {
+  margin: 0;
+  font-family: var(--z-font-mono, var(--wp--preset--font-family--mono, monospace));
+  font-size: var(--z-size-small, var(--wp--preset--font-size--small, 0.875rem));
+}

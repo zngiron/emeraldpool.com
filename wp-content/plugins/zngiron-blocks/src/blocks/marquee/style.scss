@@ -1,0 +1,48 @@
+/**
+ * Marquee. CSS only: no script, and nothing to pause when the animation is
+ * never started in the first place.
+ */
+.z-marquee {
+  overflow: hidden;
+}
+
+.z-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: var(--z-space-m, var(--wp--preset--spacing--40, 2rem));
+  animation: z-marquee var(--z-marquee-duration, 30s) linear infinite;
+}
+
+.z-marquee:hover .z-marquee__track,
+.z-marquee:focus-within .z-marquee__track {
+  animation-play-state: paused;
+}
+
+.z-marquee__text {
+  margin: 0;
+  white-space: nowrap;
+  font-family: var(--z-font-mono, var(--wp--preset--font-family--mono, monospace));
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@keyframes z-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .z-marquee__track {
+    animation: none;
+    width: 100%;
+  }
+
+  .z-marquee__text[aria-hidden='true'] {
+    display: none;
+  }
+}

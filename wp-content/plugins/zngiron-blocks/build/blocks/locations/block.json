@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/locations",
+  "title": "Locations",
+  "category": "zngiron",
+  "icon": "location",
+  "description": "Address cards built from the locations in config/brand.json, each with a phone link and directions.",
+  "keywords": [
+    "locations",
+    "stores",
+    "address",
+    "contact"
+  ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "slugs": {
+      "type": "array",
+      "default": []
+    },
+    "showHours": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "example": {
+    "attributes": {
+      "heading": "Two showrooms"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

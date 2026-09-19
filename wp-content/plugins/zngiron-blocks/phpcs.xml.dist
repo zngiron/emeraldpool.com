@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="zngiron-blocks">
+  <description>WordPress coding standards, with 4-space indentation instead of tabs.</description>
+
+  <file>.</file>
+  <exclude-pattern>*/build/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+
+  <arg name="extensions" value="php"/>
+  <arg name="basepath" value="."/>
+  <arg value="ps"/>
+
+  <config name="testVersion" value="8.1-"/>
+  <config name="minimum_wp_version" value="6.7"/>
+
+  <rule ref="WordPress">
+    <!-- The repo standard is 4 spaces everywhere; see .editorconfig. -->
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+    <exclude name="WordPress.Files.FileName"/>
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="4"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
+
+  <rule ref="WordPress.WP.I18n">
+    <properties>
+      <property name="textDomain" type="array" value="zngiron-blocks"/>
+    </properties>
+  </rule>
+</ruleset>

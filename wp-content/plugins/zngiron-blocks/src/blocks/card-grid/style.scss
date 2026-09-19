@@ -1,0 +1,29 @@
+/**
+ * Card Grid. Grid rather than flex: cards in a row must share a height, and a
+ * flex row only pretends to do that.
+ */
+.z-card-grid {
+  display: grid;
+  gap: var(--z-space-m, var(--wp--preset--spacing--40, 2rem));
+  grid-template-columns: 1fr;
+}
+
+.z-card-grid > * {
+  min-width: 0;
+}
+
+@media (min-width: 40em) {
+  .z-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64em) {
+  .z-card-grid.has-3-columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .z-card-grid.has-4-columns {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

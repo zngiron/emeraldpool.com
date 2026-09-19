@@ -1,0 +1,1 @@
+import{getContext as t,getElement as e,store as r}from"@wordpress/interactivity";r("zngiron/post-grid",{state:{get isHidden(){const{activeTerm:r}=t(),{ref:s}=e();return""!==r&&s.dataset.term!==r},get isPressed(){const{activeTerm:r}=t(),{ref:s}=e();return s.dataset.term===r}},actions:{filter(){const r=t(),{ref:s}=e();r.activeTerm=s.dataset.term}}});

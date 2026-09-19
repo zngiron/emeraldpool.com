@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/testimonials",
+  "title": "Testimonials",
+  "category": "zngiron",
+  "icon": "format-quote",
+  "description": "Quotes shown one at a time, moved by previous and next. No autoplay: a quote only moves when a person moves it.",
+  "keywords": [ "testimonials", "quotes", "reviews" ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "heading": { "type": "string", "default": "" },
+    "items": { "type": "array", "default": [] }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [ "wide", "full" ],
+    "html": false,
+    "color": { "text": true, "background": true },
+    "spacing": { "padding": true, "margin": [ "top", "bottom" ] },
+    "interactivity": true
+  },
+  "example": {
+    "attributes": {
+      "heading": "What people say",
+      "items": [
+        { "quote": "They levelled the pad, craned it over the fence and had it warm by the evening.", "name": "Dana R.", "role": "Eugene" },
+        { "quote": "Seven years in and the same technician still turns up.", "name": "Marcus T.", "role": "Bend" }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js",
+  "render": "file:./render.php"
+}

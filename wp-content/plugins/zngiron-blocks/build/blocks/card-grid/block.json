@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/card-grid",
+  "title": "Card Grid",
+  "category": "zngiron",
+  "icon": "grid-view",
+  "description": "Two to four equal-height Cards on a CSS grid. The container of the Card block.",
+  "keywords": [
+    "grid",
+    "cards",
+    "features"
+  ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "example": {
+    "attributes": {
+      "columns": 3
+    },
+    "innerBlocks": [
+      {
+        "name": "zngiron/card",
+        "attributes": {
+          "title": "Delivery",
+          "text": "Craned in, levelled and filled."
+        }
+      },
+      {
+        "name": "zngiron/card",
+        "attributes": {
+          "title": "Service",
+          "text": "Our own technicians, our own parts."
+        }
+      },
+      {
+        "name": "zngiron/card",
+        "attributes": {
+          "title": "Water care",
+          "text": "Chemistry sorted on a schedule."
+        }
+      }
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "style": [
+    "file:./style-index.css",
+    "zngiron-frame"
+  ],
+  "render": "file:./render.php"
+}

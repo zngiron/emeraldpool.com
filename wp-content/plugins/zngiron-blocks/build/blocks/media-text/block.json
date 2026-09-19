@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/media-text",
+  "title": "Media Text",
+  "category": "zngiron",
+  "icon": "align-pull-left",
+  "description": "A Frame beside a column of copy. The ratio and the side both switch; the two columns stay equal height.",
+  "keywords": [
+    "media",
+    "text",
+    "split"
+  ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "mediaSide": {
+      "type": "string",
+      "default": "left"
+    },
+    "buttons": {
+      "type": "array",
+      "default": []
+    },
+    "frame": {
+      "type": "object",
+      "default": {}
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "example": {
+    "attributes": {
+      "eyebrow": "Service",
+      "heading": "The people who sold it are the people who fix it.",
+      "text": "Our own technicians cover the whole valley, and they carry the parts for what we sell.",
+      "mediaSide": "left"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": [
+    "file:./style-index.css",
+    "zngiron-frame"
+  ],
+  "render": "file:./render.php"
+}

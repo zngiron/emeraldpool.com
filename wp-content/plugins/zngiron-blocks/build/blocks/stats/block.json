@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/stats",
+  "title": "Stats",
+  "category": "zngiron",
+  "icon": "chart-bar",
+  "description": "A row of figures with labels. Each number counts up once, the first time it is seen.",
+  "keywords": [
+    "stats",
+    "numbers",
+    "figures"
+  ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    },
+    "interactivity": true
+  },
+  "example": {
+    "attributes": {
+      "heading": "Seventy years of the same job",
+      "items": [
+        {
+          "value": 1955,
+          "label": "Trading since",
+          "plain": true
+        },
+        {
+          "value": 2,
+          "label": "Showrooms"
+        },
+        {
+          "value": 11000,
+          "label": "Spas delivered",
+          "prefix": "over "
+        }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScriptModule": "file:./view.js",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/hero",
+  "title": "Hero",
+  "category": "zngiron",
+  "icon": "cover-image",
+  "description": "A full-bleed opening section: a Frame behind a fixed copy column, with a scrim so the words stay legible on any photograph.",
+  "keywords": [ "hero", "banner", "cover" ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "eyebrow": { "type": "string", "default": "" },
+    "heading": { "type": "string", "default": "" },
+    "text": { "type": "string", "default": "" },
+    "meta": { "type": "string", "default": "" },
+    "height": { "type": "string", "default": "tall" },
+    "buttons": { "type": "array", "default": [] },
+    "frame": { "type": "object", "default": {} }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [ "full" ],
+    "html": false,
+    "color": { "text": true, "background": false },
+    "spacing": { "padding": true }
+  },
+  "example": {
+    "attributes": {
+      "eyebrow": "Since 1955",
+      "heading": "Warm water, two showrooms, one long habit of doing it properly.",
+      "text": "Hot tubs and swim spas chosen with you, delivered by the people who service them.",
+      "height": "tall",
+      "buttons": [ { "text": "See the range", "url": "#", "style": "primary" } ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": [ "file:./style-index.css", "zngiron-frame" ],
+  "render": "file:./render.php"
+}

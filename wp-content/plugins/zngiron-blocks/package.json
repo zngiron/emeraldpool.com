@@ -1,0 +1,17 @@
+{
+  "name": "zngiron-blocks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blocks for the zngiron block system.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build --experimental-modules --blocks-manifest",
+    "start": "wp-scripts start --experimental-modules --blocks-manifest",
+    "format": "wp-scripts format",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.7.0"
+  }
+}

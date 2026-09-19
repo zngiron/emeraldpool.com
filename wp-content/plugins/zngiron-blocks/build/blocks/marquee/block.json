@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/marquee",
+  "title": "Marquee",
+  "category": "zngiron",
+  "icon": "controls-repeat",
+  "description": "A line of words looping sideways in CSS. Pauses on hover and stands still under reduced motion.",
+  "keywords": [
+    "marquee",
+    "ticker",
+    "loop"
+  ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "speed": {
+      "type": "number",
+      "default": 30
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "full"
+    ],
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "example": {
+    "attributes": {
+      "text": "Delivery · Service · Water care · Parts · Trade-in",
+      "speed": 30
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,8 @@
+.z-hero .z-frame__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 1px dashed currentColor;
+  opacity: 0.6;
+}

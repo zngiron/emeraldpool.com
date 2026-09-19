@@ -1,0 +1,55 @@
+/**
+ * Post Grid. The grid itself matches Card Grid; the chips are the only extra.
+ */
+.z-post-grid__items {
+  display: grid;
+  gap: var(--z-space-m, var(--wp--preset--spacing--40, 2rem));
+  grid-template-columns: 1fr;
+}
+
+.z-post-grid__items > * {
+  min-width: 0;
+}
+
+@media (min-width: 40em) {
+  .z-post-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64em) {
+  .z-post-grid.has-3-columns .z-post-grid__items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .z-post-grid.has-4-columns .z-post-grid__items {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.z-post-grid__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--z-space-xs, var(--wp--preset--spacing--20, 0.5rem));
+  margin-block-end: var(--z-space-m, var(--wp--preset--spacing--40, 2rem));
+}
+
+.z-chip {
+  padding: 0.35em 0.9em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--z-size-small, var(--wp--preset--font-size--small, 0.875rem));
+  cursor: pointer;
+}
+
+.z-chip[aria-pressed='true'] {
+  color: var(--z-on-accent, var(--wp--preset--color--base, inherit));
+  background: var(--z-accent, var(--wp--preset--color--accent, transparent));
+}
+
+.z-post-grid__item[hidden] {
+  display: none;
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/compare-table",
+  "title": "Compare Table",
+  "category": "zngiron",
+  "icon": "columns",
+  "description": "Two or three posts side by side over the meta fields flagged for comparison in config/brand.json.",
+  "keywords": [
+    "compare",
+    "table",
+    "specs"
+  ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "postIds": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "example": {
+    "attributes": {
+      "heading": "Side by side"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

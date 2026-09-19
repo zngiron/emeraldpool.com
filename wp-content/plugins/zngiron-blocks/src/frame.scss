@@ -1,0 +1,67 @@
+/**
+ * Frame — the sizing contract.
+ *
+ * Every image and video in the system sits in a Frame with a fixed ratio, so
+ * media never decides the height of a layout. Shared by five blocks, which is
+ * why it is one registered stylesheet rather than five compiled copies.
+ */
+.z-frame {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: var(--z-ratio, 16 / 9);
+  background: var(--z-surface-alt, var(--wp--preset--color--surface-alt, transparent));
+}
+
+.z-frame__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-position: var(--z-focal-x, 50%) var(--z-focal-y, 50%);
+}
+
+.z-frame.is-fit-cover .z-frame__media {
+  object-fit: cover;
+}
+
+.z-frame.is-fit-contain .z-frame__media {
+  object-fit: contain;
+}
+
+/* Buttons and the eyebrow are the other two shapes several blocks emit. */
+.z-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--z-space-s, var(--wp--preset--spacing--30, 1rem));
+}
+
+.z-button {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--z-space-xs, var(--wp--preset--spacing--20, 0.75rem)) var(--z-space-s, var(--wp--preset--spacing--30, 1.25rem));
+  border: 1px solid currentColor;
+  border-radius: var(--z-radius, 0);
+  font-family: var(--z-font-ui, var(--wp--preset--font-family--body, inherit));
+  text-decoration: none;
+}
+
+.z-button.is-style-primary {
+  color: var(--z-on-accent, var(--wp--preset--color--base, inherit));
+  background: var(--z-accent, var(--wp--preset--color--accent, transparent));
+  border-color: var(--z-accent, var(--wp--preset--color--accent, currentColor));
+}
+
+.z-button.is-style-secondary {
+  color: inherit;
+  background: transparent;
+}
+
+.z-eyebrow {
+  display: block;
+  margin: 0 0 var(--z-space-xs, var(--wp--preset--spacing--20, 0.5rem));
+  font-family: var(--z-font-mono, var(--wp--preset--font-family--mono, monospace));
+  font-size: var(--z-size-eyebrow, var(--wp--preset--font-size--small, 0.8125rem));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--z-muted, var(--wp--preset--color--muted, inherit));
+}

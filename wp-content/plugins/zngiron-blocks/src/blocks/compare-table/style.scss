@@ -1,0 +1,39 @@
+/**
+ * Compare Table. Scrolls sideways on a narrow screen rather than reflowing,
+ * because a comparison that stacks is no longer a comparison.
+ */
+.z-compare__heading {
+  margin: 0 0 var(--z-space-s, var(--wp--preset--spacing--30, 1rem));
+}
+
+.z-compare__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.z-compare__table th,
+.z-compare__table td {
+  padding: var(--z-space-xs, var(--wp--preset--spacing--20, 0.5rem));
+  border-block-end: 1px solid var(--z-rule, currentColor);
+  text-align: start;
+  vertical-align: top;
+}
+
+.z-compare__table td {
+  font-family: var(--z-font-mono, var(--wp--preset--font-family--mono, monospace));
+}
+
+.z-compare__table thead a {
+  color: inherit;
+}
+
+@media (max-width: 47.99em) {
+  .z-compare {
+    overflow-x: auto;
+  }
+
+  .z-compare__table {
+    min-width: 32rem;
+  }
+}

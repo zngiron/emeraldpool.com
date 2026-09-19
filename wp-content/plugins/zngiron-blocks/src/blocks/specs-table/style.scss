@@ -1,0 +1,29 @@
+/**
+ * Specs Table.
+ */
+.z-specs__heading {
+  margin: 0 0 var(--z-space-s, var(--wp--preset--spacing--30, 1rem));
+}
+
+.z-specs__list {
+  margin: 0;
+}
+
+.z-specs__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--z-space-s, var(--wp--preset--spacing--30, 1rem));
+  padding-block: var(--z-space-xs, var(--wp--preset--spacing--20, 0.5rem));
+  border-block-end: 1px solid var(--z-rule, currentColor);
+}
+
+.z-specs__label {
+  margin: 0;
+  color: var(--z-muted, var(--wp--preset--color--muted, inherit));
+}
+
+.z-specs__value {
+  margin: 0;
+  font-family: var(--z-font-mono, var(--wp--preset--font-family--mono, monospace));
+  text-align: end;
+}

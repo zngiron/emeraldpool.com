@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "zngiron/card",
+  "title": "Card",
+  "category": "zngiron",
+  "icon": "index-card",
+  "parent": [ "zngiron/card-grid" ],
+  "description": "One card: Frame, title, text and an optional link. Lives inside a Card Grid.",
+  "keywords": [ "card", "feature" ],
+  "textdomain": "zngiron-blocks",
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "text": { "type": "string", "default": "" },
+    "url": { "type": "string", "default": "" },
+    "linkText": { "type": "string", "default": "" },
+    "frame": { "type": "object", "default": {} }
+  },
+  "supports": {
+    "anchor": true,
+    "html": false,
+    "color": { "text": true, "background": true },
+    "spacing": { "padding": true }
+  },
+  "example": {
+    "attributes": {
+      "title": "Delivery",
+      "text": "Craned in, levelled and filled, by the crew that does it every day.",
+      "linkText": "How it works",
+      "url": "#"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": [ "file:./style-index.css", "zngiron-frame" ],
+  "render": "file:./render.php"
+}
