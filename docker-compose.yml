@@ -36,6 +36,7 @@ services:
       - wp_core:/var/www/html
       - ./wp-content/themes:/var/www/html/wp-content/themes
       - ./wp-content/plugins:/var/www/html/wp-content/plugins
+      - ./config:/var/www/html/config:ro
 
   cli:
     image: wordpress:cli
@@ -54,6 +55,7 @@ services:
       - wp_core:/var/www/html
       - ./wp-content/themes:/var/www/html/wp-content/themes
       - ./wp-content/plugins:/var/www/html/wp-content/plugins
+      - ./config:/var/www/html/config:ro
       - ./seed:/seed
       - ./research:/research
     entrypoint: ["wp"]

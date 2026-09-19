@@ -1,0 +1,92 @@
+{
+  "brand": {
+    "name": "Emerald Pool & Patio",
+    "shortName": "Emerald Pool",
+    "tagline": "Pools, hot tubs and patio in Oregon since 1955."
+  },
+  "postTypes": {
+    "spa": {
+      "singular": "Spa",
+      "plural": "Spas",
+      "description": "Hot tubs and swim spas in the catalogue.",
+      "slug": "spas",
+      "restBase": "spas",
+      "menuIcon": "dashicons-buddicons-activity",
+      "supports": ["title", "editor", "excerpt", "thumbnail", "revisions", "custom-fields", "page-attributes"],
+      "taxonomies": {
+        "spa_type": {
+          "singular": "Spa type",
+          "plural": "Spa types",
+          "slug": "spa-type",
+          "hierarchical": true,
+          "terms": {
+            "hot-tubs": "Hot Tubs",
+            "swim-spas": "Swim Spas"
+          }
+        },
+        "spa_series": {
+          "singular": "Series",
+          "plural": "Series",
+          "slug": "series",
+          "hierarchical": true,
+          "terms": {
+            "a-series": "A Series — Luxury",
+            "m-series": "M Series — Elite",
+            "x-series": "X Series — Comfort",
+            "stil": "STIL — Modern",
+            "calm": "Calm — Value",
+            "swim-series": "Swim Series — Performance"
+          }
+        }
+      },
+      "meta": [
+        { "key": "spa_seats", "label": "Seats", "type": "integer", "unit": "", "specs": true, "compare": true },
+        { "key": "spa_lounge_seats", "label": "Lounge seats", "type": "integer", "unit": "", "specs": true, "compare": false },
+        { "key": "spa_jets", "label": "Jets", "type": "integer", "unit": "", "specs": true, "compare": true },
+        { "key": "spa_pumps", "label": "Therapy pumps", "type": "integer", "unit": "", "specs": true, "compare": true },
+        { "key": "spa_capacity_gallons", "label": "Water capacity", "type": "integer", "unit": "gallons", "specs": true, "compare": true },
+        { "key": "spa_dimensions", "label": "Dimensions (W × L × H)", "type": "string", "unit": "", "specs": true, "compare": true },
+        { "key": "spa_dimensions_metric", "label": "Dimensions, metric", "type": "string", "unit": "", "specs": true, "compare": false },
+        { "key": "spa_dry_weight", "label": "Dry weight", "type": "integer", "unit": "lbs", "specs": true, "compare": false },
+        { "key": "spa_price_from", "label": "Price from", "type": "number", "unit": "USD", "specs": true, "compare": true },
+        { "key": "spa_brochure_url", "label": "Brochure URL", "type": "string", "unit": "", "specs": false, "compare": false },
+        { "key": "spa_video_url", "label": "Hover video URL", "type": "string", "unit": "", "specs": false, "compare": false }
+      ]
+    }
+  },
+  "locations": [
+    {
+      "slug": "eugene",
+      "name": "Eugene",
+      "legal": "Emerald Pool & Patio",
+      "street": "1885 Hwy 99 N",
+      "city": "Eugene",
+      "region": "OR",
+      "postcode": "97402",
+      "country": "US",
+      "phone": "(541) 688-1090",
+      "hours": "Mon–Sat 9:00am–6:00pm · Sun closed",
+      "map": "https://maps.app.goo.gl/kj2KmG3PrCtY6ni47",
+      "note": "Pools, hot tubs and patio, since 1955."
+    },
+    {
+      "slug": "bend",
+      "name": "Bend",
+      "legal": "Emerald Hearth, Spa & Patio",
+      "street": "62929 N. Hwy 97",
+      "city": "Bend",
+      "region": "OR",
+      "postcode": "97701",
+      "country": "US",
+      "phone": "(541) 383-3011",
+      "hours": "Mon–Fri 9:00am–6:00pm · Sat 9:00am–5:00pm · Sun closed",
+      "map": "https://maps.app.goo.gl/kk8S9oBD5GkKZmy6A",
+      "note": "Hearth, spa and patio for central Oregon."
+    }
+  ],
+  "social": [
+    { "label": "Facebook", "url": "https://www.facebook.com/emeraldpoolandpatio" },
+    { "label": "Instagram", "url": "https://www.instagram.com/emeraldpoolandpatio" },
+    { "label": "YouTube", "url": "https://www.youtube.com/@emeraldpoolandpatio" }
+  ]
+}
