@@ -1,1 +1,0 @@
-.ep-faq{display:flex;flex-direction:column;gap:var(--wp--preset--spacing--20)}.ep-faq__heading{margin:0}.ep-faq__items{border-top:2px solid var(--wp--preset--color--primary);position:relative}.ep-faq__items:before{background:var(--wp--preset--color--accent);content:"";height:1px;left:0;position:absolute;top:1px;width:100%}

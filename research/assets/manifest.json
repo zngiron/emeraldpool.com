@@ -1,7 +1,7 @@
 {
   "generated": "2026-09-19",
   "source": "https://emeraldpool.com",
-  "count": 41,
+  "count": 33,
   "assets": [
     {
       "filename": "1I7A4726_001-scaled.webp",
@@ -12,36 +12,12 @@
       "fromPage": "jetpak-therapy-system"
     },
     {
-      "filename": "3T2A4560_1.jpg",
-      "sizeKB": 145,
-      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/3T2A4560_1.jpg",
-      "depicts": "services: image",
-      "suggestedUse": "pattern/lifestyle image",
-      "fromPage": "services"
-    },
-    {
-      "filename": "3T2A5041.jpg",
-      "sizeKB": 300,
-      "source": "https://emeraldpool.com/wp-content/uploads/2024/04/3T2A5041.jpg",
-      "depicts": "CSS background image on home",
-      "suggestedUse": "section background / hero",
-      "fromPage": "home"
-    },
-    {
       "filename": "3T2A5585.jpg",
       "sizeKB": 177,
       "source": "https://www.spadealership.com/wp-content/uploads/2025/10/3T2A5585.jpg",
       "depicts": "jetpak-therapy-system: Three women relaxing in a Bullfrog Spa",
       "suggestedUse": "pattern/lifestyle image",
       "fromPage": "jetpak-therapy-system"
-    },
-    {
-      "filename": "3T2A5613_2.jpg",
-      "sizeKB": 158,
-      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/3T2A5613_2.jpg",
-      "depicts": "OG/social image for hot-tubs",
-      "suggestedUse": "hero or card background",
-      "fromPage": "hot-tubs"
     },
     {
       "filename": "a7d-top-down-71713.jpg",
@@ -76,22 +52,6 @@
       "fromPage": "global"
     },
     {
-      "filename": "Flora-Duffy-Swim-6_1.jpg",
-      "sizeKB": 190,
-      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/Flora-Duffy-Swim-6_1.jpg",
-      "depicts": "OG/social image for swim-spas",
-      "suggestedUse": "hero or card background",
-      "fromPage": "swim-spas"
-    },
-    {
-      "filename": "how-to-enjoy-your-hot-tub-this-winter.jpg",
-      "sizeKB": 116,
-      "source": "https://emeraldpool.com/wp-content/uploads/2024/02/how-to-enjoy-your-hot-tub-this-winter.jpg",
-      "depicts": "OG/social image for how-to-enjoy-your-hot-tub-this-winter",
-      "suggestedUse": "hero or card background",
-      "fromPage": "how-to-enjoy-your-hot-tub-this-winter"
-    },
-    {
       "filename": "jetpak-personalization-low-960.jpg",
       "sizeKB": 23,
       "source": "https://www.spadealership.com/wp-content/uploads/2025/10/jetpak-personalization-low-960.jpg",
@@ -122,14 +82,6 @@
       "depicts": "home: a Calm 7 spa on a paved terrace beside a lawn",
       "suggestedUse": "series chapter — Calm (context, not plan)",
       "fromPage": "home"
-    },
-    {
-      "filename": "lifestyle-couple-dusk.jpg",
-      "sizeKB": 99,
-      "source": "https://bfs.spadealership.com/wp-content/uploads/2023/06/bullfrog-spas-benefits-header.jpg",
-      "depicts": "bullfrog-spas-benefits: a couple in a spa in a green back yard (21:9 banner crop)",
-      "suggestedUse": "wide editorial band",
-      "fromPage": "bullfrog-spas-benefits"
     },
     {
       "filename": "lifestyle-couple-eyes.jpg",
@@ -212,14 +164,6 @@
       "fromPage": "promotions"
     },
     {
-      "filename": "lifestyle-snow-storm.jpg",
-      "sizeKB": 209,
-      "source": "https://www.spadealership.com/wp-content/uploads/2024/04/X-Series_Storm-Snow_Lifestyle_AC5I3709-scaled.jpg",
-      "depicts": "promotions: a woman leaning on the edge of a spa in a back yard",
-      "suggestedUse": "hot tubs hero",
-      "fromPage": "promotions"
-    },
-    {
       "filename": "lifestyle-swim-snow.jpg",
       "sizeKB": 101,
       "source": "https://cdn.spasoftwaresolutions.net/collections/swim-series-timber-snow-lifestyle-ac5i0538-1311727.jpg",
@@ -250,14 +194,6 @@
       "depicts": "OG/social image for model-45073",
       "suggestedUse": "hero or card background",
       "fromPage": "model-45073"
-    },
-    {
-      "filename": "m8-top-down-2026-527020.jpg",
-      "sizeKB": 78,
-      "source": "https://cdn.spasoftwaresolutions.net/inventory_photos/bullfrog_spas/2026/m8-top-down-2026-527020.jpg",
-      "depicts": "OG/social image for model-45071",
-      "suggestedUse": "hero or card background",
-      "fromPage": "model-45071"
     },
     {
       "filename": "m9-top-down-602603.jpg",

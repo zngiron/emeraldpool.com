@@ -1,1 +1,0 @@
-.ep-icon-picker{display:grid;gap:4px;grid-template-columns:repeat(4,1fr)}.ep-icon-picker__option{align-items:center;border:1px solid transparent;display:flex!important;height:48px;justify-content:center;width:100%}.ep-icon-picker__option.is-pressed{border-color:var(--wp-admin-theme-color)}
