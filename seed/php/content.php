@@ -162,8 +162,6 @@ foreach ( $data['spas'] as $index => $spa ) {
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:emerald-pool/spa-specs {"heading":"Full specification","columns":2,"showGroupHeadings":true} /-->
-
 <!-- wp:emerald-pool/faq-accordion {"heading":"Before delivery day","emitSchema":false} -->
 <div class="ep-faq__items"><!-- wp:details {"summary":"What will this one need electrically?"} -->
 <details class="wp-block-details"><summary>What will this one need electrically?</summary><!-- wp:paragraph -->
