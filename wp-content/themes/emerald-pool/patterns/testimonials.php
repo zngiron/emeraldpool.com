@@ -3,24 +3,30 @@
  * Title: Testimonials
  * Slug: emerald-pool/testimonials
  * Categories: emerald-pool/social
- * Description: Customer quotes beside a lifestyle photograph. Reader-controlled, no autoplay.
+ * Description: A full-bleed lifestyle photograph with the quotes set over it. Reader-controlled, no autoplay.
  * Keywords: testimonial, review, quote
  * Viewport Width: 1400
  *
  * @package EmeraldPool\Theme
  */
 
+/*
+ * The one place on the page where a photograph of people carries the whole band
+ * rather than sitting in a column beside it. The quotes are set over the image
+ * at display scale, so the section reads as a spread rather than as a widget.
+ *
+ * The slider is still reader-controlled: nothing advances on its own, off-screen
+ * quotes are inert, and position is announced politely.
+ */
 ?>
-<!-- wp:group {"align":"full","backgroundColor":"surface","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70","left":"var:preset|spacing|20","right":"var:preset|spacing|20"}}},"layout":{"type":"constrained","wideSize":"1280px"}} -->
-<div class="wp-block-group alignfull has-surface-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--20)"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"42%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:42%"><!-- wp:image {"sizeSlug":"large","className":"is-style-soft"} -->
-<figure class="wp-block-image size-large is-style-soft"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lifestyle-friends.jpg' ) ); ?>" alt="Three friends talking in a hot tub on a covered patio"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:column -->
+<!-- wp:group {"className":"ep-quote-band ep-night","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|80","bottom":"var:preset|spacing|80","left":"var:custom|gutter","right":"var:custom|gutter"}}},"layout":{"type":"constrained","wideSize":"1440px"}} -->
+<div class="wp-block-group alignfull ep-quote-band ep-night" style="padding-top:var(--wp--preset--spacing--80);padding-right:var(--wp--custom--gutter);padding-bottom:var(--wp--preset--spacing--80);padding-left:var(--wp--custom--gutter)"><!-- wp:html -->
+<img class="ep-quote-band__media" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/lifestyle-friends.jpg' ) ); ?>" alt="Three friends talking in a lit hot tub on a covered patio after dark" loading="lazy" decoding="async" width="1600" height="1067">
+<span class="ep-quote-band__scrim" aria-hidden="true"></span>
+<!-- /wp:html -->
 
-<!-- wp:column {"verticalAlignment":"center"} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
+<!-- wp:group {"className":"ep-quote-band__inner ep-reveal","align":"wide","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained","contentSize":"100%"}} -->
+<div class="wp-block-group alignwide ep-quote-band__inner ep-reveal"><!-- wp:heading {"level":3,"className":"is-style-eyebrow","fontSize":"small"} -->
 <h3 class="wp-block-heading is-style-eyebrow has-small-font-size">From our customers</h3>
 <!-- /wp:heading -->
 
@@ -43,6 +49,5 @@
 <!-- /wp:paragraph --><cite>Priya N. — Springfield</cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:emerald-pool/testimonial-slider --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->

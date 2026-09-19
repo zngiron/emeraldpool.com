@@ -6,7 +6,12 @@
  *  - theme.json expresses everything it can express; CSS only covers what it cannot.
  *  - Per-block CSS goes through wp_enqueue_block_style(), so a page that has no
  *    Navigation block downloads no navigation CSS.
- *  - No JavaScript is enqueued by the theme at all. Interactivity lives in blocks.
+ *  - The theme ships exactly one front-end script, assets/js/site.js (~1 KB,
+ *    deferred, no dependencies). It does the two things CSS still cannot do
+ *    everywhere: publish the fixed header's height and toggle its scrolled
+ *    state, and stand in for scroll-driven animation on browsers without
+ *    animation-timeline. Everything else interactive lives in blocks and uses
+ *    the Interactivity API.
  *
  * @package EmeraldPool\Theme
  */
@@ -50,6 +55,27 @@ function enqueue_front_end(): void {
 	);
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_front_end' );
+
+/**
+ * The single front-end script.
+ *
+ * Deferred and dependency-free. Every behaviour it adds is an enhancement: with
+ * the script blocked the header is solid, the page still clears it, and every
+ * revealed element renders visible.
+ */
+function enqueue_front_end_script(): void {
+	wp_enqueue_script(
+		'emerald-pool-site',
+		get_theme_file_uri( 'assets/js/site.js' ),
+		array(),
+		VERSION,
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_front_end_script' );
 
 /**
  * Attach per-block stylesheets. Loaded on demand by WordPress.

@@ -42,7 +42,7 @@
 				attributes: {
 					align: 'full',
 					backgroundColor: 'deep',
-					textColor: 'base',
+					textColor: 'sand',
 					layout: { type: 'constrained' },
 					style: {
 						spacing: {
@@ -56,18 +56,25 @@
 			}
 		},
 		{
-			block: 'core/columns',
+			block: 'core/group',
 			settings: {
-				name: 'emerald-card-row',
-				title: __( 'Card row', 'emerald-pool' ),
-				description: __( 'Three cards side by side, stacking on mobile.', 'emerald-pool' ),
+				name: 'emerald-section-night',
+				title: __( 'Section — night', 'emerald-pool' ),
+				description: __( 'A full-width band on the deep night ground, with grain. The design\'s default for product and closing sections.', 'emerald-pool' ),
 				scope: [ 'inserter' ],
-				attributes: { className: 'is-style-card-group' },
-				innerBlocks: [
-					[ 'core/column', {}, [ [ 'core/heading', { level: 3 } ], [ 'core/paragraph', {} ] ] ],
-					[ 'core/column', {}, [ [ 'core/heading', { level: 3 } ], [ 'core/paragraph', {} ] ] ],
-					[ 'core/column', {}, [ [ 'core/heading', { level: 3 } ], [ 'core/paragraph', {} ] ] ]
-				]
+				attributes: {
+					align: 'full',
+					className: 'ep-night',
+					layout: { type: 'constrained' },
+					style: {
+						spacing: {
+							padding: {
+								top: 'var:preset|spacing|70',
+								bottom: 'var:preset|spacing|70'
+							}
+						}
+					}
+				}
 			}
 		}
 	];

@@ -1,11 +1,15 @@
 /* core/group — container behaviour theme.json cannot describe. */
 
-/* Cards in a flex row share a height so their footers line up. */
-.wp-block-group.is-style-card {
-	height: 100%;
+/* A group set to a background colour gets its own side padding at full width. */
+.wp-block-group.alignfull:where(.has-background, .is-style-night, .ep-night) {
+	padding-inline: var(--wp--custom--gutter);
 }
 
-/* A group set to a background colour gets its own side padding at full width. */
-.wp-block-group.alignfull:where(.has-background) {
-	padding-inline: var(--wp--preset--spacing--20);
+/*
+ * Two night bands in a row would show a seam where the grain tiles restart.
+ * Collapsing the gap between them makes consecutive dark sections read as one
+ * continuous ground, which is what the chapter sequence needs.
+ */
+.ep-night + .ep-night {
+	margin-block-start: 0;
 }

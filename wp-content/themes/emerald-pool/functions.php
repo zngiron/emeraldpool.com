@@ -27,7 +27,6 @@ foreach (
 		'patterns',
 		'block-styles',
 		'block-variations',
-		'template-parts',
 	) as $module
 ) {
 	require_once __DIR__ . '/inc/' . $module . '.php';

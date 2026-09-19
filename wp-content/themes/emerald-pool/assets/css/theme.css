@@ -1,9 +1,15 @@
 /*
  * Emerald Pool — global layer.
  *
- * Everything here is something theme.json cannot express: focus behaviour,
- * the skip link, motion preferences, and the two layout affordances patterns
- * rely on. If you can say it in theme.json, say it there instead.
+ * Direction: "night water". The brand's subject is a lit, steaming spa in a wet
+ * Oregon winter, so the site's ground is deep water-black, the product shells
+ * float on it like plan drawings, and one warm token (ember) carries the heat.
+ * Light sections are punctuation, not the default.
+ *
+ * Everything here is something theme.json cannot express: the fixed header's
+ * scroll state, scroll-driven reveals, the marquee, grain, the plan-view
+ * annotations, and the asymmetric editorial grid. If you can say it in
+ * theme.json, say it there instead.
  */
 
 /* --- Accessibility ------------------------------------------------------- */
@@ -24,38 +30,48 @@
 }
 
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-	outline: 3px solid var(--wp--preset--color--accent);
-	outline-offset: 2px;
+	outline: 3px solid var(--wp--preset--color--ember);
+	outline-offset: 3px;
 	border-radius: var(--wp--custom--radius--sm);
 }
 
-/* Focus stays visible on dark bands. */
+/* Focus stays visible on every ground, light or night. */
+.ep-night :where(a, button, summary, [tabindex]):focus-visible,
 .has-deep-background-color :where(a, button, summary):focus-visible,
+.has-abyss-background-color :where(a, button, summary):focus-visible,
 .has-primary-dark-background-color :where(a, button, summary):focus-visible {
-	outline-color: var(--wp--preset--color--accent);
+	outline-color: var(--wp--preset--color--ember);
 }
 
-@media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
-}
+/* --- Page shell ---------------------------------------------------------- */
 
-/* --- Type detail --------------------------------------------------------- */
+html {
+	scroll-behavior: smooth;
+}
 
 body {
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+	overflow-x: clip;
 }
 
-/* Fraunces reads best with its soft optical axis at display sizes. */
-:where(h1, h2, .has-display-font-size, .has-xx-large-font-size) {
-	font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 120;
+/* Nothing in the design may create a sideways scrollbar. */
+.wp-site-blocks {
+	overflow-x: clip;
+}
+
+/* --- Type detail --------------------------------------------------------- */
+
+/*
+ * Fraunces carries the personality. At display sizes its optical-size and WONK
+ * axes are pushed hard; at text sizes they are pulled back so it stays readable.
+ */
+:where(h1, h2, .has-display-font-size, .has-colossal-font-size, .has-xx-large-font-size) {
+	font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 144;
+}
+
+:where(h3, h4, .has-x-large-font-size, .has-large-font-size) {
+	font-variation-settings: "SOFT" 18, "WONK" 0, "opsz" 48;
 }
 
 :where(p, li) {
@@ -66,19 +82,778 @@ body {
 	text-wrap: balance;
 }
 
-/* --- Layout affordances -------------------------------------------------- */
-
-/* Sticky header: applied by the header template part, defined once here. */
-.ep-header-sticky {
-	position: sticky;
-	top: 0;
-	z-index: 50;
-	backdrop-filter: saturate(140%) blur(8px);
-	background-color: color-mix(in srgb, var(--wp--preset--color--base) 88%, transparent);
-	border-bottom: 1px solid var(--wp--preset--color--border);
+/* Any number that is data reads as data. */
+.has-data-font-family {
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.01em;
 }
 
-/* A media band whose image bleeds to the viewport edge but whose text does not. */
+/*
+ * The editorial numeral. Sections of the home page are a real sequence — the
+ * order a customer moves through them — so they are numbered, and the numeral
+ * is set at display scale rather than as a caption.
+ */
+.ep-numeral {
+	display: block;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--display);
+	font-weight: 300;
+	line-height: 0.8;
+	letter-spacing: -0.04em;
+	font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 144;
+	color: transparent;
+	-webkit-text-stroke: 1px var(--wp--preset--color--border);
+	margin: 0;
+}
+
+.ep-night .ep-numeral {
+	-webkit-text-stroke-color: rgba(233, 226, 212, 0.28);
+}
+
+.ep-numeral--solid {
+	color: var(--wp--preset--color--ember);
+	-webkit-text-stroke: 0;
+}
+
+/* --- Night ground -------------------------------------------------------- */
+
+/*
+ * A night section. The grain is a 160px inline SVG turbulence tile — about
+ * 300 bytes, no request — which stops large flat dark fields from banding on
+ * cheap panels and gives the ground a photographic texture.
+ */
+.ep-night {
+	position: relative;
+	isolation: isolate;
+	background-color: var(--wp--preset--color--abyss);
+	color: var(--wp--preset--color--sand);
+}
+
+.ep-night--deep {
+	background-color: var(--wp--preset--color--deep);
+}
+
+.ep-night::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	background-image: var(--wp--custom--grain);
+	opacity: 0.05;
+	mix-blend-mode: overlay;
+}
+
+.ep-night > * {
+	position: relative;
+	z-index: 1;
+}
+
+.ep-night :where(h1, h2, h3, h4) {
+	color: var(--wp--preset--color--sand);
+}
+
+.ep-night :where(p, li, dd, dt, figcaption) {
+	color: rgba(233, 226, 212, 0.74);
+}
+
+.ep-night :where(a):not(.wp-element-button) {
+	color: var(--wp--preset--color--sand);
+}
+
+.ep-night :where(a):not(.wp-element-button):hover {
+	color: var(--wp--preset--color--ember);
+}
+
+.ep-night .is-style-eyebrow:not(.has-text-color),
+.has-deep-background-color .is-style-eyebrow:not(.has-text-color),
+.has-abyss-background-color .is-style-eyebrow:not(.has-text-color),
+.has-primary-dark-background-color .is-style-eyebrow:not(.has-text-color) {
+	color: var(--wp--preset--color--ember);
+}
+
+.has-deep-background-color a:not(.wp-element-button),
+.has-abyss-background-color a:not(.wp-element-button),
+.has-primary-dark-background-color a:not(.wp-element-button) {
+	color: var(--wp--preset--color--sand);
+}
+
+/* The quiet outline button takes its strokes from the ground it sits on. */
+.ep-night .wp-block-button.is-style-outline-quiet .wp-block-button__link,
+.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link,
+.has-abyss-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link,
+.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link {
+	color: var(--wp--preset--color--sand);
+	box-shadow: inset 0 0 0 1px rgba(233, 226, 212, 0.4);
+}
+
+.ep-night .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
+.ep-night .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus,
+.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
+.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus,
+.has-abyss-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
+.has-abyss-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus,
+.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
+.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus {
+	background: var(--wp--preset--color--ember);
+	color: var(--wp--preset--color--abyss);
+	box-shadow: inset 0 0 0 1px var(--wp--preset--color--ember);
+}
+
+/* --- The header ---------------------------------------------------------- */
+
+/*
+ * The header floats over the hero and solidifies on scroll. The class toggle is
+ * done by assets/js/header.js — eight lines, no library — and the page is
+ * entirely usable if that script never runs, because the solid state is the
+ * default and only the transparent state is opt-in.
+ */
+.ep-site-header {
+	position: fixed;
+	inset: 0 0 auto 0;
+	z-index: 90;
+	background: var(--wp--preset--color--base);
+	border-bottom: 1px solid var(--wp--preset--color--border);
+	transition: background var(--wp--custom--transition--slow),
+		border-color var(--wp--custom--transition--slow),
+		color var(--wp--custom--transition--slow);
+}
+
+/* Pages that open on a hero let the header sit on the image until it scrolls. */
+body:has(main > .ep-hero:first-child) .ep-site-header,
+body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header {
+	background: transparent;
+	border-bottom-color: transparent;
+	color: var(--wp--preset--color--sand);
+}
+
+body:has(main > .ep-hero:first-child) .ep-site-header :where(a, .wp-block-site-title),
+body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header :where(a, .wp-block-site-title) {
+	color: var(--wp--preset--color--sand);
+}
+
+/* Once past the fold the header is opaque again, whatever it started as. */
+.ep-site-header.is-pinned,
+body:has(main > .ep-hero:first-child) .ep-site-header.is-pinned,
+body:has(main > .entry-content > .ep-hero:first-child) .ep-site-header.is-pinned {
+	background: color-mix(in srgb, var(--wp--preset--color--base) 92%, transparent);
+	backdrop-filter: saturate(150%) blur(10px);
+	border-bottom-color: var(--wp--preset--color--border);
+	color: var(--wp--preset--color--ink);
+}
+
+.ep-site-header.is-pinned :where(a, .wp-block-site-title) {
+	color: var(--wp--preset--color--ink);
+}
+
+.ep-site-header.is-pinned .wp-block-button__link {
+	background: var(--wp--preset--color--primary-dark);
+	color: var(--wp--preset--color--base);
+}
+
+/* The filled CTA is the one solid mark in the header and never inverts. */
+.ep-site-header .wp-block-button__link {
+	padding: 0.8rem 1.4rem;
+}
+
+.ep-site-header .wp-block-navigation__responsive-container-open,
+.ep-site-header .wp-block-navigation__responsive-container-close {
+	color: currentcolor;
+}
+
+/* Non-hero pages need to clear the fixed header. */
+main {
+	padding-top: var(--ep-header-h, 5.5rem);
+}
+
+body:has(main > .ep-hero:first-child) main,
+body:has(main > .entry-content > .ep-hero:first-child) main {
+	padding-top: 0;
+}
+
+/* The phone number reads as a link, not a button. */
+.ep-header-phone {
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+	.ep-header-phone {
+		display: none;
+	}
+}
+
+/* --- Link underline ------------------------------------------------------ */
+
+/*
+ * Body links draw their rule on hover rather than carrying one. Buttons, cards
+ * and navigation opt out because they signal themselves by other means.
+ */
+.entry-content a:not(.wp-element-button):not(.ep-card__title a),
+.ep-prose a:not(.wp-element-button) {
+	background-image: linear-gradient(currentcolor, currentcolor);
+	background-position: 0 100%;
+	background-repeat: no-repeat;
+	background-size: 100% 1px;
+	padding-bottom: 0.08em;
+	transition: background-size var(--wp--custom--transition--base);
+}
+
+.entry-content a:not(.wp-element-button):hover,
+.ep-prose a:not(.wp-element-button):hover {
+	background-size: 100% 2px;
+}
+
+/* --- The asymmetric grid ------------------------------------------------- */
+
+/*
+ * The old build centred everything. These two classes are what break that: a
+ * section head that sits left of a twelve-column field, and prose that starts
+ * at column five rather than in the middle of the page.
+ */
+.ep-bay {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	column-gap: var(--wp--custom--gutter);
+	row-gap: var(--wp--preset--spacing--40);
+	align-items: start;
+}
+
+.ep-bay > .ep-bay__lede {
+	grid-column: 1 / span 6;
+}
+
+.ep-bay > .ep-bay__aside {
+	grid-column: 8 / span 5;
+	align-self: end;
+}
+
+.ep-bay > .ep-bay__wide {
+	grid-column: 1 / -1;
+}
+
+@media (max-width: 860px) {
+	.ep-bay > .ep-bay__lede,
+	.ep-bay > .ep-bay__aside {
+		grid-column: 1 / -1;
+	}
+}
+
+/* Prose that is deliberately off the centre line. */
+.ep-prose {
+	max-width: 46ch;
+}
+
+.ep-prose--offset {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+@media (min-width: 861px) {
+	.ep-indent {
+		padding-left: 33.333%;
+	}
+}
+
+/* A hairline that separates sections without drawing a box around them. */
+.ep-rule {
+	border: 0;
+	border-top: 1px solid var(--wp--preset--color--border);
+	margin: 0;
+}
+
+.ep-night .ep-rule {
+	border-top-color: rgba(233, 226, 212, 0.18);
+}
+
+/* --- Chapters ------------------------------------------------------------ */
+
+/*
+ * A chapter is one series: a full-bleed image on one side, the argument on the
+ * other, alternating down the page. It replaces the six identical boxed tiles
+ * the old build used, and it is the structure the series content actually has —
+ * six distinct families, each worth a paragraph.
+ */
+.ep-chapter {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-items: stretch;
+	min-height: 26rem;
+}
+
+.ep-chapter__media {
+	position: relative;
+	overflow: clip;
+	background: var(--wp--preset--color--sand);
+	min-height: 20rem;
+	max-height: 34rem;
+	isolation: isolate;
+}
+
+/*
+ * The same plan field the cards use: the shell is a top-down render on white, so
+ * it is floated over a faint centre cross and contained rather than cropped.
+ * Cropping a plan drawing throws away the only thing it is for.
+ */
+.ep-chapter__media::before,
+.ep-chapter__media::after {
+	content: "";
+	position: absolute;
+	background: rgba(4, 20, 27, 0.14);
+	z-index: 1;
+	pointer-events: none;
+}
+
+.ep-chapter__media::before {
+	inset: 14% auto 14% 50%;
+	width: 1px;
+}
+
+.ep-chapter__media::after {
+	inset: 50% 14% auto 14%;
+	height: 1px;
+}
+
+.ep-chapter__media img {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	padding: clamp(1.25rem, 3vw, 2.75rem);
+	box-sizing: border-box;
+	display: block;
+	mix-blend-mode: multiply;
+	/* The renders are pale grey on white; a touch of contrast keeps the shell
+	   legible once it is multiplied into the sand. */
+	filter: contrast(1.1);
+	will-change: transform;
+}
+
+.ep-chapter__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--20);
+	padding: var(--wp--preset--spacing--50) clamp(1.25rem, 5vw, 4.5rem);
+}
+
+.ep-chapter__title {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--x-large);
+	font-weight: 300;
+	line-height: 0.95;
+	letter-spacing: -0.035em;
+	font-variation-settings: "SOFT" 30, "WONK" 1, "opsz" 96;
+	color: var(--wp--preset--color--sand);
+}
+
+.ep-chapter__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.ep-chapter__title a:hover,
+.ep-chapter__title a:focus-visible {
+	color: var(--wp--preset--color--ember);
+}
+
+.ep-chapter__class {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	letter-spacing: var(--wp--custom--eyebrow--spacing);
+	text-transform: uppercase;
+	color: var(--wp--preset--color--ember);
+}
+
+.ep-chapter__text {
+	margin: 0;
+	max-width: 42ch;
+	color: rgba(233, 226, 212, 0.74);
+}
+
+/* Odd chapters put the image on the right; even ones on the left. */
+.ep-chapter:nth-child(even) .ep-chapter__media {
+	order: 2;
+}
+
+@media (max-width: 860px) {
+	.ep-chapter {
+		grid-template-columns: 1fr;
+		min-height: 0;
+	}
+
+	.ep-chapter:nth-child(even) .ep-chapter__media {
+		order: 0;
+	}
+
+	.ep-chapter__media {
+		min-height: 16rem;
+	}
+}
+
+/* --- The marquee --------------------------------------------------------- */
+
+/*
+ * The six series names, running. CSS only: the list is printed twice and the
+ * track is translated by exactly half its width, so the loop is seamless with
+ * no measurement and no script. It pauses under the pointer and when a link
+ * inside it takes focus, and it does not move at all under reduced motion.
+ */
+.ep-marquee {
+	overflow: clip;
+	padding-block: var(--wp--preset--spacing--30);
+	border-block: 1px solid rgba(233, 226, 212, 0.18);
+	user-select: none;
+}
+
+.ep-marquee__track {
+	display: flex;
+	width: max-content;
+	gap: 0;
+	animation: ep-marquee 42s linear infinite;
+}
+
+.ep-marquee:hover .ep-marquee__track,
+.ep-marquee:focus-within .ep-marquee__track {
+	animation-play-state: paused;
+}
+
+.ep-marquee__list {
+	display: flex;
+	flex: none;
+}
+
+.ep-marquee__item {
+	display: flex;
+	align-items: center;
+	gap: clamp(1.5rem, 4vw, 3.5rem);
+	padding-inline: clamp(0.75rem, 2vw, 1.75rem);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	letter-spacing: -0.02em;
+	white-space: nowrap;
+	color: rgba(233, 226, 212, 0.62);
+	text-decoration: none;
+}
+
+.ep-marquee__item::after {
+	content: "";
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 50%;
+	background: var(--wp--preset--color--ember);
+	flex: none;
+}
+
+a.ep-marquee__item:hover {
+	color: var(--wp--preset--color--sand);
+}
+
+@keyframes ep-marquee {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/* --- The quote band ------------------------------------------------------ */
+
+/*
+ * The one full-bleed photograph of people on the page. The image is a real <img>
+ * rather than a background so it is served responsively and lazily, and the
+ * scrim is a separate layer so the quote's contrast does not depend on how dark
+ * that particular photograph happens to be.
+ */
+.ep-quote-band {
+	overflow: clip;
+}
+
+.ep-quote-band__media {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 55%;
+	z-index: 0;
+}
+
+.ep-quote-band__scrim {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	background: linear-gradient(100deg, rgba(4, 20, 27, 0.92) 0%, rgba(4, 20, 27, 0.72) 48%, rgba(4, 20, 27, 0.4) 100%);
+}
+
+.ep-quote-band__inner {
+	position: relative;
+	z-index: 1;
+	max-width: 46rem;
+}
+
+/* --- The journal -------------------------------------------------------- */
+
+/*
+ * Image-led, like the product cards: picture, then the kind of piece it is,
+ * then the title. No panel, no excerpt hidden behind a "read more".
+ */
+.ep-journal .wp-block-post-template {
+	column-gap: var(--wp--custom--gutter);
+	row-gap: var(--wp--preset--spacing--50);
+}
+
+.ep-journal .wp-block-post {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+}
+
+.ep-journal .wp-block-post-featured-image {
+	margin-bottom: var(--wp--preset--spacing--10);
+	overflow: clip;
+}
+
+.ep-journal .wp-block-post-featured-image img {
+	transition: transform var(--wp--custom--transition--slow);
+	width: 100%;
+}
+
+.ep-journal .wp-block-post:hover .wp-block-post-featured-image img {
+	transform: scale(1.04);
+}
+
+.ep-journal .wp-block-post-title a {
+	color: var(--wp--preset--color--primary-dark);
+	text-decoration: none;
+}
+
+.ep-journal .wp-block-post:hover .wp-block-post-title a {
+	color: var(--wp--preset--color--ember);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ep-journal .wp-block-post:hover .wp-block-post-featured-image img {
+		transform: none;
+	}
+}
+
+/* --- Scroll-driven reveal ------------------------------------------------ */
+
+/*
+ * The reveal is opt-in three times over, so content is never hidden by a
+ * feature that did not load:
+ *   1. plain CSS         — element is visible, no animation;
+ *   2. scroll timelines  — the browser animates it against the view() timeline;
+ *   3. no timelines + JS — assets/js/reveal.js adds .ep-io to <html> and
+ *                          observes, so only then does the element start hidden.
+ * Under prefers-reduced-motion none of it applies.
+ */
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+		.ep-reveal {
+			animation: ep-rise linear both;
+			animation-timeline: view();
+			animation-range: entry 8% cover 32%;
+		}
+	}
+
+	.ep-io .ep-reveal:not(.is-revealed) {
+		opacity: 0;
+		transform: translateY(1.75rem);
+	}
+
+	.ep-io .ep-reveal {
+		transition: opacity var(--wp--custom--transition--reveal),
+			transform var(--wp--custom--transition--reveal);
+	}
+
+	/* The chapter images drift as their section passes the viewport. */
+	@supports (animation-timeline: view()) {
+		.ep-chapter__media img {
+			animation: ep-drift linear both;
+			animation-timeline: view();
+			animation-range: cover 0% cover 100%;
+		}
+	}
+}
+
+@keyframes ep-rise {
+	from {
+		opacity: 0;
+		transform: translateY(2.25rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes ep-drift {
+	from {
+		transform: translateY(-3.5%) scale(0.97);
+	}
+
+	to {
+		transform: translateY(3.5%) scale(1.03);
+	}
+}
+
+/* --- Stats --------------------------------------------------------------- */
+
+/*
+ * Four numbers about the business, held against a sticky heading while they
+ * scroll past. The counting is the spa-stats block's Interactivity store; this
+ * is only the frame.
+ */
+.ep-stats {
+	display: grid;
+	grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+	column-gap: var(--wp--custom--gutter);
+}
+
+.ep-stats__head {
+	position: sticky;
+	top: calc(var(--ep-header-h, 5.5rem) + 3rem);
+	align-self: start;
+}
+
+@media (max-width: 860px) {
+	.ep-stats {
+		grid-template-columns: 1fr;
+		row-gap: var(--wp--preset--spacing--40);
+	}
+
+	.ep-stats__head {
+		position: static;
+	}
+}
+
+/* --- The financing line ------------------------------------------------- */
+
+.ep-finance {
+	border-top: 2px solid var(--wp--preset--color--ink);
+	padding-top: var(--wp--preset--spacing--20);
+	gap: var(--wp--preset--spacing--30);
+}
+
+.ep-finance > .wp-block-group {
+	max-width: 46ch;
+}
+
+.ep-finance__terms {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	line-height: 1.02;
+	letter-spacing: -0.03em;
+	color: var(--wp--preset--color--primary-dark);
+	margin: 0;
+}
+
+.ep-night .ep-finance {
+	border-top-color: var(--wp--preset--color--ember);
+}
+
+.ep-night .ep-finance__terms {
+	color: var(--wp--preset--color--sand);
+}
+
+/* --- The series index -------------------------------------------------- */
+
+/*
+ * Six short arguments in three columns, each headed by a link. Hairlines above
+ * each entry instead of a card around it.
+ */
+.ep-series-index h4 {
+	border-top: 1px solid rgba(4, 20, 27, 0.18);
+	padding-top: var(--wp--preset--spacing--20);
+	margin-bottom: 0.5rem;
+}
+
+.ep-series-index h4 a {
+	text-decoration: none;
+	color: var(--wp--preset--color--primary-dark);
+}
+
+.ep-series-index h4 a:hover {
+	color: var(--wp--preset--color--ember);
+}
+
+.ep-series-index p {
+	margin-bottom: var(--wp--preset--spacing--40);
+	max-width: 34ch;
+}
+
+/* --- The single spa ------------------------------------------------------ */
+
+/*
+ * The opening is a night band: the render on its sheet one side, the name and
+ * the two next steps the other. Below it the page splits — the argument in a
+ * measured column, the numbers on a rail that stays with you while you read.
+ */
+.ep-spa-hero .wp-block-post-title {
+	color: var(--wp--preset--color--sand);
+	margin: 0;
+	max-width: 12ch;
+	font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 144;
+}
+
+.ep-spa-hero .wp-block-post-terms {
+	color: var(--wp--preset--color--ember);
+}
+
+.ep-spa-hero .wp-block-post-excerpt {
+	max-width: 40ch;
+}
+
+/* The spec rail: present from the first screen of reading, on desktop only. */
+.ep-spa-rail__inner {
+	position: sticky;
+	top: calc(var(--ep-header-h, 5.5rem) + 2rem);
+	border-top: 2px solid var(--wp--preset--color--ink);
+	padding-top: var(--wp--preset--spacing--20);
+}
+
+.ep-spa-rail__note {
+	color: var(--wp--preset--color--text-muted);
+}
+
+@media (max-width: 860px) {
+	.ep-spa-rail__inner {
+		position: static;
+	}
+}
+
+/* Quick facts inside the article body: figures, not sentences. */
+.ep-spa-quickfacts {
+	border-block: 1px solid var(--wp--preset--color--border);
+	padding-block: var(--wp--preset--spacing--30);
+	margin-block: var(--wp--preset--spacing--40);
+}
+
+.ep-spa-quickfacts p:not(.is-style-eyebrow) {
+	font-family: var(--wp--preset--font-family--display);
+	font-weight: 300;
+	letter-spacing: -0.03em;
+	color: var(--wp--preset--color--ember);
+	font-variant-numeric: tabular-nums;
+	margin: 0;
+}
+
+/* --- Media --------------------------------------------------------------- */
+
+/* Every image in the design has a declared box, so nothing reflows on load. */
 .ep-media-band {
 	overflow: clip;
 }
@@ -89,10 +864,26 @@ body {
 	object-fit: cover;
 }
 
-/* Utility bar above the header: small, quiet, never competes with the nav. */
+.ep-figure-full img {
+	width: 100%;
+	aspect-ratio: 21 / 9;
+	object-fit: cover;
+	display: block;
+}
+
+@media (max-width: 700px) {
+	.ep-figure-full img {
+		aspect-ratio: 4 / 3;
+	}
+}
+
+/* --- Utility bar --------------------------------------------------------- */
+
 .ep-utility-bar {
-	font-size: var(--wp--preset--font-size--small);
-	letter-spacing: 0.01em;
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
 }
 
 .ep-utility-bar a {
@@ -101,6 +892,26 @@ body {
 
 .ep-utility-bar a:hover {
 	text-decoration: underline;
+}
+
+/* --- The footer statement ------------------------------------------------ */
+
+.ep-footer-statement {
+	font-family: var(--wp--preset--font-family--display);
+	font-size: var(--wp--preset--font-size--colossal);
+	font-weight: 300;
+	line-height: 0.88;
+	letter-spacing: -0.04em;
+	font-variation-settings: "SOFT" 40, "WONK" 1, "opsz" 144;
+	color: var(--wp--preset--color--sand);
+	margin: 0;
+	max-width: 14ch;
+	text-wrap: balance;
+}
+
+.ep-footer-statement em {
+	font-style: normal;
+	color: var(--wp--preset--color--ember);
 }
 
 /* --- The one form on the site ------------------------------------------- */
@@ -123,13 +934,16 @@ body {
 }
 
 .ep-form label {
-	font-size: var(--wp--preset--font-size--small);
-	font-weight: 700;
+	font-family: var(--wp--preset--font-family--data);
+	font-size: var(--wp--custom--eyebrow--size);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 	color: var(--wp--preset--color--primary-dark);
 }
 
 .ep-form__optional {
-	font-weight: 400;
+	text-transform: none;
+	letter-spacing: 0;
 	color: var(--wp--preset--color--text-muted);
 }
 
@@ -141,17 +955,18 @@ body {
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--base);
 	color: var(--wp--preset--color--ink);
-	background: var(--wp--preset--color--base);
-	border: 1px solid var(--wp--preset--color--border);
-	border-radius: var(--wp--custom--radius--sm);
-	padding: 0.75rem 0.9rem;
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid var(--wp--preset--color--border);
+	border-radius: 0;
+	padding: 0.7rem 0;
 	width: 100%;
 }
 
 .ep-form input:focus,
 .ep-form select:focus,
 .ep-form textarea:focus {
-	border-color: var(--wp--preset--color--primary);
+	border-bottom-color: var(--wp--preset--color--ember);
 }
 
 .ep-form textarea {
@@ -176,34 +991,40 @@ body {
 	cursor: pointer;
 }
 
-/* -------------------------------------------------------------------------
-   Dark bands
-   A section painted deep or primary-dark inherits the light text colour, but
-   link and eyebrow defaults are tuned for the light page. Restate them here so
-   nothing lands dark-on-dark.
-   ---------------------------------------------------------------------- */
+/* --- Reduced motion ------------------------------------------------------ */
 
-.has-deep-background-color .is-style-eyebrow:not(.has-text-color),
-.has-primary-dark-background-color .is-style-eyebrow:not(.has-text-color) {
-	color: var(--wp--preset--color--accent);
-}
+/*
+ * Last in the file so it wins. Everything above degrades to a static page: the
+ * marquee stops, the reveals are simply visible, the parallax is a still image
+ * and the hover videos never autoplay (that decision is in the block's script).
+ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 
-.has-deep-background-color a:not(.wp-element-button),
-.has-primary-dark-background-color a:not(.wp-element-button) {
-	color: var(--wp--preset--color--accent);
-}
+	html {
+		scroll-behavior: auto;
+	}
 
-/* The quiet outline button takes its colour from the band it sits in. */
-.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link,
-.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link {
-	color: var(--wp--preset--color--base);
-	box-shadow: inset 0 0 0 1px var(--wp--preset--color--accent);
-}
+	.ep-marquee__track {
+		animation: none;
+		transform: none;
+	}
 
-.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
-.has-deep-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus,
-.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:hover,
-.has-primary-dark-background-color .wp-block-button.is-style-outline-quiet .wp-block-button__link:focus {
-	background: var(--wp--preset--color--accent);
-	color: var(--wp--preset--color--deep);
+	.ep-reveal,
+	.ep-io .ep-reveal:not(.is-revealed) {
+		opacity: 1;
+		transform: none;
+	}
+
+	.ep-chapter__media img {
+		animation: none;
+		transform: none;
+	}
 }
