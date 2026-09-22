@@ -8,6 +8,8 @@ The site is a base theme (`zngiron-base`) plus a blocks plugin (`zngiron-blocks`
 namespace, with a strict sizing contract so another brand's photographs and copy drop in
 without per-image tuning. Emerald Pool is the first brand configured on it.
 
+**New here? Read [`SETUP.md`](SETUP.md)** — four commands from a clone to a running demo.
+
 Start at `docs/CTO-SUMMARY.md`. `docs/ARCHITECTURE.md` is how it fits together, `docs/BLOCKS.md`
 is the blocks, `docs/IA-UX-AUDIT.md` is the audit and the IA that shipped, and
 `docs/superpowers/specs/` is the design the build follows.
@@ -67,8 +69,10 @@ make axe                 # axe-core colour contrast, AA
 docker-compose.yml        wordpress:latest · mariadb:11 · wordpress:cli
 Makefile
 .env / .env.example       credentials, port, admin user
-config/brand.json         the brand: name, post types, meta fields, locations, social
+config/brand.json         the brand: name, post types, meta fields, locations
 wp-content/themes/zngiron-base/    the base theme (bind-mounted)
+  inc/meta.php              description, Open Graph and Twitter tags; stands down for an SEO plugin
+  screenshot.png            what Appearance -> Themes shows
 wp-content/plugins/zngiron-blocks/ the twelve blocks (bind-mounted, build/ committed)
 tools/screenshot.js       viewport screenshots and the layout assertions
 seed/
@@ -85,12 +89,14 @@ research/                 scraped source material
   spa-specs.json            spec tables for 7 representative models
   design-tokens.md          observed colours, fonts, spacing
   assets/                   33 downloaded images + manifest.json
+SETUP.md                  four-command quickstart for someone cloning this fresh
 docs/
   CTO-SUMMARY.md          what was delivered, and what production would need — start here
+  SEED.md                 what `make seed` creates, and how to point it at another brand
   ARCHITECTURE.md         the folder map, the sizing contract, and how to rebrand
   BLOCKS.md               the twelve custom blocks
   IA-UX-AUDIT.md          audit of the live site + the IA that shipped
-  screenshots/            twenty curated captures of the seeded site
+  screenshots/            forty curated captures, desktop and mobile, of the seeded site
   superpowers/specs/      the approved design this build follows
 ```
 
