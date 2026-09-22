@@ -169,6 +169,12 @@
   .z-header__phone {
     display: none;
   }
+
+  /* Once the nav is a hamburger it stops being a menu you read and becomes a
+     control you reach for, so it goes to the far edge: logo, quote, menu. */
+  .z-header .wp-block-navigation {
+    order: 1;
+  }
 }
 
 @media (min-width: 64em) {
