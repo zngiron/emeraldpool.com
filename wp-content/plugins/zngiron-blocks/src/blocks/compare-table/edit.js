@@ -6,7 +6,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody, Placeholder, SelectControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import ServerSideRender from '@wordpress/server-side-render';
@@ -68,7 +68,20 @@ export default function Edit( { attributes, setAttributes } ) {
           allowedFormats={ [] }
           placeholder={ __( 'Side by side', 'zngiron-blocks' ) }
         />
-        <ServerSideRender block="zngiron/compare-table" attributes={ { ...attributes, heading: '' } } />
+        <ServerSideRender
+          block="zngiron/compare-table"
+          attributes={ { ...attributes, heading: '' } }
+          EmptyResponsePlaceholder={ () => (
+            <Placeholder
+              icon="columns"
+              label={ __( 'Compare Table', 'zngiron-blocks' ) }
+              instructions={ __(
+                'Choose two or three posts in the Posts panel on the right. The table builds itself from the fields flagged for comparison.',
+                'zngiron-blocks'
+              ) }
+            />
+          ) }
+        />
       </div>
     </>
   );

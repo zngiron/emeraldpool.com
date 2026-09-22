@@ -6,7 +6,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { PanelBody, Placeholder, ToggleControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -35,7 +35,20 @@ export default function Edit( { attributes, setAttributes } ) {
           allowedFormats={ [] }
           placeholder={ __( 'Where to find us', 'zngiron-blocks' ) }
         />
-        <ServerSideRender block="zngiron/locations" attributes={ { ...attributes, heading: '' } } />
+        <ServerSideRender
+          block="zngiron/locations"
+          attributes={ { ...attributes, heading: '' } }
+          EmptyResponsePlaceholder={ () => (
+            <Placeholder
+              icon="location"
+              label={ __( 'Locations', 'zngiron-blocks' ) }
+              instructions={ __(
+                'No locations are configured. Add them to the locations array in config/brand.json.',
+                'zngiron-blocks'
+              ) }
+            />
+          ) }
+        />
       </div>
     </>
   );
