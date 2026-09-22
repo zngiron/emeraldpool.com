@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Emerald Pool — block system</title>
+<style>
+  @font-face { font-family: "Fraunces"; src: url("../../wp-content/themes/zngiron-base/assets/fonts/fraunces-latin-var.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+  @font-face { font-family: "Karla"; src: url("../../wp-content/themes/zngiron-base/assets/fonts/karla-latin-var.woff2") format("woff2"); font-weight: 200 800; font-display: block; }
+  @font-face { font-family: "JetBrains Mono"; src: url("../../wp-content/themes/zngiron-base/assets/fonts/jetbrains-mono-latin-var.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
+
+  :root {
+    --abyss: #04141b;
+    --deep: #0b2530;
+    --ink: #12242d;
+    --sand: #e9e2d4;
+    --muted: #93a8b2;
+    --rule: #1a3a47;
+    --accent: #e08a3c;
+    --aqua: #4bc5e1;
+    --display: "Fraunces", Georgia, serif;
+    --body: "Karla", Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--abyss); }
+
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: var(--abyss);
+    color: var(--sand);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.5;
+    padding: 64px 80px 72px;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    break-after: page;
+  }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+
+  .runner {
+    position: absolute;
+    inset-inline: 80px;
+    bottom: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+  .runner b { font-weight: 500; color: var(--sand); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 78px;
+    line-height: .98;
+    letter-spacing: -.03em;
+    margin: 0;
+    max-width: 17ch;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 46px;
+    line-height: 1.04;
+    letter-spacing: -.025em;
+    margin: 0 0 8px;
+    max-width: 22ch;
+  }
+  .sub { color: var(--muted); max-width: 64ch; margin: 14px 0 0; font-size: 18px; }
+
+  /* ---- title slide ---- */
+  .title-slide { justify-content: flex-end; }
+  .title-slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(1100px 520px at 78% 18%, rgba(224,138,60,.20), transparent 62%),
+      radial-gradient(760px 420px at 12% 92%, rgba(75,197,225,.13), transparent 66%);
+  }
+  .title-slide > *:not(.runner) { position: relative; z-index: 1; }
+  .title-slide img.logo { width: 196px; margin-bottom: auto; }
+  .title-meta {
+    display: flex;
+    gap: 44px;
+    margin-top: 34px;
+    margin-bottom: 26px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .title-meta b { display: block; color: var(--sand); font-weight: 500; margin-top: 5px; letter-spacing: .1em; }
+
+  /* ---- shots ---- */
+  .shots {
+    flex: 1;
+    display: flex;
+    gap: 34px;
+    align-items: flex-start;
+    margin-top: 26px;
+    min-height: 0;
+  }
+  .shots figure { margin: 0; display: flex; flex-direction: column; min-height: 0; }
+  .shots figure.wide { flex: 1 1 auto; min-width: 0; }
+  .shots figure.narrow { flex: 0 0 176px; }
+  .shots img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 396px;
+    object-fit: cover;
+    object-position: top center;
+    border: 1px solid var(--rule);
+  }
+  .shots figcaption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 9px;
+  }
+  .shot-note { margin: 0; color: var(--muted); font-size: 16px; max-width: 70ch; }
+
+  /* ---- four-up ---- */
+  .quad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 28px; flex: 1; align-content: start; }
+  .quad figure { margin: 0; }
+  .quad img { width: 100%; height: 300px; object-fit: cover; object-position: top center; border: 1px solid var(--rule); display: block; }
+  .quad figcaption { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+  /* ---- numbers ---- */
+  .tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 38px; }
+  .tile { background: var(--abyss); padding: 30px 24px 26px; }
+  .tile .n { font-family: var(--display); font-weight: 300; font-size: 62px; line-height: 1; letter-spacing: -.03em; color: var(--sand); font-variant-numeric: tabular-nums; }
+  .tile .n small { font-size: 22px; color: var(--accent); }
+  .tile .l { font-family: var(--mono); font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+
+  /* ---- block list ---- */
+  .blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 44px; margin-top: 26px; }
+  .blk { display: grid; grid-template-columns: 30px 1fr; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  .blk .i { font-family: var(--mono); font-size: 11px; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .blk .t { font-weight: 700; font-size: 16px; }
+  .blk .d { display: block; font-weight: 400; color: var(--muted); font-size: 13.5px; line-height: 1.35; margin-top: 2px; }
+
+  /* ---- two column ---- */
+  .cols { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; margin-top: 28px; flex: 1; align-items: start; }
+
+  pre {
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.85;
+    background: var(--deep);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 24px 26px;
+    margin: 0;
+    color: var(--sand);
+    white-space: pre;
+  }
+  pre .c { color: var(--muted); }
+
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.plain li { padding: 12px 0 12px 26px; border-bottom: 1px solid var(--rule); position: relative; font-size: 16.5px; }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: 21px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  ul.plain li b { display: block; font-weight: 700; }
+  ul.plain li span { color: var(--muted); font-size: 14.5px; }
+
+  .checks { margin-top: 26px; }
+  .chk { display: grid; grid-template-columns: 26px 1fr auto; gap: 16px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--rule); }
+  .chk .m { color: var(--aqua); font-weight: 700; font-size: 18px; }
+  .chk .v { font-family: var(--mono); font-size: 13px; color: var(--sand); font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+  .chk .t { font-size: 16.5px; }
+
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 10px 22px; margin-top: 22px; font-size: 16px; }
+  .kv dt { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
+  .kv dd { margin: 0; }
+
+  @page { size: 1280px 720px; margin: 0; }
+  @media print { .slide { margin: 0; } }
+</style>
+</head>
+<body>
+
+<!-- 1 ---------------------------------------------------------------- -->
+<section class="slide title-slide">
+  <img class="logo" src="../../research/assets/emerald-pool-logo-white.png" alt="Emerald Pool & Patio">
+  <p class="eyebrow">WordPress block system</p>
+  <h1>Warm water, and a site that is as easy to run as it is to look at.</h1>
+  <div class="title-meta">
+    <div>Client<b>Emerald Pool &amp; Patio</b></div>
+    <div>Built as<b>Block theme + blocks plugin</b></div>
+    <div>Date<b>22 September 2026</b></div>
+  </div>
+  <div class="runner"><span>Emerald Pool · Handover</span><span><b>01</b> / 13</span></div>
+</section>
+
+<!-- 2 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">What this is</p>
+  <h2>A base theme and twelve blocks, configured for one brand.</h2>
+  <p class="sub">Nothing here is a page builder, and nothing is for sale. Spa models are a
+  custom post type — a marketing catalogue, not a shop — so there is no WooCommerce, no
+  cart, and no checkout to maintain.</p>
+  <div class="cols">
+    <ul class="plain">
+      <li><b>zngiron-base</b><span>The theme. Every design decision is a theme.json preset; every page section is a pattern.</span></li>
+      <li><b>zngiron-blocks</b><span>The plugin. Twelve server-rendered blocks, the spa post type, and the schema output.</span></li>
+      <li><b>config/brand.json</b><span>The brand. Name, post types, taxonomies, meta fields and store locations — one file.</span></li>
+    </ul>
+    <ul class="plain">
+      <li><b>Editors work in Gutenberg</b><span>The blocks sit in an inserter category named for the brand. No shortcodes, no custom admin screens to learn.</span></li>
+      <li><b>Deployment needs no Node</b><span>The compiled blocks are committed. Node is only needed to change the block source.</span></li>
+      <li><b>Rebrandable on purpose</b><span>Emerald Pool is the first brand on the system, not the system itself.</span></li>
+    </ul>
+  </div>
+  <div class="runner"><span>What this is</span><span><b>02</b> / 13</span></div>
+</section>
+
+<!-- 3 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">By the numbers</p>
+  <h2>What a fresh install builds, unattended.</h2>
+  <div class="tiles">
+    <div class="tile"><div class="n">12</div><div class="l">Custom blocks</div></div>
+    <div class="tile"><div class="n">11</div><div class="l">Pages</div></div>
+    <div class="tile"><div class="n">10</div><div class="l">Spa models</div></div>
+    <div class="tile"><div class="n">33</div><div class="l">Images</div></div>
+    <div class="tile"><div class="n">4<small> cmds</small></div><div class="l">To set up</div></div>
+  </div>
+  <p class="sub" style="margin-top:38px">The seed is files in the repository, not a database dump: page markup,
+  a spa spec sheet, and an image manifest. Running it twice changes nothing but timestamps, so
+  a demo can always be put back the way it started.</p>
+  <div class="runner"><span>By the numbers</span><span><b>03</b> / 13</span></div>
+</section>
+
+<!-- 4 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Home</p>
+  <h2>One hero, one viewport — on every screen.</h2>
+  <div class="shots">
+    <figure class="wide"><img src="shots/home-desktop.jpg" alt="Home page at desktop width"><figcaption>Desktop · 1440</figcaption></figure>
+    <figure class="narrow"><img src="shots/home-mobile.jpg" alt="Home page at phone width"><figcaption>Mobile · 390</figcaption></figure>
+  </div>
+  <div class="runner"><span>Home</span><span><b>04</b> / 13</span></div>
+</section>
+
+<!-- 5 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Hot Tubs</p>
+  <h2>A listing that filters itself from the taxonomy.</h2>
+  <div class="shots">
+    <figure class="wide"><img src="shots/hot-tubs-desktop.jpg" alt="Hot Tubs listing at desktop width"><figcaption>Desktop · 1440</figcaption></figure>
+    <figure class="narrow"><img src="shots/hot-tubs-mobile.jpg" alt="Hot Tubs listing at phone width"><figcaption>Mobile · 390</figcaption></figure>
+  </div>
+  <div class="runner"><span>Hot Tubs</span><span><b>05</b> / 13</span></div>
+</section>
+
+<!-- 6 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Spa model</p>
+  <h2>Specifications come from the fields, not from typing.</h2>
+  <div class="shots">
+    <figure class="wide"><img src="shots/spa-single-desktop.jpg" alt="A single spa model page at desktop width"><figcaption>Desktop · 1440</figcaption></figure>
+    <figure class="narrow"><img src="shots/spa-single-mobile.jpg" alt="A single spa model page at phone width"><figcaption>Mobile · 390</figcaption></figure>
+  </div>
+  <div class="runner"><span>Spa model</span><span><b>06</b> / 13</span></div>
+</section>
+
+<!-- 7 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Services</p>
+  <h2>Alternating media and text, on one sizing contract.</h2>
+  <div class="shots">
+    <figure class="wide"><img src="shots/services-desktop.jpg" alt="Services page at desktop width"><figcaption>Desktop · 1440</figcaption></figure>
+    <figure class="narrow"><img src="shots/services-mobile.jpg" alt="Services page at phone width"><figcaption>Mobile · 390</figcaption></figure>
+  </div>
+  <div class="runner"><span>Services</span><span><b>07</b> / 13</span></div>
+</section>
+
+<!-- 8 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Journal and Contact</p>
+  <h2>The rest of the site, at both widths.</h2>
+  <div class="quad">
+    <figure><img src="shots/journal-desktop.jpg" alt="Journal index at desktop width"><figcaption>Journal · 1440</figcaption></figure>
+    <figure><img src="shots/journal-mobile.jpg" alt="Journal index at phone width"><figcaption>Journal · 390</figcaption></figure>
+    <figure><img src="shots/contact-desktop.jpg" alt="Contact page at desktop width"><figcaption>Contact · 1440</figcaption></figure>
+    <figure><img src="shots/contact-mobile.jpg" alt="Contact page at phone width"><figcaption>Contact · 390</figcaption></figure>
+  </div>
+  <div class="runner"><span>Journal and Contact</span><span><b>08</b> / 13</span></div>
+</section>
+
+<!-- 9 ---------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">The blocks</p>
+  <h2>Twelve, and a reason for each.</h2>
+  <div class="blocks">
+    <div class="blk"><span class="i">01</span><span class="t">Hero<span class="d">Full-viewport opener, media behind copy</span></span></div>
+    <div class="blk"><span class="i">02</span><span class="t">Media Text<span class="d">Image beside copy, either side</span></span></div>
+    <div class="blk"><span class="i">03</span><span class="t">Card<span class="d">One card; the grid's child</span></span></div>
+    <div class="blk"><span class="i">04</span><span class="t">Card Grid<span class="d">Two to four equal-height cards</span></span></div>
+    <div class="blk"><span class="i">05</span><span class="t">Post Grid<span class="d">Any post type, with filter chips</span></span></div>
+    <div class="blk"><span class="i">06</span><span class="t">Specs Table<span class="d">Rows from the declared meta fields</span></span></div>
+    <div class="blk"><span class="i">07</span><span class="t">Compare Table<span class="d">Two or three models side by side</span></span></div>
+    <div class="blk"><span class="i">08</span><span class="t">Stats<span class="d">Counted figures in a band</span></span></div>
+    <div class="blk"><span class="i">09</span><span class="t">Testimonials<span class="d">Quotes, with attribution</span></span></div>
+    <div class="blk"><span class="i">10</span><span class="t">FAQ<span class="d">Questions, and the schema for them</span></span></div>
+    <div class="blk"><span class="i">11</span><span class="t">Locations<span class="d">Showrooms, from brand.json</span></span></div>
+    <div class="blk"><span class="i">12</span><span class="t">Marquee<span class="d">A moving line of short claims</span></span></div>
+  </div>
+  <div class="runner"><span>The blocks</span><span><b>09</b> / 13</span></div>
+</section>
+
+<!-- 10 --------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Configured, not coded</p>
+  <h2>Adding a specification is editing one file.</h2>
+  <div class="cols">
+    <div>
+      <p class="sub" style="margin-top:0">The spa post type, its two taxonomies and its eleven
+      meta fields are declared in <code>config/brand.json</code>. A field flagged <b>specs</b>
+      becomes a row in the Specs Table; a field flagged <b>compare</b> becomes a row in the
+      Compare Table. Neither block is edited to add one.</p>
+      <dl class="kv">
+        <dt>Post type</dt><dd>spa — 10 models</dd>
+        <dt>Taxonomies</dt><dd>Type (2 terms), Series (6 terms)</dd>
+        <dt>Meta fields</dt><dd>11, of which 9 in specs and 6 in compare</dd>
+      </dl>
+    </div>
+    <pre>{
+  <span class="c">"key"</span>: "spa_jets",
+  <span class="c">"label"</span>: "Jets",
+  <span class="c">"type"</span>: "integer",
+  <span class="c">"specs"</span>: true,
+  <span class="c">"compare"</span>: true
+}</pre>
+  </div>
+  <div class="runner"><span>Configured, not coded</span><span><b>10</b> / 13</span></div>
+</section>
+
+<!-- 11 --------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Setup</p>
+  <h2>Four commands, and nothing installed on the machine.</h2>
+  <div class="cols">
+    <pre><span class="c"># once</span>
+cp .env.example .env
+
+<span class="c"># start wordpress + mariadb</span>
+make up
+
+<span class="c"># install, activate, permalinks</span>
+make install
+
+<span class="c"># images, spas, pages, posts</span>
+make seed</pre>
+    <div>
+      <p class="sub" style="margin-top:0">Everything runs in containers, under Docker or
+      OrbStack. No PHP, no MySQL and no Node are installed on the host. The first run pulls
+      the images; after that it is seconds.</p>
+      <dl class="kv">
+        <dt>Site</dt><dd>http://localhost:8080</dd>
+        <dt>Admin</dt><dd>/wp-admin — admin / admin</dd>
+        <dt>Start over</dt><dd>make reset, then make seed</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="runner"><span>Setup</span><span><b>11</b> / 13</span></div>
+</section>
+
+<!-- 12 --------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Verified</p>
+  <h2>Checked on a clean clone, not on the machine it was built on.</h2>
+  <div class="checks">
+    <div class="chk"><span class="m">✓</span><span class="t">Clone, start, install, seed — the whole path, on an empty database</span><span class="v">132 pages</span></div>
+    <div class="chk"><span class="m">✓</span><span class="t">Every internal link and image crawled: none broken, none a placeholder</span><span class="v">206 urls</span></div>
+    <div class="chk"><span class="m">✓</span><span class="t">axe-core colour contrast at AA, two widths and two scroll positions</span><span class="v">0 violations</span></div>
+    <div class="chk"><span class="m">✓</span><span class="t">Layout assertions: no overflow, one nav row, hero exactly one viewport</span><span class="v">87 stops</span></div>
+    <div class="chk"><span class="m">✓</span><span class="t">Blocks registered and rendering, each with a working editor preview</span><span class="v">12 of 12</span></div>
+  </div>
+  <div class="runner"><span>Verified</span><span><b>12</b> / 13</span></div>
+</section>
+
+<!-- 13 --------------------------------------------------------------- -->
+<section class="slide">
+  <p class="eyebrow">Next</p>
+  <h2>What the second brand costs.</h2>
+  <div class="cols">
+    <ul class="plain">
+      <li><b>Edit config/brand.json</b><span>Name, post types, taxonomies, meta fields, locations.</span></li>
+      <li><b>Edit theme.json</b><span>Palette, type scale, spacing. No template touched.</span></li>
+      <li><b>Replace the assets and the seed copy</b><span>Images, the media map, and the page markup.</span></li>
+    </ul>
+    <div>
+      <p class="sub" style="margin-top:0">Before this goes live, three things belong on the
+      list: a contact form and where its mail goes, a staging host, and a decision on whether
+      the footer should carry the social links the brand file already declares.</p>
+      <dl class="kv">
+        <dt>Repository</dt><dd>github.com/zngiron/emeraldpool.com</dd>
+        <dt>Start at</dt><dd>SETUP.md</dd>
+        <dt>Seed data</dt><dd>docs/SEED.md</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="runner"><span>Next</span><span><b>13</b> / 13</span></div>
+</section>
+
+</body>
+</html>

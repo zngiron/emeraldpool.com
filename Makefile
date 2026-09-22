@@ -2,7 +2,7 @@ SHELL := /bin/bash
 include .env
 export
 
-.PHONY: up down logs wp install seed reset shots crawl axe
+.PHONY: up down logs wp install seed reset shots crawl axe deck
 
 up:
 	docker compose up -d
@@ -52,3 +52,7 @@ crawl:
 # axe-core colour contrast, AA.
 axe:
 	python3 seed/axe.py $(WP_URL)
+
+# The handover deck, from docs/screenshots into docs/*.pdf.
+deck:
+	sh tools/deck/build.sh

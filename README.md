@@ -62,6 +62,7 @@ make axe                 # axe-core colour contrast, AA
 | `make shots` | Screenshots + layout assertions into `.shots/`; `ARGS="--widths=390 --pages=home"` narrows it |
 | `make crawl` | Crawl every internal link and image; non-zero exit on a 404 or a `#` placeholder |
 | `make axe` | axe-core `color-contrast` over every page, two widths, two scroll positions |
+| `make deck` | Build `docs/emerald-pool-block-system.pdf` from `docs/screenshots/` |
 
 ## Layout
 
@@ -75,6 +76,7 @@ wp-content/themes/zngiron-base/    the base theme (bind-mounted)
   screenshot.png            what Appearance -> Themes shows
 wp-content/plugins/zngiron-blocks/ the twelve blocks (bind-mounted, build/ committed)
 tools/screenshot.js       viewport screenshots and the layout assertions
+tools/deck/               the handover deck: slides, the PDF renderer, and build.sh
 seed/
   seed.sh                 orchestration: media import, permalinks (runs in the cli container)
   spas.json               the ten spa models and their spec meta
@@ -97,6 +99,7 @@ docs/
   BLOCKS.md               the twelve custom blocks
   IA-UX-AUDIT.md          audit of the live site + the IA that shipped
   screenshots/            forty curated captures, desktop and mobile, of the seeded site
+  emerald-pool-block-system.pdf   the handover deck, thirteen slides at 16:9
   superpowers/specs/      the approved design this build follows
 ```
 

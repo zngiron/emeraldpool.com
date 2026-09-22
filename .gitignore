@@ -16,3 +16,7 @@ wp-content/plugins/*
 
 # Screenshot runs. docs/screenshots/ holds the curated selection.
 .shots/
+
+# Intermediate JPEGs for the deck; `make deck` rebuilds them from
+# docs/screenshots. The built PDF in docs/ IS committed.
+tools/deck/shots/
