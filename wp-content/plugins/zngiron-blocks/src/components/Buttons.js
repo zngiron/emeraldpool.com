@@ -1,5 +1,5 @@
 /**
- * Buttons — a small repeater shared by Hero, Media Text and Card Grid.
+ * Buttons — a small repeater shared by Hero and Media Text.
  *
  * Two styles only. A block that needs a third kind of call to action needs a
  * different block, not another option here.
@@ -12,7 +12,7 @@ import {
   TextControl,
 } from '@wordpress/components';
 
-export const BUTTON_DEFAULTS = { text: '', url: '', style: 'primary' };
+const BUTTON_DEFAULTS = { text: '', url: '', style: 'primary' };
 
 /**
  * Inspector controls for a buttons attribute.

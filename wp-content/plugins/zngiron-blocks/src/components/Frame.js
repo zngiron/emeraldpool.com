@@ -16,9 +16,9 @@ import {
   ToggleGroupControlOption,
 } from '@wordpress/components';
 
-export const RATIOS = [ '21:9', '16:9', '3:2', '4:5', '1:1' ];
+const RATIOS = [ '21:9', '16:9', '3:2', '4:5', '1:1' ];
 
-export const FRAME_DEFAULTS = {
+const FRAME_DEFAULTS = {
   mediaId: 0,
   mediaUrl: '',
   mediaType: 'image',
@@ -34,7 +34,7 @@ export const FRAME_DEFAULTS = {
  * @param {Object} frame Frame attribute.
  * @return {Object} Style object.
  */
-export function frameStyle( frame = {} ) {
+function frameStyle( frame = {} ) {
   const { ratio = '16:9', focalPoint = { x: 0.5, y: 0.5 } } = frame;
 
   return {

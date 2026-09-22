@@ -2,8 +2,8 @@
 /**
  * Brand configuration.
  *
- * Everything client-specific — post types, taxonomies, meta fields, locations,
- * social links — lives in config/brand.json at the repository root. It is read
+ * Everything client-specific — post types, taxonomies, meta fields and store
+ * locations — lives in config/brand.json at the repository root. It is read
  * once per request, cached in a static, and filterable so a child plugin or a
  * test can substitute values without touching the file.
  *
@@ -105,15 +105,6 @@ final class Config {
      */
     public static function locations(): array {
         return (array) self::get( 'locations' );
-    }
-
-    /**
-     * Social links.
-     *
-     * @return array<int, array<string, string>>
-     */
-    public static function social(): array {
-        return (array) self::get( 'social' );
     }
 
     /**
