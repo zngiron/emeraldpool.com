@@ -16,6 +16,6 @@ defined( 'ABSPATH' ) || exit;
 
 const VERSION = '1.0.0';
 
-foreach ( array( 'setup', 'assets', 'patterns', 'block-styles' ) as $module ) {
+foreach ( array( 'setup', 'assets', 'meta', 'patterns', 'block-styles' ) as $module ) {
     require_once __DIR__ . '/inc/' . $module . '.php';
 }
